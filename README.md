@@ -52,23 +52,39 @@ Ready to run the os? Follow these steps to get a local copy running on your mach
 
 ### Installation Manual
 
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/remilkies/retro-rat.git](https://github.com/remilkies/retro-rat.git)
-Access the directory:
+## 1. Clone the repository:
+   
+bash
+```
+git clone [https://github.com/remilkies/retro-rat.git](https://github.com/remilkies/retro-rat.git)
+```
+   
+## 2. Access the directory:
 
 Bash
+```
 cd retro-rat
-Install Backend Dependencies:
+```
+
+## 3. Install Backend Dependencies:
 
 Bash
+```
 npm install
-Install Frontend Dependencies:
+```
+
+## 4. Install Frontend Dependencies:
 
 Bash
+```
 cd retro-rat
+```
+
+```
 npm install
-Configure Environment Variables:
+```
+
+## 5. Configure Environment Variables:
 Create a .env file in the root directory and add the necessary config variables.
 
 Code snippet
@@ -80,7 +96,9 @@ Open your terminal in the root directory and run the start command:
 
 Bash
 # Boots up both the backend server and frontend client
+```
 npm run dev 
+```
 
 👾 The Developers (SysAdmins)
 
