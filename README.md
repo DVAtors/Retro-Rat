@@ -1,9 +1,9 @@
 # DVAtors
 
-# 💾 RetroRat Market: The Ultimate Vintage Tech Time Machine
+# 💾 RetroRat: The Ultimate Vintage Tech Time Machine
 
 > **"Welcome to the grid."** > 
-> Did you spend your childhood blowing into cartridges? Do you miss the heavy, satisfying *clack* of an old-school mechanical keyboard or the warm, analog hiss of a cassette tape? **RetroRat Market** isn't just an e-commerce platform; it's a comeback. We are building the ultimate digital flea market for vintage tech, retro games, and analog media, all wrapped up in a glorious, pixel-perfect 90s desktop aesthetic.
+> Did you spend your childhood blowing into cartridges? Do you miss the warm, analog hiss of a cassette tape? **RetroRat Market** isn't just an e-commerce platform; it's a comeback. We are building the ultimate digital flea market for vintage tech, retro games, and analog media, all wrapped up in a glorious, pixel-perfect 90s desktop aesthetic.
 
 ---
 
@@ -48,7 +48,7 @@ Ready to run the os? Follow these steps to get a local copy running on your mach
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/remilkies/retro-rat-os.git](https://github.com/remilkies/retro-rat-os.git)
+   git clone [https://github.com/remilkies/retro-rat.git](https://github.com/remilkies/retro-rat.git)
 Access the directory:
 
 Bash
