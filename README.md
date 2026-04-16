@@ -49,19 +49,20 @@ Ready to run the os? Follow these steps to get a local copy running on your mach
 1. **Clone the repository:**
    ```bash
    git clone [https://github.com/remilkies/retro-rat.git](https://github.com/remilkies/retro-rat.git)
-Access the directory:
+2. **Access the directory:**
 
-Bash
-cd retro-rat
-Install Backend Dependencies:
+   ```bash
+    cd retro-rat
+3. **Install Backend Dependencies:**
 
-Bash
-npm install
-Install Frontend Dependencies:
+   ```bash
+    npm install
+4.  **Install Frontend Dependencies:**
 
-Bash
-cd retro-rat
-npm install
+   ```bash
+    cd retro-rat
+    npm install
+
 Configure Environment Variables:
 Create a .env file in the root directory and add the necessary config variables.
 
@@ -81,6 +82,6 @@ npm run dev
 
 [Troy and robert] - Frontend & UI/UX Designer - GitHub Profile
 
-[Insert anouther thing - Backend & Database Engineer - GitHub Profile
+[Insert anouther thing] - Backend & Database Engineer - GitHub Profile
 
-[ SYSTEM MESSAGE: It is now safe to turn off your computer. (or whatever tagline i guess) ]
+[ SYSTEM MESSAGE: Welcome. (or whatever tagline i guess) ]
