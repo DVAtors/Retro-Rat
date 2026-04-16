@@ -77,10 +77,11 @@ Bash
 npm run dev 
 
 👾 The Developers (SysAdmins)
-[idk] - Full Stack Architect - GitHub Profile
 
-[Troy and robert] - Frontend & UI/UX Designer - GitHub Profile
+[Troy and robert] - Frontend & UI/UX Designer | GitHub Profile
 
-[Insert anouther thing - Backend & Database Engineer - GitHub Profile
+[Rem] - Frontend Developer | GitHub Profile - remilkies 
+
+[Frank] - Backend & Database Engineer | GitHub Profile
 
 [ SYSTEM MESSAGE: It is now safe to turn off your computer. (or whatever tagline i guess) ]
