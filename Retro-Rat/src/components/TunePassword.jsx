@@ -14,28 +14,33 @@ const NOTES = {
 
 const NOTE_NAMES = Object.keys(NOTES);
 
-export default TunePassword = () => {
+const TunePassword = () => {
     // State to hold the current tune (array of note names)
     const [tune, setTune] = useState(Array(8).fill('-'));
 
     const playNote = (note) => {
         if (note === '-') return; // Don't play if it's a rest
 
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();// Create an audio context
-        const oscillator = audioCtx.createOscillator();// Create an oscillator node to generate sound
-        const gainNode = audioCtx.createGain(); // Create a gain node to control the volume
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioCtx.createOscillator();//  oscillator node to generate sound
+        const gainNode = audioCtx.createGain(); // gain node to control the volume
 
-        oscillator.type = 'sine'; // Set the waveform type (sine wave) (you can change this to 'square', 'triangle', etc.)
+        oscillator.type = 'square'; // the sound waveform type
+// Sine (sine): smooth, gentle, rolling wave
+// Square (square): very blocky, jagged, tetris like wave
+// Sawtooth (sawtooth):  buzzy, sharp, and aggressive, often used for synth bass lines or sirens.
+// Triangle (triangle): Somewhere between a sine and a square. It’s smooth but has a little bit of a hollow "honk" to it
+
         oscillator.frequency.value = NOTES[note]; // Set the frequency based on the note
 
-        gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime); // Set the volume (0.5 is half volume)
+        gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime); // 0.5 is half volume
         gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3); // Fade out the sound over 0.3 seconds
 
         oscillator.connect(gainNode); // Connect the oscillator to the gain node
         gainNode.connect(audioCtx.destination); // Connect the gain node to the audio output
 
         oscillator.start(); // Start playing the note
-        oscillator.stop(audioCtx.currentTime + 0.3); // Stop the note after 0.3 seconds
+        oscillator.stop(audioCtx.currentTime + 0.3); // Stop the note after 0.3 seconds so it doesn't drooooooone on
     
     };
 
@@ -56,11 +61,13 @@ export default TunePassword = () => {
 
     return (
         <div className="password-container">
-            <h2>Create Your Audio Password</h2>
+            <h2 style={{textTransform: 'uppercase', marginBottom: '20px'}}>Create Your Audio Password</h2>
 
             <div className="note-selector">
-                {TunePassword.map((currentNote, index) => (
-                    <select key={index} value={currentNote} onChange={(e) => handleNoteChange(index, e.target.value)} style={{padding: '10px', border: '2px solid black', cursor: 'pointer'}}>
+                {tune.map((currentNote, index) => (
+                    <select key={index} value={currentNote} onChange={(e) => handleNoteChange(index, e.target.value)} 
+                    style={{padding: '10px', border: '2px solid black', cursor: 'pointer'}}>
+
                         {NOTE_NAMES.map(note => (
                             <option key={note} value={note}>{note}</option>
                         ))}
@@ -82,3 +89,5 @@ export default TunePassword = () => {
         </div>
     )
 };
+
+export default TunePassword
