@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import './TunePassword.css'
 const NOTES = {
     'C4': 261.63,
     'D4': 293.66,
@@ -61,7 +61,7 @@ const TunePassword = () => {
 
     return (
         <div className="password-container">
-            <h2 style={{textTransform: 'uppercase', marginBottom: '20px'}}>Create Your Audio Password</h2>
+            <h2 className="password-heading">Create Your Audio Password</h2>
 
             <div className="note-selector">
                 {tune.map((currentNote, index) => (
@@ -80,12 +80,12 @@ const TunePassword = () => {
                     ▶ Play Tune
                 </button>
 
-                <button onClick={() => alert(`Saveing password to DB: ${tune.join('')}`)}>
+                <button onClick={() => alert(`Saveing password to DB: ${tune.join('')}`)} className="controls-btn">
                     Save Password
                 </button>
             </div>
 
-            <p>Current Password: <strong>{tune.join('')}</strong></p>
+            <p className="user-password-string">RETURN USER'S PASSWORD AS STRING: <strong>{tune.join('')}</strong></p>
         </div>
     )
 };
