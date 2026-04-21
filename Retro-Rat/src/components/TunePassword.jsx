@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import './TunePassword.css'
+
+import Bars from '../assets/bars.png';
 const NOTES = {
     'C4': 261.63,
     'D4': 293.66,
@@ -12,18 +14,18 @@ const NOTES = {
     '-': 0
 };
 
-const NOTE_NAMES = Object.keys(NOTES);
+const NOTE_NAMES = Object.keys(NOTES); //dictionary list of the name of notes with the oscilating frequencies to make the sound of the note o7
 
 const TunePassword = () => {
     // State to hold the current tune (array of note names)
-    const [tune, setTune] = useState(Array(8).fill('-'));
+    const [tune, setTune] = useState(Array(8).fill('-')); //the 8 slots for eack password note/tune that the user needs to fill
 
     const playNote = (note) => {
-        if (note === '-') return; // Don't play if it's a rest
+        if (note === '-' || !note) return; // Don't play if it's a rest
 
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const oscillator = audioCtx.createOscillator();//  oscillator node to generate sound
-        const gainNode = audioCtx.createGain(); // gain node to control the volume
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)(); //contenxt prpares the sound to be made so that the context is there before the logic jumps in
+        const oscillator = audioCtx.createOscillator();//  created variable named oscillator: node to generate vibration to make the sound
+        const gainNode = audioCtx.createGain(); // gain knob/node to control the volume
 
         oscillator.type = 'square'; // the sound waveform type
 // Sine (sine): smooth, gentle, rolling wave
@@ -34,9 +36,9 @@ const TunePassword = () => {
         oscillator.frequency.value = NOTES[note]; // Set the frequency based on the note
 
         gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime); // 0.5 is half volume
-        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3); // Fade out the sound over 0.3 seconds
+        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3); // start loud then fade out the sound over 0.3 seconds so it's a shot beep instead of a beeeeeeeeeeeeeeeeep (annoying)
 
-        oscillator.connect(gainNode); // Connect the oscillator to the gain node
+        oscillator.connect(gainNode); // Connect the oscillator to the gain node so the ocsillator actully knows to what it's supposed to sound like
         gainNode.connect(audioCtx.destination); // Connect the gain node to the audio output
 
         oscillator.start(); // Start playing the note
@@ -44,9 +46,10 @@ const TunePassword = () => {
     
     };
 
-    const handleNoteChange = (index, newNote) => {
+    const handleNoteSlider = (slotIndex, noteIndex) => {
+        const newNote = NOTE_NAMES[noteIndex];
         const newTune = [...tune];
-        newTune[index] = newNote;
+        newTune[slotIndex] = newNote;
         setTune(newTune);
         playNote(newNote); // Play the note immediately when it's selected
     };
@@ -60,10 +63,29 @@ const TunePassword = () => {
     };
 
     return (
+        <>
         <div className="password-container">
             <h2 className="password-heading">Create Your Audio Password</h2>
 
-            <div className="note-selector">
+
+<img src={Bars} />
+<div className="slider-grid">
+    {tune.map((currentNote, slotIndex) => (
+        <div key={slotIndex} className="slider-col">
+            <span className="current-note">{currentNote}</span>
+
+            <input type="range" min="0" max={NOTE_NAMES.length - 1} value={NOTE_NAMES.indexOf(currentNote)} 
+            onChange={(e) => handleNoteSlider(slotIndex, parseInt(e.target.value))} 
+            style={{
+                
+            }} 
+            />
+        </div>
+    ))}
+</div>
+
+            {/* initialdropdownmenu thing
+            <div className="note-selector"> 
                 {tune.map((currentNote, index) => (
                     <select key={index} value={currentNote} onChange={(e) => handleNoteChange(index, e.target.value)} 
                     style={{padding: '10px', border: '2px solid black', cursor: 'pointer'}}>
@@ -73,7 +95,7 @@ const TunePassword = () => {
                         ))}
                     </select>
                 ))}
-            </div>
+            </div> */}
 
             <div className="password-controls">
                 <button onClick={playSequence} className="controls-btn">
@@ -87,6 +109,7 @@ const TunePassword = () => {
 
             <p className="user-password-string">RETURN USER'S PASSWORD AS STRING: <strong>{tune.join('')}</strong></p>
         </div>
+        </>
     )
 };
 
