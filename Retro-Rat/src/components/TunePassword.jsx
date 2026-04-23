@@ -68,10 +68,10 @@ const TunePassword = () => {
         <>
     <BootHeader/>
             <div className="password-container">
-                <h2 className="password-heading">Login Required</h2>
+                <p className="password-heading">Login Required</p>
 
                 <div className="username-container">
-                    <h2 className="username-text">Username</h2>
+                    <p className="username-text">Username</p>
                     <p className="username-string">
                         <div> &gt;
                             <input
@@ -85,7 +85,7 @@ const TunePassword = () => {
                 </div>
 
                 <div className="load-compositionContainer">
-                    <h2 className="load-text">Load Composition</h2>
+                    <p className="load-text">Load Composition</p>
 
                     <div className="slider-grid">
                         {tune.map((currentNote, slotIndex) => (
