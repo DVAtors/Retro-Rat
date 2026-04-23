@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-    <BootSequence/>
+    {/* <BootSequence/> */}
   <TunePassword />
     </>
   )
