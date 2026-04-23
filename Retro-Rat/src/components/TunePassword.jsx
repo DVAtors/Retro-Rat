@@ -83,10 +83,9 @@ const TunePassword = () => {
                         </div>
                     </p>
                 </div>
-                
 
                 <div className="load-compositionContainer">
-                    <h3 className="load-text">Load Composition</h3>
+                    <h2 className="load-text">Load Composition</h2>
 
                     <div className="slider-grid">
                         {tune.map((currentNote, slotIndex) => (
