@@ -68,18 +68,48 @@ const TunePassword = () => {
             <h2 className="password-heading">Create Your Audio Password</h2>
 
 
-<img src={Bars} />
+<img src={Bars} className="header-barstp" />
 <div className="slider-grid">
     {tune.map((currentNote, slotIndex) => (
         <div key={slotIndex} className="slider-col">
             <span className="current-note">{currentNote}</span>
+ 
+
 
             <input type="range" min="0" max={NOTE_NAMES.length - 1} value={NOTE_NAMES.indexOf(currentNote)} 
             onChange={(e) => handleNoteSlider(slotIndex, parseInt(e.target.value))} 
-            style={{
-                
-            }} 
             />
+
+{/* r/ ExplainLikeI'm5
+imagine you have 9 jars of milk on the wall. Each jar has a different label and it makes the sound of that note when you do the water playing thing but with jars of milk (C4, D4, E4... and one jar is empty for "-").
+
+type='range' The Sliding Down Blood Thing
+this turns the input into a slider (computers are smart, you don't have to overcomplicate and rebuild the wheel. we aim for effectivness, not smart inventions, except when debugging...actully no, with debugging too. i'll retype my entire code just for everyone to tell me it's perfect and it sill doens't work for me to finally cheat the import anf i SPELT IT WRONGGG, IM A SYNTAX ERROR MAXXER BRO
+
+anyway
+
+Think of it as a ladder you can slide back and forth to reach the 9 jars of milk
+
+min{0} and max={NOTE_NAMES.length - 1} THE BOUNDS
+This tells the slider where the drip starts and stops :P
+
+min={0}: The drip starts at jar #0 (-)
+
+max={8}: thenlast jar is index 8, so the slider doest drip off the edge of the container
+
+value={NOTE_NAMES.indexOf((currentNote)) (where are weeee and i'm so sooorryy)}
+This tells the drop to sit in triage on the slider for now until it's moved.Then drop looks at her older sister and says "what number Jar is G4 milk? and if G4 is the 5th jar, the slider moves itself to position 5.
+
+onChange=(e) => ...} "hei hii, i moved. and everyting you brab me i wil keep moving" .;D
+
+a.target.value: This is the number of the new jar the ladder is touching (like 3 >:3)
+
+parseInt(...): Since the slider speaks in "text" numbers, we use this to turn it into a "real" math number so the computer can calculate with this o7
+
+handleNoteSlider(slotIndex, ...):
+This sends a messege to the main code saying 
+*/}
+
         </div>
     ))}
 </div>
@@ -99,7 +129,7 @@ const TunePassword = () => {
 
             <div className="password-controls">
                 <button onClick={playSequence} className="controls-btn">
-                    ▶ Play Tune
+                    ▶
                 </button>
 
                 <button onClick={() => alert(`Saveing password to DB: ${tune.join('')}`)} className="controls-btn">
