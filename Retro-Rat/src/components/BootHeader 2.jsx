@@ -1,32 +1,11 @@
 import React from "react";
 import ratImg from '../assets/bootRat2.png';
-import Bars from '../assets/bars.png'
 import "./BootHeader.css";
-import HeaderText from '../assets/HeaderText.png'
 
 export default function BootHeader(){
     return(
         <>
-
-<header className="boot-header">
-        <div className="boot-bars">
-      <img src={Bars} alt="<p>-------------------------------------</p>
-          <p>-------------------------------------</p>" />
-        </div>
-        
-        <div className="boot-header-text">
-          <img src={HeaderText}/>
-        </div>
-        
-        <div className="boot-bars">
-      <img src={Bars} 
-      alt="<p>-------------------------------------</p>
-          <p>-------------------------------------</p>" />
-        </div>
-        </header>
-
-
-        {/* <header className="boot-header">
+        <header className="boot-header">
         <div className="boot-bars">
           <p>-------------------------------------</p>
           <p>-------------------------------------</p>
@@ -49,7 +28,7 @@ export default function BootHeader(){
           <p>-------------------------------------</p>
           <p>-------------------------------------</p>
         </div>
-        </header> */}
+        </header>
         </>
     )
 }

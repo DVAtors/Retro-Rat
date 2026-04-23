@@ -6,6 +6,34 @@
     font-style: normal;
 }
 
+.heading1{
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700; /*Bold*/
+    font-size: 37.5px;
+
+}
+
+.heading2{
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500; /*medium*/
+    font-size: 30px;
+}
+
+.heading3{
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500; /*medium*/
+    font-size: 15px;
+}
+
+.paragraph{
+    font-size: 20px;
+    font-weight: 500; /*medium*/
+    font-family: "Inter", sans-serif;
+}
+
 .product-container{
     display: flex;
     width: 340px;

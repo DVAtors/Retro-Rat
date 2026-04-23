@@ -1,35 +1,4 @@
-body{
-  overflow-x: hidden;
-}
-
-.boot-header{
-  display: flex;
-  flex-direction: column;
-  align-content: start;
-  width: 100vw;
-  margin: -5rem 0 5rem 0;
-  
-}
-
-.boot-bars{
-  height: 5vh;
-}
-.boot-bars img{
-  width: 100%;
-  height: auto;
-}
-
-.boot-header-text{
-height: 30vh;
-margin-bottom: -10rem;
-margin-top: 5rem;
-}
-.boot-header-text img{
-  height: 100%;
-  width: auto;
-
-}
-/* .boot-bars {
+.boot-bars {
     font-family: "Sixtyfour", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -45,8 +14,6 @@ margin-top: 5rem;
     padding-bottom: 15px;
     line-height: 1;
   }
-
-
   
   .boot-title {
     font-family: "Sixtyfour", sans-serif;
@@ -81,27 +48,19 @@ margin-top: 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-
   }
   
-.boot-bars p {
+  .boot-bars p {
     margin: 0;
     margin-bottom: -15px;
   }
-
-
+  
   .boot-header-text {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-
   }
   
-  .boot-header-text img{
-    width: 70vw;
-    height: auto;
-  }
   .boot-logo-row {
     display: flex;
     gap: 50px;
@@ -151,4 +110,4 @@ margin-top: 5rem;
     color: #00df3f;
     letter-spacing: 6px;
     text-align: center;
-  } */
+  }
