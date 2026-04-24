@@ -1,154 +1,177 @@
-body{
-  overflow-x: hidden;
+
+.vt323 {
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.boot-header{
+.bitcount-grid-double {
+  font-family: "Bitcount Grid Double", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "CRSV" 0.5,
+    "ELSH" 0,
+    "ELXP" 0;
+}
+
+
+.sixtyfour{
+  font-family: "Sixtyfour", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "BLED" 0,
+    "SCAN" 0;
+}
+
+body{
+  background-color: #000;
+}
+
+.boot-header {
   display: flex;
   flex-direction: column;
-  align-content: start;
-  width: 100vw;
-  margin: -5rem 0 5rem 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.boot-bars {
+
+  display: flex;
+flex-direction: column;
+align-items: center;
+gap: -15px;
+overflow-block: hidden;
+flex-wrap: nowrap;
+}
+
+.boot-bars p{
+  color: #00E040;
+text-align: center;
+text-shadow: 0 -3px 113.3px #00E040;
+font-size: 32px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: 4.16px;
+overflow: hidden;
+white-space: nowrap;
+
+}
+
+.boot-header-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.boot-title {
+  font-family: "Sixtyfour", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "BLED" 0,
+    "SCAN" 0;
+  font-size: 32px;
+  color: #00E040;
+  letter-spacing: 4.16px;
+  text-align: center;
+  text-shadow: 0 -3px 113.3px #00E040;
+  margin: 0;
+  line-height: 1;
   
 }
 
-.boot-bars{
-  height: 5vh;
+.boot {
+  background: #000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #00df3f;
+  padding: 25px 0;
 }
-.boot-bars img{
-  width: 100%;
-  height: auto;
+
+
+.boot-logo-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
 }
 
-.boot-header-text{
-height: 30vh;
-margin-bottom: -10rem;
-margin-top: 5rem;
-}
-.boot-header-text img{
-  height: 100%;
-  width: auto;
+.boot-rat-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  width: 201.5px;
+  height: 201.5px;
+  gap: 10px;
+  aspect-ratio: 1 / 1;
 
 }
-/* .boot-bars {
-    font-family: "Sixtyfour", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-variation-settings:
-      "BLED" 0,
-      "SCAN" 0;
-    font-size: 32px;
-    color: #00E040;
-    letter-spacing: 4.16px;
-    text-align: center;
-    text-shadow: 0 -3px 113.3px #00E040;
-    padding-bottom: 15px;
-    line-height: 1;
-  }
+
+.boot-rat {
+  width: 151.5px;
+height: 151.5px;
+flex-shrink: 0;
+aspect-ratio: 1 / 1;
+filter: drop-shadow(0 0.5px 125px #00DF3F);
+}
 
 
-  
-  .boot-title {
-    font-family: "Sixtyfour", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-variation-settings:
-      "BLED" 0,
-      "SCAN" 0;
-    font-size: 32px;
-    color: #00E040;
-    letter-spacing: 4.16px;
-    text-align: center;
-    text-shadow: 0 -3px 113.3px #00E040;
-    margin: 0;
-    line-height: 1;
-  }
-  
-  .boot {
-    background: #000;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    color: #00df3f;
-    padding: 25px 0;
-  }
-  
-  .boot-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.boot-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  white-space: nowrap;
 
-  }
-  
-.boot-bars p {
-    margin: 0;
-    margin-bottom: -15px;
-  }
+}
 
+.boot-title p{
+  color: #00E040;
+text-align: center;
+text-shadow: 0 -3px 113.3px #00E040;
+font-family: "Sixtyfour Convergence";
+font-size: 32px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: 4.16px;
+}
 
-  .boot-header-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.boot-version {
+  color: #00E040;
+  text-align: center;
+  text-shadow: 0 -3px 113.3px #00E040;
+  font-family: "VT323";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 12.8px;
+}
 
-  }
-  
-  .boot-header-text img{
-    width: 70vw;
-    height: auto;
-  }
-  .boot-logo-row {
-    display: flex;
-    gap: 50px;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .boot-rat-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 50px;
-    width: 201.5px;
-    height: 201.5px;
-  }
-  
-  .boot-rat {
-    width: 151.5px;
-    height: 151.5px;
-    display: block;
-    image-rendering: pixelated;
-  }
-  
-  .boot-titles {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    white-space: nowrap;
-  }
-  
-  .boot-version {
-    margin: 0;
-    font-family: 'VT323', monospace;
-    font-size: 32px;
-    color: #00e040;
-    letter-spacing: 12.8px;
-    text-shadow: 0 -3px 113.3px #00e040;
-    text-align: center;
-  }
-  
-  .boot-tagline {
-    margin: 0;
-    font-family: 'Bitcount Prop Double', monospace;
-    font-weight: 500;
-    font-size: 24px;
-    color: #00df3f;
-    letter-spacing: 6px;
-    text-align: center;
-  } */
+.boot-tagline {
+  margin: 0;
+  font-family: 'Bitcount Prop Double', monospace;
+  font-weight: 500;
+  font-size: 24px;
+  color: #00df3f;
+  letter-spacing: 6px;
+  text-align: center;
+  font-style: normal;
+  line-height: normal;
+
+}

@@ -2,31 +2,42 @@ import React from "react";
 import Product from "../assets/product-img.png"
 import "./ProductCard.css";
 
-export default function ProductCard(){
+export default function ProductCard() {
 
-    return(
+    return (
         <>
-        <div className="product-container">
+            <div className="product-container">
 
-        <div className="product-img">
-            <img src={Product} alt="Image of Product" />
-        </div>
-        <div className="product-text">
-            <h3>Lorem ipsum dolor.</h3>
-
-            <p className="product-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.</p>
-
-            <div className="price-container">
-                <h3 className="price-text">R$$$</h3>
-                <div className="condition-status">
-                    Great
+                <div className="product-img">
+                    <img src={Product} alt="Image of Product" />
                 </div>
+                <div className="product-text">
+                    <div className="product-row">
+                        <div className="product-col">
+                            <p className="product-title">Lorem ipsum dolor.</p>
+                            <p className="seller-username"> by sit amet </p>
+                        </div>
+                        <div className="product-col">
+                            <div className="product-year">
+                                1980's
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="product-row">
+                        <div className="price-container">
+                        <div className="price-text">R$$$</div>
+                        <div className="condition-status">
+                            Great
+                        </div>
+                    </div>
+                    </div>
+                    
+
+
+                </div>
+
             </div>
-
-
-        </div>
-        
-        </div>
         </>
     )
 
