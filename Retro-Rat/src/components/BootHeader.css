@@ -28,9 +28,9 @@
     "SCAN" 0;
 }
 
-body{
+/* body{
   background-color: #000;
-}
+} */
 
 .boot-header {
   display: flex;

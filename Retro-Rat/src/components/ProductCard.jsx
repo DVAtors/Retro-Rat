@@ -12,18 +12,23 @@ export default function ProductCard() {
                     <img src={Product} alt="Image of Product" />
                 </div>
                 <div className="product-text">
-                    <div className="product-row">
+                    <div className="product-row-top">
+
                         <div className="product-col">
-                            <p className="product-title">Lorem ipsum dolor.</p>
-                            <p className="seller-username"> by sit amet </p>
+                            <p className="product-title">Lorem ipsum dolor sit amet. </p>
                         </div>
-                        <div className="product-col">
+                            <div className="product-col">
                             <div className="product-year">
                                 1980's
                             </div>
                         </div>
-                    </div>
-                    
+</div>
+                        <div className="product-row">
+                            <p className="seller-username"> by consectetur adipiscing.</p>
+                        </div>
+                        
+
+
                     <div className="product-row">
                         <div className="price-container">
                         <div className="price-text">R$$$</div>

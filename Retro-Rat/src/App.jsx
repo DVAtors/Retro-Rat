@@ -9,9 +9,9 @@ function App() {
   return (
     <>
 
-  {/* <ProductCard /> */}
-  <TunePassword/>
-  {/* <ProductCard/> */}
+  {/* <BootSequence/>
+  <TunePassword/> */}
+  <ProductCard/>
     </>
   )
 }
