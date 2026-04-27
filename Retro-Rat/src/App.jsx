@@ -1,6 +1,5 @@
 import './App.css'
 import BootSequence from './pages/BootSequence';
-import ProductCard from './components/ProductCard';
 
 import TunePassword from './components/TunePassword'
 function App() {
@@ -8,10 +7,8 @@ function App() {
 
   return (
     <>
-
-  {/* <BootSequence/>
-  <TunePassword/> */}
-  <ProductCard/>
+    {/* <BootSequence/> */}
+  <TunePassword />
     </>
   )
 }

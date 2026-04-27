@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./TunePassword.css";
 import BootHeader from "./BootHeader";
 
+import Bars from "../assets/bars.png";
 const NOTES = {
     C4: 261.63,
     D4: 293.66,
@@ -68,24 +69,12 @@ const TunePassword = () => {
         <>
     <BootHeader/>
             <div className="password-container">
-                <p className="password-heading">Login Required</p>
+                <h2 className="password-heading">Create Your Audio Password</h2>
 
-                <div className="username-container">
-                    <p className="username-text">Username</p>
-                    <p className="username-string">
-                        <div> &gt;
-                            <input
-                                type="text"
-                                name="username" placeholder="Type Username Here"
-                                className="user-input"
-                            />
-
-                        </div>
-                    </p>
-                </div>
+                
 
                 <div className="load-compositionContainer">
-                    <p className="load-text">Load Composition</p>
+                    <h3 className="load-text">Load Composition</h3>
 
                     <div className="slider-grid">
                         {tune.map((currentNote, slotIndex) => (
