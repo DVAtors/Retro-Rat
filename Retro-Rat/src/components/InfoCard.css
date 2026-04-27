@@ -1,0 +1,79 @@
+.info-card {
+  position: relative;
+  width: 1256px;
+  height: 173px;
+  background-color: #5b2c91;
+  border: 4px solid black;
+  box-shadow: 8px 8px 0 0 black;
+  padding: 44px 252px 4px 44px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.info-card__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.info-card__title {
+  margin: 0;
+  font-size: 37.5px;
+  font-weight: 700;
+  line-height: 45px;
+  letter-spacing: -0.3792px;
+  text-transform: uppercase;
+  color: #f0f8ff;
+}
+
+.info-card__subtitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0.0508px;
+  text-transform: uppercase;
+  color: #ffe500;
+  white-space: nowrap;
+}
+
+.info-card__stripe {
+  position: absolute;
+  height: 566.841px;
+  transform: rotate(53.07deg);
+  transform-origin: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.info-card__stripe--gray {
+  background-color: #dfdfdf;
+  width: 29.03px;
+  top: -149.76px;
+}
+
+.info-card__stripe--white {
+  background-color: white;
+  width: 39.581px;
+  top: -137.08px;
+}
+
+.info-card__stripe--light {
+  background-color: #fafafa;
+  width: 7.924px;
+  top: -120.19px;
+}
+
+.info-card__star {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  z-index: 3;
+}
