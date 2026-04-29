@@ -1,19 +1,22 @@
-import './App.css'
-import BootSequence from './pages/BootSequence';
-import ProductCard from './components/ProductCard';
+import "./App.css";
+import BootSequence from "./pages/BootSequence";
+import ProductCard from "./components/ProductCard";
 
-import TunePassword from './components/TunePassword'
+import TunePassword from "./components/TunePassword";
+
+import HeaderFlag from "./components/HeaderFlag";
+
 function App() {
+	return (
+		<>
+			{/* <BootSequence /> */}
+			{/* <TunePassword/> */}
 
+			{/* <ProductCard /> */}
 
-  return (
-    <>
-
-  {/* <BootSequence/>
-  <TunePassword/> */}
-  <ProductCard/>
-    </>
-  )
+			<HeaderFlag />
+		</>
+	);
 }
 
-export default App
+export default App;
