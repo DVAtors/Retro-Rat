@@ -1,39 +1,47 @@
 import React from "react";
-import Product from "../assets/product-img.png"
 import "./ProductCard.css";
 
-export default function ProductCard() {
+//used custom props instead of children so each thing can be generated dynamically and the text knows where it needs to go 
+export default function ProductCard({ //props are all the info stuff needed
+    title,
+    year,
+    username,
+    price,
+    condition,
+    imgSrc,
+    className 
+}) {
 
     return (
         <>
-            <div className="product-container">
+            <div className={`product-container ${className || ""}`}>
 
                 <div className="product-img">
-                    <img src={Product} alt="Image of Product" />
+                    <img src={imgSrc} alt={title} />
                 </div>
                 <div className="product-text">
                     <div className="product-row-top">
 
                         <div className="product-col">
-                            <p className="product-title">Lorem ipsum dolor sit amet. </p>
+                            <p className="product-title">{title}</p>
                         </div>
                             <div className="product-col">
                             <div className="product-year">
-                                1980's
+                                {year}
                             </div>
                         </div>
 </div>
                         <div className="product-row">
-                            <p className="seller-username"> by consectetur adipiscing.</p>
+                            <p className="seller-username">{username}</p>
                         </div>
                         
 
 
                     <div className="product-row">
                         <div className="price-container">
-                        <div className="price-text">R$$$</div>
+                        <div className="price-text">{price}</div>
                         <div className="condition-status">
-                            Great
+                            {condition}
                         </div>
                     </div>
                     </div>
