@@ -1,6 +1,10 @@
 import React from "react";
 import ProductCard from "../components/ProductCard";
+import './Products.css'
 
+import Img1 from "../assets/product-img.png"
+import Img2 from "../assets/Image (Classic Game Console Controller).png"
+import Img3 from "../assets/Image (Sony Walkman Cassette Player).png"
 //DEV MODE: HARD CODED ITEM DETAILS
 const productList = [ //array to hold data fetched from dadta base
     {
@@ -10,7 +14,7 @@ const productList = [ //array to hold data fetched from dadta base
         username: "technocollector",
         price: "R245.00", //a little nit-picky but we should have a built in conversion things for people that wanna see different currencies (i'm sure there's some api for that out there somewhere already)
         condition: "Excellent",
-        imgSrc: "../assets/product-img.png"
+        imgSrc: Img1
     },
     {
         id: 2,
@@ -19,7 +23,7 @@ const productList = [ //array to hold data fetched from dadta base
         username: "retrogamer",
         price: "85.00", //we can add stuff to the math so that it adds the .00 for us yabe? or maybe it's fine
         condition: "Very good",
-        imgSrc: "../assets/Image (Classic Game Console Controller).png"
+        imgSrc: Img2
     },
     {
         id: 3,
@@ -28,7 +32,7 @@ const productList = [ //array to hold data fetched from dadta base
         username: "audiovintage",
         price: "120.00",
         condition: "good",
-        imgSrc: "../assets/Image (Sony Walkman Cassette Player).png"
+        imgSrc: Img3
     }
 ];
 
