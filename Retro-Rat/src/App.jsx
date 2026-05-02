@@ -7,18 +7,17 @@ import TunePassword from "./components/TunePassword";
 import HeaderFlag from "./components/HeaderFlag";
 
 import ProductsPage from './pages/Products';
-import TunePassword from './components/TunePassword';
+
+import Navbar from "./components/Navbar";
+
 function App() {
 	return (
 
     <>
-
-  {/* <BootSequence/> */}
-  {/* <TunePassword/> */}
+  <Navbar />
   <ProductsPage/>
 
-  
-			<HeaderFlag />
+
 		</>
 	);
 }
