@@ -1,9 +1,9 @@
-import React, { useState }from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 import { Container, Row, Col } from 'react-bootstrap';
 import Filter from '../assets/filter.svg';
 import FilterArrow from '../assets/filterArrow.svg';
-import "./Filter.css";
+import "./FilterBar.css";
 
 
 export default function FilterBar() {
@@ -18,6 +18,8 @@ export default function FilterBar() {
         setCurrentWave((prevWave) => (prevWave === 3 ? 1 : prevWave + 1));
     };
 
+    const totalWaves = [1, 2, 3];
+
     return (
         <>
             <BrowserRouter>
@@ -25,112 +27,135 @@ export default function FilterBar() {
                     <Row className="filter-bar">
 
                         <Col className="category-block">
-                            <img src={Filter} />
+                            <img className="category-icon" src={Filter} alt="Category Fcon" />
                             Category:
                         </Col>
 
-{/* THIS IS THE PART WHERE THE ARROW THINGY ROTATES AND THE DOTS CHANGE COLOURS */}
+                        {/* THIS IS THE PART WHERE THE ARROW THINGY ROTATES AND THE DOTS CHANGE COLOURS */}
                         <Col className="filter-buttons-container">
 
-                        
-                        <button onClick={handleFilterClick}>
-                            <img src={Filter} alt="filter icon" //REMEMBER TO CHANGE THIS TO THE SVG IN FIGMA
-                            style={{ transform: `rotate(${rotationAngle}deg)`,
-                                    transition: "transform 0.3s ease" 
-                                    }} /> 
-                            <img src={Filter} /> 
-                        </button>
 
-                        <div className="filter-buttons">
+                            <button className="filter-button" onClick={handleFilterClick}>
 
-                            {/* THE && IS, sorry caps, ck ditional rendering: onlt show the wave that matches our current state >;D */}
-                            {currentWave === 1 && (
-                                <div className="first-wave">
-                                <div className="p-2">
-                                    <button>All</button>
+                                <img className="filter-icon" src={FilterArrow} alt="Filter Icon" //REMEMBER TO CHANGE THIS TO THE SVG IN FIGMA
+                                    style={{
+                                        transform: `rotate(${rotationAngle}deg)`,
+                                        transition: "transform 0.3s ease"
+                                    }} />
+
+                                <div className="filter-icon-dots">
+                                    {totalWaves.map((dotNum) => ( //not copy pasting this 3 times, just using map to loop through the total waves and creates a dot for each one
+                                        <svg 
+                                            key={dotNum} //react needs unique keys when mapping over arrays
+                                            xmlns="http://www.w3.org/2000/svg" 
+                                            width="8" 
+                                            height="8" 
+                                            viewBox="0 0 8 8" 
+                                            fill="none">
+
+                                            <circle 
+                                                cx="4" 
+                                                cy="4" 
+                                                r="4" 
+                                                // CURRENT WAVE MATCHES THE DOT NUMBER, MAKE IT THE ACTIVE COLOUR >:D
+                                                fill={currentWave === dotNum ? "rgba(0, 0, 0, 0.50)" : "#0B8C8C"} 
+                                                style={{ transition: "fill 0.3s ease" }}/>
+                                        </svg>
+                                    ))}
                                 </div>
 
-                                <div className="p-2">
-                                    <button>Computers</button>
-                                </div>
+                            </button>
 
-                                <div className="p-2">
-                                    <button>Gaming</button>
-                                </div>
+                            <div className="filter-buttons">
 
-                                <div className="p-2">
-                                    <button>Audio</button>
-                                </div>
+                                {/* THE && IS, sorry caps, ck ditional rendering: onlt show the wave that matches our current state >;D */}
+                                {currentWave === 1 && (
+                                    <div className="first-wave">
+                                        <div className="p-2">
+                                            <button>All</button>
+                                        </div>
 
-                                <div className="p-2">
-                                    <button>Mobile</button>
-                                </div>
+                                        <div className="p-2">
+                                            <button>Computers</button>
+                                        </div>
 
-                                <div className="p-2">
-                                    <button>Video</button>
-                                </div>
+                                        <div className="p-2">
+                                            <button>Gaming</button>
+                                        </div>
 
-                                <div className="p-2">
-                                    <button>Cameras</button>
-                                </div>
-                            </div>
-                            )}
-                            
+                                        <div className="p-2">
+                                            <button>Audio</button>
+                                        </div>
 
-                            {currentWave === 2 && (
-                                <div className="second-wave">
-                                
-                                <div className="p-3">
-                                    <button> All</button>
-                                </div>
+                                        <div className="p-2">
+                                            <button>Mobile</button>
+                                        </div>
 
-                                <div className="p-2">
-                                    <button>2000s</button>
-                                </div>
+                                        <div className="p-2">
+                                            <button>Video</button>
+                                        </div>
 
-                                <div className="p-2">
-                                    <button>1990s</button>
-                                </div>
+                                        <div className="p-2">
+                                            <button>Cameras</button>
+                                        </div>
+                                    </div>
+                                )}
 
-                                <div className="p-2">
-                                    <button>1980s</button>
-                                </div>
 
-                                <div className="p-2">
-                                    <button>1970s</button>
-                                </div>
+                                {currentWave === 2 && (
+                                    <div className="second-wave">
 
-                            </div>
-                            )}
+                                        <div className="p-3">
+                                            <button> All</button>
+                                        </div>
 
-                            {currentWave === 3 && (
-                                <div className="third-wave">
-                                    <div className="p-2">
-                                        <button>All</button> {/*dl
+                                        <div className="p-2">
+                                            <button>2000s</button>
+                                        </div>
+
+                                        <div className="p-2">
+                                            <button>1990s</button>
+                                        </div>
+
+                                        <div className="p-2">
+                                            <button>1980s</button>
+                                        </div>
+
+                                        <div className="p-2">
+                                            <button>1970s</button>
+                                        </div>
+
+                                    </div>
+                                )}
+
+                                {currentWave === 3 && (
+                                    <div className="third-wave">
+                                        <div className="p-2">
+                                            <button>All</button> {/*dl
                                         o the onlick change to active colour css*/}
-                                    </div>
+                                        </div>
 
-                                    <div className="p-2">
-                                        <button>Excellent</button>
-                                    </div>
+                                        <div className="p-2">
+                                            <button>Excellent</button>
+                                        </div>
 
-                                    <div className="p-2">
-                                        <button>Great</button>
-                                    </div>
+                                        <div className="p-2">
+                                            <button>Great</button>
+                                        </div>
 
-                                    <div className="p-2">
-                                        <button>Moderate</button>
-                                    </div>
+                                        <div className="p-2">
+                                            <button>Moderate</button>
+                                        </div>
 
-                                    <div className="p-2">
-                                        <button>Low</button>
-                                    </div>
+                                        <div className="p-2">
+                                            <button>Low</button>
+                                        </div>
 
-                                    <div className="p-2">
-                                        <button>Poor</button>
+                                        <div className="p-2">
+                                            <button>Poor</button>
+                                        </div>
                                     </div>
-                                </div>
-                            )}
+                                )}
 
                             </div>
                         </Col>

@@ -1,18 +1,41 @@
-.category-block{
+.category-block{ /*NO TOUCHY TOUCHY*/
     display: flex;
     align-items: center;
+    min-height: 25px;
+    min-width: 130px; /* 131.938px~ */
     gap: 10px;
+
+    color: #000;
+    font-family: 'Inter';
+    font-size: 17.5px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 143%; /* 25 px */
+    text-transform: uppercase;
 }
 
-.filter-bar{
+.category-icon img{ 
+    width: 100%;
+    height: 100%;
+}
+
+.category-icon{
+    max-width: 25px;
+    max-height: 25px;
+    flex-shrink: 0;
+}
+
+.filter-bar{ /*NO TOUCHY TOUCHY*/
     display: flex;
     padding: 0 20px;
+    min-height: 54px;
+    width: 100%;
     align-items: center;
     align-self: stretch;
     justify-content: space-between;
 }
 
-.filter-buttons-container{
+.filter-buttons-container{ /*NO TOUCHY TOUCHY*/
     display: flex;
     width: 55.625vw;
     height: auto;
@@ -21,12 +44,55 @@
     align-items: center;
     gap: 26px;
 }
+.filter-button{ /*THIS IS THE ARROW WITH THE DOTS UNDERNEATH THINGY*/
+    display: flex;
+    padding: 4px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+}
+
+.filter-icon img{
+    width: 100%;
+    height: 100%;
+}
+.filter-icon{
+    width: 40px;
+    height: 40px;
+    aspect-ratio: 1/1;
+}
+
+.filter-icon-dots{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.filter-icon-dots img{
+    width: 100%;
+    height: 100%;
+}
+
+.dot{
+    width: 8px;
+    height: 8px;
+    aspect-ratio: 1/1;
+}
+
+.dot img{
+ width: 100%;
+ height: 100%;
+}
+
 .filter-buttons{
-    display: inline-flex;
+    display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 16px;
     /* width: 970px;     */
-    overflow-y: scroll; /*scrollable on mobile?*/
+    overflow-x: scroll; /*scrollable on mobile?*/
 }
 
 .filter-buttons .p-2{
