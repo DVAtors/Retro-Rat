@@ -1,0 +1,19 @@
+.singleProductView {
+	display: flex;
+
+	/* width: 80%; */
+
+	padding: 2.5rem 1.25rem;
+	flex-direction: column;
+	align-items: center;
+	gap: 3.4375rem;
+}
+
+.productDetails {
+	display: flex;
+	width: 78.5rem;
+	justify-content: space-between;
+	align-items: flex-start;
+
+	gap: 3.4375rem;
+}

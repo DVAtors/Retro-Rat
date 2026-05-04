@@ -1,0 +1,67 @@
+// Imports:
+import React from "react";
+
+import "../components/SingleProductImage.css";
+
+// Function:
+
+function SingleProductImage() {
+	return (
+		<div className="imageBlock">
+			<div className="productImage">
+				<img src="" alt="" />
+			</div>
+			<div className="imageBlockBar">
+				<div className="singleProductViewCount">
+					<div className="iconClock">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 20 20"
+							fill="none">
+							<path
+								d="M9.99935 18.3337C14.6017 18.3337 18.3327 14.6027 18.3327 10.0003C18.3327 5.39795 14.6017 1.66699 9.99935 1.66699C5.39698 1.66699 1.66602 5.39795 1.66602 10.0003C1.66602 14.6027 5.39698 18.3337 9.99935 18.3337Z"
+								stroke="#F0F8FF"
+								stroke-width="1.66667"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							/>
+							<path
+								d="M10 5V10L13.3333 11.6667"
+								stroke="#F0F8FF"
+								stroke-width="1.66667"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							/>
+						</svg>
+					</div>
+					<p>VIEWS</p>
+				</div>
+				<button className="singleProductSaveBtn">
+					<div className="iconHeart">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 20 20"
+							fill="none">
+							<path
+								d="M15.8327 11.6667C17.0743 10.45 18.3327 8.99167 18.3327 7.08333C18.3327 5.86776 17.8498 4.70197 16.9903 3.84243C16.1307 2.98289 14.9649 2.5 13.7493 2.5C12.2827 2.5 11.2493 2.91667 9.99935 4.16667C8.74935 2.91667 7.71602 2.5 6.24935 2.5C5.03377 2.5 3.86798 2.98289 3.00844 3.84243C2.1489 4.70197 1.66602 5.86776 1.66602 7.08333C1.66602 9 2.91602 10.4583 4.16602 11.6667L9.99935 17.5L15.8327 11.6667Z"
+								fill="#ffffff"
+								stroke="black"
+								stroke-width="1.66667"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							/>
+						</svg>
+					</div>
+					<div className="blackText">SAVE</div>
+				</button>
+			</div>
+		</div>
+	);
+}
+
+// Export Component:
+export default SingleProductImage;
