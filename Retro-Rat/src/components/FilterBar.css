@@ -35,12 +35,17 @@
     justify-content: space-between;
 }
 
+.filter-bar button{
+    border: none;
+    background: transparent;
+}
+
 .filter-buttons-container{ /*NO TOUCHY TOUCHY*/
     display: flex;
     width: 55.625vw;
     height: auto;
     padding: 3px 0 3px 31px;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
     gap: 26px;
 }
@@ -92,10 +97,18 @@
     align-items: center;
     gap: 16px;
     /* width: 970px;     */
-    overflow-x: scroll; /*scrollable on mobile?*/
+    overflow-x: visible; /*scrollable on mobile?*/
 }
 
-.filter-buttons .p-2{
+.wave{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+}
+
+
+.filter-buttons .p-2{ /*seems to be ok >:D*/
     padding: 12px 21px; /*wierd figma ratio but ok i gues*/
     justify-content: center;
     align-items: center;

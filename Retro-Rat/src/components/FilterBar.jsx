@@ -58,7 +58,7 @@ export default function FilterBar() {
                                                 cy="4" 
                                                 r="4" 
                                                 // CURRENT WAVE MATCHES THE DOT NUMBER, MAKE IT THE ACTIVE COLOUR >:D
-                                                fill={currentWave === dotNum ? "rgba(0, 0, 0, 0.50)" : "#0B8C8C"} 
+                                                fill={currentWave === dotNum ? "#0B8C8C" : "rgba(0, 0, 0, 0.50)"} 
                                                 style={{ transition: "fill 0.3s ease" }}/>
                                         </svg>
                                     ))}
@@ -70,7 +70,7 @@ export default function FilterBar() {
 
                                 {/* THE && IS, sorry caps, ck ditional rendering: onlt show the wave that matches our current state >;D */}
                                 {currentWave === 1 && (
-                                    <div className="first-wave">
+                                    <div className="wave first-wave">
                                         <div className="p-2">
                                             <button>All</button>
                                         </div>
@@ -103,9 +103,9 @@ export default function FilterBar() {
 
 
                                 {currentWave === 2 && (
-                                    <div className="second-wave">
+                                    <div className="wave second-wave">
 
-                                        <div className="p-3">
+                                        <div className="p-2">
                                             <button> All</button>
                                         </div>
 
@@ -129,7 +129,7 @@ export default function FilterBar() {
                                 )}
 
                                 {currentWave === 3 && (
-                                    <div className="third-wave">
+                                    <div className="wave third-wave">
                                         <div className="p-2">
                                             <button>All</button> {/*dl
                                         o the onlick change to active colour css*/}

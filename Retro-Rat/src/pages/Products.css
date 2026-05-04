@@ -6,12 +6,7 @@ body{
 
 }
 
-.products-container{
-    display: flex;
-    overflow-y: scroll; /*rember to edit the webkit scroll bar*/
-}
-
-.products-main-content{
+.product-main-content{
     display: flex;
     width: 1296px;
     height: 1277.31px;
@@ -20,8 +15,15 @@ body{
     align-items: center;
     gap: 40px;
 }
+
+.products-container{
+    display: flex;
+    overflow-y: scroll; /*rember to edit the webkit scroll bar*/
+}
+
 .product-card-container{
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: flex-start;
     gap: 80px 40px;
