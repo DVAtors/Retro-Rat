@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { Col } from 'react-bootstrap';
 import "./ProductCard.css";
 
 //used custom props instead of children so each thing can be generated dynamically and the text knows where it needs to go 
@@ -47,60 +48,59 @@ export default function ProductCard({ //props are all the info stuff needed
     };
     return (
         <>
-            <div
-                className="shiny-card"
-                ref={cardRef}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                style={{
-                    transform: tiltStyle ? tiltStyle : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
-                    transition: tiltStyle ? 'none' : 'transform 0.5s ease'
-                }}>
-                <div className={`product-card ${className || ""}`}>
+
+                    <Col md={6} className={`product-card ${className || ""}`}
+                        ref={cardRef}
+                        onMouseMove={handleMouseMove}
+                        onMouseLeave={handleMouseLeave}
+                        style={{
+                            transform: tiltStyle ? tiltStyle : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
+                            transition: tiltStyle ? 'none' : 'transform 0.5s ease'
+                        }}
+                    >
 
 
 
-                    <div className="product-img">
-                        <img src={imgSrc} alt={title} />
-                    </div>
-
-                    <div className="product-desc">
-
-                        <div className="price-container">
-                            <div className="price-text">{price}</div>
-                            <div className="condition-status">
-                                {condition}
-                            </div>
+                        <div className="product-img">
+                            <img src={imgSrc} alt={title} />
                         </div>
 
-                        <div className="product-row-top">
+                        <div className="product-desc">
 
-                            <div className="product-col">
-                                <p className="product-title">{title}</p>
-                            </div>
-
-                            <div className="product-col">
-                                <div className="product-year">
-                                    {year}
+                            <div className="price-container">
+                                <div className="price-text">{price}</div>
+                                <div className="condition-status">
+                                    {condition}
                                 </div>
                             </div>
+
+                            <div className="product-row-top">
+
+                                <div className="product-col">
+                                    <p className="product-title">{title}</p>
+                                </div>
+
+                                <div className="product-col">
+                                    <div className="product-year">
+                                        {year}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="product-row">
+                                <p className="seller-username">{username}</p>
+                            </div>
+
+
+
+
+
+
+
+
                         </div>
-                        <div className="product-row">
-                            <p className="seller-username">{username}</p>
-                        </div>
 
+                    </Col>
 
-
-
-
-
-
-
-                    </div>
-
-                </div>
-
-            </div>
         </>
     );
 

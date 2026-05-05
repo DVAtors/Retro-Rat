@@ -5,7 +5,7 @@ import "./Products.css";
 import Img1 from "../assets/product-img.png";
 import Img2 from "../assets/Image (Classic Game Console Controller).png";
 import Img3 from "../assets/Image (Sony Walkman Cassette Player).png";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import FilterBar from "../components/FilterBar";
 //DEV MODE: HARD CODED ITEM DETAILS
 const productList = [
@@ -46,11 +46,9 @@ export default function ProductsPage() {
       <Container fluid className="product-main-content">
 
         <FilterBar/>
-
-      <div className="product-card-container">
         
       {/* .map() function goes through the productList and build the productCard for evry item autonatically >:D */}
-      <div className="card">
+      <Row className="product-card-container">
         {productList.map((product) => (
           <ProductCard
             key={product.id}
@@ -62,8 +60,9 @@ export default function ProductsPage() {
             imgSrc={product.imgSrc}
           />
         ))}
-      </div>
-      </div>
+      </Row>
+
+
       
       </Container>
     </>
