@@ -50,7 +50,7 @@ export default function ProductsPage() {
       <div className="product-card-container">
         
       {/* .map() function goes through the productList and build the productCard for evry item autonatically >:D */}
-      <div className="product-card">
+      <div className="card">
         {productList.map((product) => (
           <ProductCard
             key={product.id}

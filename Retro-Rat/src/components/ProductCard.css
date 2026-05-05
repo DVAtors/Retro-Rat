@@ -208,3 +208,51 @@ line-height: 20px; /* 133.333% */
 letter-spacing: -0.434px;
 text-transform: uppercase;
 }
+
+
+/* CSS FOR THE SHINY CARD ANIMA THING - SHOUTOUT TROY */
+
+/* SHINEY CARD CONTAINER THINGY */
+.shiny-card{
+    position: relative;
+    overflow: hidden;
+
+    /* for when the mouse leaves the card so it's smooth and not instant/jerky */
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+/* SHINE */
+.shiny-card::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%; /*starting waaaaay off to the left*/
+    width: 50%;
+    height: 100%;
+
+    /* slanted white line */
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%, /*start of the grad*/
+        rgba(255, 255, 255, 0.7) 50%,
+        rgba(255, 255, 255, 0) 100% /*end*/
+    );
+
+    transform: skew(-25deg); /* the tilt of the while line*/
+    pointer-events: none; /*makes it none clickable beacuse why would it be aaand it keeps for messing up any other ui on the card*/
+}
+
+.shiny-card:hover{
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+/* clean sweep anim */
+.shiny-card:hover::after{
+    animation: shineSweep 0.6s ease-out forewards;
+}
+
+@keyframes shineSweep{
+    100% {
+        left: 150%; /*end waaaaay off to the right*/
+    }
+}
