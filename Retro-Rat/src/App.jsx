@@ -19,14 +19,12 @@ function App() {
 	return (
 		<div>
 			{/* <BootSequence /> */}
-			{/* <TunePassword/> */}
-			{/* <ProductsPage/> */}
+			{/* <TunePassword /> */}
+			{/* <ProductsPage /> */}
 
 			{/* <HeaderFlag /> */}
 
 			<SingleProductView />
-
-			{/* <SingleProductImage /> */}
 		</div>
 	);
 }

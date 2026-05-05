@@ -1,5 +1,6 @@
 .singleProductContainer {
-	max-height: 56.875rem;
+	/* max-height: 56.875rem; */
+	height: auto;
 	align-self: stretch;
 
 	display: flex;
@@ -116,7 +117,7 @@
 .buttonsContainer {
 	display: flex;
 	flex-direction: row;
-	width: 33.75rem;
+	min-width: 33.75rem;
 	height: 4.25rem;
 	align-items: flex-start;
 	gap: 0.9375rem;
@@ -124,7 +125,13 @@
 
 .addToCartButton {
 	display: flex;
-	padding: 1.1875rem 6.14744rem 1.1875rem 6.22656rem;
+
+	flex-direction: row;
+
+	width: auto;
+
+	padding: 1.1875rem 5.14744rem 1.1875rem 5.14744rem;
+
 	justify-content: center;
 	align-items: center;
 	gap: 0.5625rem;
@@ -139,8 +146,27 @@
 	height: 1.5625rem;
 }
 
+.buttonText {
+	width: auto;
+
+	color: #fff;
+	text-align: center;
+	font-family: Inter;
+	font-size: 1.25rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1.875rem; /* 150% */
+	letter-spacing: -0.04056rem;
+	text-transform: uppercase;
+}
+
 .buyNowBtn {
 	display: flex;
+
+	flex-direction: row;
+
+	width: auto;
+
 	padding: 1.1875rem 2.0635rem 1.1875rem 2.125rem;
 	justify-content: center;
 	align-items: center;
@@ -222,4 +248,15 @@ p {
 	font-weight: 500;
 	line-height: 2.03125rem; /* 162.5% */
 	letter-spacing: -0.04056rem;
+}
+
+.conditionText {
+	color: #fff;
+	font-family: Inter;
+	font-size: 1.25rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1.875rem; /* 150% */
+	letter-spacing: -0.04056rem;
+	text-transform: uppercase;
 }

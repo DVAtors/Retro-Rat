@@ -1,12 +1,14 @@
-body{
-    background-image: url(../assets/background.png);
-    background-repeat: no-repeat;
-    background-size: 100vw;
-    overflow-y: hidden;
+body {
+	background-image: url(../assets/background.png);
+	background-repeat: no-repeat;
+	background-size: 100vw;
 
+	/* I had to disable this to allow scrolling on the single product view page */
+
+	/* overflow-y: hidden; */
 }
 
-.products-container{
-    display: flex;
-    overflow-y: scroll; /*rember to edit the webkit scroll bar*/
+.products-container {
+	display: flex;
+	overflow-y: scroll; /*rember to edit the webkit scroll bar*/
 }

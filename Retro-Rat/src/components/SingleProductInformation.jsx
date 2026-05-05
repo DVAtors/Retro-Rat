@@ -1,6 +1,9 @@
 // Imports
 import "../components/SingleProductInformation.css";
 
+import FlagButtonComponent from "./flagButtonComponent";
+import SellerContainerComponent from "./SellerContainerComponent";
+
 // Function
 
 function SingleProductInformation() {
@@ -10,35 +13,12 @@ function SingleProductInformation() {
 				<div className="titleContainer1">
 					<h1>Vintage Mechanical Keyboard</h1>
 					<div className="productTags">
-						<p className="tag1">tag1</p>
-						<p className="tag2">tag2</p>
-						<p className="tag3">tag3</p>
+						<p className="tag1">Computers</p>
+						<p className="tag2">1980s</p>
+						<p className="tag3">Verified</p>
 					</div>
 				</div>
-				<button className="flagIconBtn">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="25"
-						height="25"
-						viewBox="0 0 25 25"
-						fill="none">
-						<path
-							d="M4.16602 15.6247C4.16602 15.6247 5.20768 14.583 8.33268 14.583C11.4577 14.583 13.541 16.6663 16.666 16.6663C19.791 16.6663 20.8327 15.6247 20.8327 15.6247V3.12467C20.8327 3.12467 19.791 4.16634 16.666 4.16634C13.541 4.16634 11.4577 2.08301 8.33268 2.08301C5.20768 2.08301 4.16602 3.12467 4.16602 3.12467V15.6247Z"
-							fill="#ffffff"
-							stroke="black"
-							stroke-width="2.08333"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						/>
-						<path
-							d="M4.16602 22.9167V15.625"
-							stroke="black"
-							stroke-width="2.08333"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						/>
-					</svg>
-				</button>
+				<FlagButtonComponent />
 			</div>
 			<div className="divider"></div>
 			<div className="priceContainer">
@@ -54,11 +34,13 @@ function SingleProductInformation() {
 					modern mechanical keyboard collectors.
 				</p>
 			</div>
-			<div className="sellerContainer"></div>
-			<div className=""></div>
+			<SellerContainerComponent />
+			{/* <div className="sellerContainer"></div> */}
 			<div className="conditionContainer">
 				<h3 className="">CONDITION</h3>
-				<div className="conditionTag">EXCELLENT</div>
+				<div className="conditionTag">
+					<span className="conditionText">EXCELLENT</span>
+				</div>
 			</div>
 			<div className="buttonsContainer">
 				<button className="addToCartButton">
@@ -92,9 +74,11 @@ function SingleProductInformation() {
 							/>
 						</svg>
 					</div>
-					<div className="ButtonText">ADD TO CART</div>
+					<span className="buttonText">ADD TO CART</span>
 				</button>
-				<button className="buyNowBtn">BUY NOW</button>
+				<button className="buyNowBtn">
+					<span className="buttonText">BUY NOW</span>
+				</button>
 			</div>
 		</div>
 	);

@@ -1,11 +1,20 @@
 .singleProductView {
 	display: flex;
 
-	/* width: 80%; */
-
-	padding: 2.5rem 1.25rem;
+	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: 1.875rem;
+	align-self: stretch;
+
+	/* overflow-y: scroll; */
+}
+
+.mainContent {
+	display: flex;
+	padding: 2.5rem 1.25rem;
+	flex-direction: column;
+	align-items: flex-start;
 	gap: 3.4375rem;
 }
 

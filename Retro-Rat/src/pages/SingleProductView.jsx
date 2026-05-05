@@ -3,6 +3,7 @@ import React from "react";
 
 import SingleProductImage from "../components/SingleProductImage";
 import SingleProductInformation from "../components/SingleProductInformation";
+import CommentSectionComponent from "../components/CommentSectionComponent";
 
 import "../pages/SingleProductView.css";
 import "../components/SingleProductImage.css";
@@ -13,12 +14,14 @@ import "../components/SingleProductInformation.css";
 function SingleProductView() {
 	return (
 		<div className="singleProductView">
-			<div className="breadcrumbs"></div>
-			<div className="productDetails">
-				<SingleProductImage></SingleProductImage>
-				<SingleProductInformation></SingleProductInformation>
+			<div className="mainContent">
+				<div className="breadcrumbs"></div>
+				<div className="productDetails">
+					<SingleProductImage />
+					<SingleProductInformation />
+				</div>
+				<CommentSectionComponent />
 			</div>
-			<div className="commentSection"></div>
 		</div>
 	);
 }
@@ -26,16 +29,3 @@ function SingleProductView() {
 // Export Component:
 
 export default SingleProductView;
-
-// export default function SingleProductView() {
-// 	return (
-// 		<div className="">
-// 			<div className="breadcrumbs"></div>
-// 			<div className="productDetails">
-// 				<SingleProductImage></SingleProductImage>
-// 				<div className="singleProductInformation"></div>
-// 			</div>
-// 			<div className="commentSection"></div>
-// 		</div>
-// 	);
-// }
