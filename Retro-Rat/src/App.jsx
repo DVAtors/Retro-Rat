@@ -7,7 +7,6 @@ import TunePassword from "./components/TunePassword";
 import HeaderFlag from "./components/HeaderFlag";
 
 import ProductsPage from './pages/Products';
-import TunePassword from './components/TunePassword';
 function App() {
 	return (
 
