@@ -39,14 +39,15 @@
 
 .product-card {
     display: flex;
-    width: 25vw;
+    width: 100%; /*take full width of bootsrap col*/
+    max-width: 350px;
     height: auto;
 
-    padding: 24px;
+    padding: 16px;
     gap: 10px;
 
-    /* min-width: 350px;
-    min-height: 598.656px; */
+    min-width: 0;
+
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -67,7 +68,9 @@
 
 .product-img{
 display: flex;
-height: 390.664px;
+height: auto;
+width: 100%;
+aspect-ratio: 1/1;
 padding-bottom: 4px;
 flex-direction: column;
 align-items: flex-start;
@@ -79,9 +82,7 @@ object-fit: cover;
 
 .product-img img {
     width: 100%;
-    height: 386.664px;
-flex-shrink: 0;
-align-self: stretch;
+    height: 100%;
 object-fit: cover;
 }
 
@@ -97,8 +98,8 @@ object-fit: cover;
 
 .product-row-top{
     display: flex;
-min-width: 350.664px;
-min-height: 40px; /* 39.992px~*/
+width: 100%;
+min-width: 0; 
 justify-content: space-between;
 align-items: center;
 align-self: stretch;
@@ -115,11 +116,11 @@ flex-shrink: 0;
 
 .product-title{
     margin: 0;
-    min-width: 272px;
+    min-width: 0;
 flex-shrink: 0;
     color: #000;
 font-family: "Inter";
-font-size: 22.5px;
+font-size: 1.2rem; /*better scaleing*/
 font-style: normal;
 font-weight: 700;
 line-height: 35px; /* 155.556% */
@@ -174,8 +175,8 @@ letter-spacing: -0.434px;
     justify-content: space-between;
     align-items: center;
 
-min-width: 350.664px;
-min-height: 39.992px;
+min-width: 0;
+width: 100%;
 
 
 }

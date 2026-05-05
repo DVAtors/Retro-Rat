@@ -48,8 +48,13 @@ export default function ProductCard({ //props are all the info stuff needed
     };
     return (
         <>
+        
+{/* xs={12}: 1 card per row on phones.
 
-                    <Col md={6} className={`product-card ${className || ""}`}
+sm={6}: 2 cards per row on tablets.
+
+lg={4}: 3 cards per row on desktops */}
+                    <Col xs={12} sm={6} lg={4} className={`product-card ${className || ""}`}
                         ref={cardRef}
                         onMouseMove={handleMouseMove}
                         onMouseLeave={handleMouseLeave}
