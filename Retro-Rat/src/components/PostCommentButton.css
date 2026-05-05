@@ -1,0 +1,22 @@
+.postComment {
+	display: inline-flex;
+	padding: 0.875rem 2.02rem 0.875rem 2.0625rem;
+	justify-content: center;
+	align-items: center;
+
+	border: 4px solid #000;
+	background: #0b8c8c;
+	box-shadow: 4px 4px 0 0 #000;
+}
+
+.postCommentBtnText {
+	color: #fff;
+	text-align: center;
+	font-family: Inter;
+	font-size: 1.25rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1.875rem; /* 150% */
+	letter-spacing: -0.04056rem;
+	text-transform: uppercase;
+}
