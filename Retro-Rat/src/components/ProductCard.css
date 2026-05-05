@@ -232,7 +232,7 @@ text-transform: uppercase;
     height: 100%;
 
     /* slanted white line */
-    background: linear-gradient(
+    background: linear-gradient( /*i'll fix the red thing later I WILL CONQUOR THIS LINE*/
         to right,
         rgb(76, 76, 73) 0%, /*start of the grad*/
         rgba(255, 0, 0, 0.7) 50%,
