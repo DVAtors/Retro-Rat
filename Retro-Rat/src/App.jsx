@@ -15,7 +15,7 @@ import SingleProductImage from "./components/SingleProductImage";
 import ProductsPage from "./pages/Products";
 import SingleProductView from "./pages/SingleProductView";
 
-import ProductsPage from './pages/Products';
+
 
 import Navbar from "./components/Navbar";
 
