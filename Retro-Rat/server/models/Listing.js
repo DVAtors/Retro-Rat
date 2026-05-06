@@ -1,0 +1,85 @@
+const mongoose = require('mongoose');
+
+const ReplySchema = new mongoose.Schema({
+  author: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'User', 
+    required: true 
+  },
+  text: { 
+    type: String, 
+    required: true, 
+    trim: true, 
+    maxlength: 500 
+  },
+}, { timestamps: true });
+
+const CommentSchema = new mongoose.Schema({
+  author: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'User', 
+    required: true 
+  },
+  text: { 
+    type: String, 
+    required: true, 
+    trim: true, 
+    maxlength: 500 
+  },
+  replies: [ReplySchema],
+}, { timestamps: true });
+
+const ListingSchema = new mongoose.Schema({
+  seller: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'User', 
+    required: true 
+  },
+  productName: { 
+    type: String, 
+    required: true, 
+    trim: true 
+  },
+  description: { 
+    type: String, 
+    required: true, 
+    trim: true,
+    maxlength: 500 
+  },
+  price: { 
+    type: Number, 
+    required: true, 
+    min: 0 
+  },
+  condition: { 
+    type: String, 
+    required: true, 
+    enum: ['Excellent', 'Great', 'Moderate', 'Low', 'Poor'] 
+  },
+  era: { 
+    type: String, 
+    required: true, 
+    enum: ['70s', '80s', '90s', '2000s'] 
+  },
+  category: { 
+    type: String, 
+    required: true, 
+    enum: ['Computers', 'Gaming', 'Audio', 'Mobile', 'Video', 'Cameras', 'Other'] 
+  },
+  mainImage: { 
+    type: String, 
+    required: true 
+  },
+  status: { 
+    type: String, 
+    enum: ['pending', 'approved', 'rejected'], 
+    default: 'pending' 
+  },
+  views: { 
+    type: Number, 
+    default: 0 
+  },
+  comments: [CommentSchema],
+}, { timestamps: true });
+
+module.exports = mongoose.model('Listing', ListingSchema);
