@@ -15,25 +15,34 @@ import SingleProductImage from "./components/SingleProductImage";
 import ProductsPage from "./pages/Products";
 import SingleProductView from "./pages/SingleProductView";
 
-
-
 import Navbar from "./components/Navbar";
+
+// Import Browser Router stuff...
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 function App() {
 	return (
-
-			
-
-    <>
-  <Navbar />
-  <ProductsPage/>
-{/* <BootSequence /> */}
+		<>
+			{/* <Navbar /> */}
+			{/* <ProductsPage /> */}
+			{/* <BootSequence /> */}
 			{/* <TunePassword /> */}
 			{/* <ProductsPage /> */}
-
 			{/* <HeaderFlag /> */}
+			{/* <SingleProductView /> */}
 
-			<SingleProductView />
+			<BrowserRouter>
+				<Navbar></Navbar>
+				<Routes>
+					{/* <Route path="/" element={<Homepage />} /> */}
+					<Route path="/browse" element={<ProductsPage />} />
+					{/* <Route path="/sell" element={<SellForm />} /> */}
+					{/* <Route path="/cart" element={<CartPage />} /> */}
+					{/* <Route path="/account" element={<AccountsPage />} /> */}
+					{/* <Route path="/logIn" element={<LogInSignUpPage />} /> */}
+					<Route path="/product/:id" element={<SingleProductView />}></Route>
+				</Routes>
+			</BrowserRouter>
 		</>
 	);
 }

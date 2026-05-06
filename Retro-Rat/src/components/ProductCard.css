@@ -1,259 +1,252 @@
 .inter {
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
+	font-family: "Inter", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
 }
 
 .heading1 {
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 700;
-    /*Bold*/
-    font-size: 37.5px;
-
+	font-family: "Inter", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 700;
+	/*Bold*/
+	font-size: 37.5px;
 }
 
 .heading2 {
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    /*medium*/
-    font-size: 30px;
+	font-family: "Inter", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 500;
+	/*medium*/
+	font-size: 30px;
 }
 
 .heading3 {
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    /*medium*/
-    font-size: 15px;
+	font-family: "Inter", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 500;
+	/*medium*/
+	font-size: 15px;
 }
 
 .paragraph {
-    font-size: 20px;
-    font-weight: 500;
-    /*medium*/
-    font-family: "Inter", sans-serif;
+	font-size: 20px;
+	font-weight: 500;
+	/*medium*/
+	font-family: "Inter", sans-serif;
 }
 
 .product-card {
-    display: flex;
-    width: 100%; /*take full width of bootsrap col*/
-    max-width: 350px;
-    height: auto;
+	display: flex;
+	width: 100%; /*take full width of bootsrap col*/
+	max-width: 350px;
+	height: auto;
 
-    padding: 16px;
-    gap: 10px;
+	padding: 16px;
+	gap: 10px;
 
-    min-width: 0;
+	min-width: 0;
 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    grid-row: 1 / span 1;
-    grid-column: 1 / span 1;;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	grid-row: 1 / span 1;
+	grid-column: 1 / span 1;
 
+	border: 4px solid#000;
+	background-color: #fff;
+	box-shadow: 8px 8px 0 0;
 
-    border: 4px solid#000;
-    background-color: #fff;
-    box-shadow: 8px 8px 0 0;
-
-    color: #000;
-    font-family: "Inter", sans-serif;
-
-
-
+	color: #000;
+	font-family: "Inter", sans-serif;
 }
 
-.product-img{
-display: flex;
-height: auto;
-width: 100%;
-aspect-ratio: 1/1;
-padding-bottom: 4px;
-flex-direction: column;
-align-items: flex-start;
-flex-shrink: 0;
-align-self: stretch;
-background: lightgray 50% / no-repeat;
-object-fit: cover;
+.product-img {
+	display: flex;
+	height: auto;
+	width: 100%;
+	aspect-ratio: 1/1;
+	padding-bottom: 4px;
+	flex-direction: column;
+	align-items: flex-start;
+	flex-shrink: 0;
+	align-self: stretch;
+	background: lightgray 50% / no-repeat;
+	object-fit: cover;
 }
 
 .product-img img {
-    width: 100%;
-    height: 100%;
-object-fit: cover;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
-.product-text { /*NO TOUCHY TOUCHY*/
-    display: flex;
-    padding: 20px 24px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 18px;
-    flex: 1 0 0;
-    align-self: stretch;
+.product-text {
+	/*NO TOUCHY TOUCHY*/
+	display: flex;
+	padding: 20px 24px;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 18px;
+	flex: 1 0 0;
+	align-self: stretch;
 }
 
-.product-row-top{
-    display: flex;
-width: 100%;
-min-width: 0; 
-justify-content: space-between;
-align-items: center;
-align-self: stretch;
+.product-row-top {
+	display: flex;
+	width: 100%;
+	min-width: 0;
+	justify-content: space-between;
+	align-items: center;
+	align-self: stretch;
 }
 
-.product-col-left{
-    display: flex;
-min-width: 271.805px;
-min-height: 70px;
-justify-content: center;
+.product-col-left {
+	display: flex;
+	min-width: 271.805px;
+	min-height: 70px;
+	justify-content: center;
 
-flex-shrink: 0;
+	flex-shrink: 0;
 }
 
-.product-title{
-    margin: 0;
-    min-width: 0;
-flex-shrink: 0;
-    color: #000;
-font-family: "Inter";
-font-size: 1.2rem; /*better scaleing*/
-font-style: normal;
-font-weight: 700;
-line-height: 35px; /* 155.556% */
-letter-spacing: -0.631px;
-text-transform: uppercase;
+.product-title {
+	margin: 0;
+	min-width: 0;
+	flex-shrink: 0;
+	color: #000;
+	font-family: "Inter";
+	font-size: 1.2rem; /*better scaleing*/
+	font-style: normal;
+	font-weight: 700;
+	line-height: 35px; /* 155.556% */
+	letter-spacing: -0.631px;
+	text-transform: uppercase;
 }
 
-.seller-username{
-    display: inline-flex;
-padding-right: 178.664px;
-align-items: center;
-color: #5B2C91;
+.seller-username {
+	display: inline-flex;
+	padding-right: 178.664px;
+	align-items: center;
+	color: #5b2c91;
 }
 
-.seller-username{
-    color: #5B2C91;
-    display: inline-flex;
-padding-right: 178.664px;
-align-items: center;
-    font-family: "Inter";
-    font-size: 17.5px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 142.857%;
-    /* 142.857% */
-    letter-spacing: -0.636px;
-    text-transform: uppercase;
-
+.seller-username {
+	color: #5b2c91;
+	display: inline-flex;
+	padding-right: 178.664px;
+	align-items: center;
+	font-family: "Inter";
+	font-size: 17.5px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 142.857%;
+	/* 142.857% */
+	letter-spacing: -0.636px;
+	text-transform: uppercase;
 }
 
 .product-year {
-    border: 2px solid #000;
-background: #FFE500;
-display: flex;
-padding: 7px 11.859px 6.992px 12px;
-justify-content: center;
-align-items: center;
+	border: 2px solid #000;
+	background: #ffe500;
+	display: flex;
+	padding: 7px 11.859px 6.992px 12px;
+	justify-content: center;
+	align-items: center;
 
-color: #000;
-font-family: "Inter";
-font-size: 15px;
-font-style: normal;
-font-weight: 700;
-line-height: 20px; /* 133.333% */
-letter-spacing: -0.434px;
+	color: #000;
+	font-family: "Inter";
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 20px; /* 133.333% */
+	letter-spacing: -0.434px;
 }
 
 .price-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-min-width: 0;
-width: 100%;
-
-
+	min-width: 0;
+	width: 100%;
 }
 
 .price-text {
-    display: flex;
-justify-content: flex-end;
-align-items: center;    
-color: #000;
-font-family: "Inter";
-font-size: 30px;
-font-style: normal;
-font-weight: 700;
-line-height: 40px; /* 133.333% */
-letter-spacing: 0.196px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	color: #000;
+	font-family: "Inter";
+	font-size: 30px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 40px; /* 133.333% */
+	letter-spacing: 0.196px;
 }
 
 .condition-status {
-    display: block;
-    color: white;
-    background-color: #0B8C8C;
-    border: 4px solid #000;
-    padding: 0.5rem 2rem;
-    color: #FFF;
-font-family: "Inter";
-font-size: 15px;
-font-style: normal;
-font-weight: 700;
-line-height: 20px; /* 133.333% */
-letter-spacing: -0.434px;
-text-transform: uppercase;
+	display: block;
+	color: white;
+	background-color: #0b8c8c;
+	border: 4px solid #000;
+	padding: 0.5rem 2rem;
+	color: #fff;
+	font-family: "Inter";
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 20px; /* 133.333% */
+	letter-spacing: -0.434px;
+	text-transform: uppercase;
 }
-
 
 /* CSS FOR THE SHINY CARD ANIMA THING - SHOUTOUT TROY */
 
 /* SHINEY CARD CONTAINER THINGY */
-.product-card{
-    position: relative;
-    overflow: hidden;
+.product-card {
+	position: relative;
+	overflow: hidden;
 
-    /* for when the mouse leaves the card so it's smooth and not instant/jerky */
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+	/* for when the mouse leaves the card so it's smooth and not instant/jerky */
+	transition:
+		transform 0.2s ease-out,
+		box-shadow 0.2s ease-out;
 }
 
 /* SHINE */
-.product-card::after{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -150%; /*starting waaaaay off to the left*/
-    width: 50%;
-    height: 100%;
+.product-card::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -150%; /*starting waaaaay off to the left*/
+	width: 50%;
+	height: 100%;
 
-    /* slanted white line */
-    background: linear-gradient( /*i'll fix the red thing later I WILL CONQUOR THIS LINE*/
-        to right,
-        rgb(76, 76, 73) 0%, /*start of the grad*/
-        rgba(255, 0, 0, 0.7) 50%,
-        rgb(238, 8, 192) 100% /*end*/
-    );
+	/* slanted white line */
+	background: linear-gradient(
+		/*i'll fix the red thing later I WILL CONQUOR THIS LINE*/ to right,
+		rgb(76, 76, 73) 0%,
+		/*start of the grad*/ rgba(255, 0, 0, 0.7) 50%,
+		rgb(238, 8, 192) 100% /*end*/
+	);
 
-    transform: skewX(-25deg); /* the tilt of the while line*/
-    pointer-events: none; /*makes it none clickable beacuse why would it be aaand it keeps for messing up any other ui on the card*/
+	transform: skewX(-25deg); /* the tilt of the while line*/
+	pointer-events: none; /*makes it none clickable beacuse why would it be aaand it keeps for messing up any other ui on the card*/
 }
 
-.product-card:hover{
-    box-shadow: 0 10px 20px rgba(212, 10, 10, 0.5);
+.product-card:hover {
+	box-shadow: 0 10px 20px rgba(212, 10, 10, 0.5);
 }
 
 /* clean sweep anim */
-.product-card:hover::after{
-    animation: shine-sweep 0.6s ease-out forewards;
+.product-card:hover::after {
+	animation: shine-sweep 0.6s ease-out forewards;
 }
 
-@keyframes shine-sweep{
-    100% {
-        left: 150%; /*end waaaaay off to the right*/
-    }
+@keyframes shine-sweep {
+	100% {
+		left: 150%; /*end waaaaay off to the right*/
+	}
 }
