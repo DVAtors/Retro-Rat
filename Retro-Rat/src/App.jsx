@@ -7,7 +7,7 @@ import TunePassword from "./components/TunePassword";
 import HeaderFlag from "./components/HeaderFlag";
 
 import ProductsPage from './pages/Products';
-
+import SubmitProduct from './pages/SubmitProduct';
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -15,8 +15,7 @@ function App() {
 
     <>
   <Navbar />
-  <ProductsPage/>
-
+  <SubmitProduct/>
 
 		</>
 	);

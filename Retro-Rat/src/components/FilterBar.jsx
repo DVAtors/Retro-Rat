@@ -20,6 +20,8 @@ export default function FilterBar() {
 
     const totalWaves = [1, 2, 3];
 
+    // OH MY DUCKING GAWD I HAVE TO DO A WHOLE USE STATE THING JUST TO CHANGE THE FCKN COLOURS OF A BUTTON LIKE I HATE THIS STUPID PIECE OF AHHHHEIBUWRHVBUREBVUGRBVUHIWVBHWEJHVBUIRVBUIHWEV ANYWAY, I'LL DO THIS BYYY THE END OF TOMORROR o7
+
     return (
         <>
             <BrowserRouter>
@@ -105,7 +107,7 @@ export default function FilterBar() {
                                 {currentWave === 2 && (
                                     <div className="wave second-wave">
 
-                                        <div className="p-2">
+                                        <div className="p-2 all">
                                             <button> All</button>
                                         </div>
 
