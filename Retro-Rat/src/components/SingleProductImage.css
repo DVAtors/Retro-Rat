@@ -1,16 +1,44 @@
-.imageBlock {
+/* .imageBlock {
 	display: flex;
-	width: 38rem;
+	width: 100%;
+	height: 100%;
+	max-width: 38rem;
 	min-height: 56.875rem;
+
+	aspect-ratio: 1/1;
+
+	flex: 1 1 38rem 56.875rem;
+	min-width: 0;
 
 	flex-direction: column;
 	align-items: flex-start;
-	flex-shrink: 0;
+	flex-shrink: 1;
+
+	border: 4px solid #000;
+	background: #fff;
+	box-shadow: 8px 8px 0 0 #000;
+} */
+.imageBlock {
+	display: flex;
+	/* padding: 0.25rem; */
+	flex-direction: column;
+	align-items: flex-start;
+	flex: 1 0 0;
 
 	border: 4px solid #000;
 	background: #fff;
 	box-shadow: 8px 8px 0 0 #000;
 }
+
+/* .productImage {
+	flex: 1;
+	min-height: 20rem;
+	height: 50.8125rem;
+	align-self: stretch;
+
+	border-bottom: 4px solid #000;
+	background: url(../assets/product-img.png) lightgray 50% / cover no-repeat;
+} */
 
 .productImage {
 	height: 50.8125rem;
@@ -20,11 +48,24 @@
 	background: url(../assets/product-img.png) lightgray 50% / cover no-repeat;
 }
 
-.imageBlockBar {
+/* .imageBlockBar {
 	display: flex;
 	height: 5.5625rem;
-	padding: 1.25rem;
-	padding-left: 3rem;
+	padding: 1.25rem 1.25rem 1.25rem 3rem;
+
+	justify-content: space-between;
+	align-items: center;
+	align-self: stretch;
+
+	background: var(--brandColors-Blue2, #0068c3);
+} */
+
+.imageBlockBar {
+	display: flex;
+	flex-direction: row;
+
+	height: 5.5625rem;
+	padding: 1.25rem 1.25rem 1.25rem 4rem;
 	justify-content: space-between;
 	align-items: center;
 	align-self: stretch;
