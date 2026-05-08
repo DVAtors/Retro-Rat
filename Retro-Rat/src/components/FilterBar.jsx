@@ -24,7 +24,7 @@ export default function FilterBar() {
 
     return (
         <>
-            <BrowserRouter>
+
                 <Container fluid>
                     <Row className="filter-bar">
 
@@ -164,7 +164,7 @@ export default function FilterBar() {
                     </Row>
                 </Container>
 
-            </BrowserRouter>
+
 
         </>
     );
