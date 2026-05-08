@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// GET /api/listings — get all approved listings
+// GET /api/listings/ — get all approved listings
 router.get('/', async (req, res) => {
   try {
     const listings = await Listing.find({ status: 'approved' })
