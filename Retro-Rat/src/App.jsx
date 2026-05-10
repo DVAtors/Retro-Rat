@@ -37,7 +37,7 @@ function App() {
 				<Navbar></Navbar>
 				<Routes>
 					{/* <Route path="/" element={<Homepage />} /> */}
-					<Route path="/browse" element={<ProductsPage />} />
+					<Route path="/browse" element={<SubmitProduct />} />
 					{/* <Route path="/sell" element={<SellForm />} /> */}
 					{/* <Route path="/cart" element={<CartPage />} /> */}
 					{/* <Route path="/account" element={<AccountsPage />} /> */}

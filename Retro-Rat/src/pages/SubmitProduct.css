@@ -1,7 +1,7 @@
 .submit-product-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   padding: 40px 108px;
   gap: 72px;
     width: 100%;
@@ -14,9 +14,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 32px 44px 28px 44px;
-    justify-content: center;
+    justify-content: space-between;
 
+    width: 100%;
+    max-width: 1280px;
+    padding: 32px 44px 28px 44px;
     border: 4px solid #000;
     background-color: #5B2C91;
     box-shadow: 8px 8px 0 0 #000;
@@ -107,30 +109,6 @@
     align-items: center;
 }
 
-.upload-text p{
-    width: 100%;
-    max-width: 924px;
-
-    color: #000;
-    text-align: center;
-    font-family: "Inter", sans-serif;
-    font-size: 17.5px;
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: -0.636px;
-    text-transform: uppercase;
-}
-.or p{
-    color: #5B2C91;
-    text-align: center;
-    font-family: "Inter", sans-serif;
-    font-size: 17.5px;
-    font-style: normal;
-    font-weight: 500;
-    letter-spacing: -0.636px;
-    text-transform: uppercase;
-}
-
 button{
     border: none;
     background: none;
@@ -215,7 +193,7 @@ button{
 }
 #product-title, #product-category, #product-price, #era-decade, #product-condition{
     width: 100%;
-    max-width: 400px;
+    /* max-width: 400px; */
     height: 64px;
     padding: 15px 20px;
     align-items: center;

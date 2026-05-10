@@ -12,35 +12,38 @@ export default function SubmitProduct() {
     return (
         <>
             <div className="submit-product-container">
+                
                 <div className="submit-product-header">
-                    <h1>list your vintage tech</h1>
-                    <p>Share your retro electronics with collectors</p>
+                    <h1 style={{margin:"0"}}>list your vintage tech</h1>
+                    <p style={{margin:"0"}}>Share your retro electronics with collectors</p>
                 </div>
-                <Container fluid className="submit-product-form">
-                    <Row>
-                        <Col>
-                            <div className="product-photo-container">
+                
+                    <div className="submit-product-form">
+                        
+                            <Container fluid className="product-photo-container">
                                 <div className="product-photo-form">
                                     <label htmlFor="product-photo">Product Photos</label>
+
                                     <div className="photo-instructions">
                                         <img src={UploadIcon}
                                             alt="Upload Icon" />
-                                        <p className="upload-text">Drag and drop your images here</p>
-                                        <p className="or">or</p>
+                                        <p style={{color: "#000"}}>Drag and drop your images here</p>
+                                        <p style={{color: "#5B2C91", marginTop: "0"}}>or</p>
+
                                         <button className="upload-button">Browse Files
                                             <input type="file" id="product-photo" name="product-photo" accept="image/*" />
-
                                         </button>
-                                        <p className="photo-support">Supported JPG, PNG. Max size: 5MB.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </Col>
-</Row>
-<Row>
-                        <Col>
 
-                            <Row className="product-details-container">
+                                        <p style={{color: " #5B2C91"}}>Supported JPG, PNG. Max size: 5MB.</p>
+                                    </div>
+                                    
+                                </div>
+                            </Container>
+                        
+
+                        
+
+                            <Container fluid className="product-details-container">
                                 <div className="product-classification">
                                 <label htmlFor="product-details-header">Item Classification</label>
 
@@ -102,12 +105,11 @@ export default function SubmitProduct() {
 
                                 </form>
                                 </div>
-                            </Row>
-                        </Col>
+                            </Container>
+                        
 
-
-                    </Row>
-                </Container>
+                    </div>
+                
 
 <div className="submit-button-container">
     <div className="button-controls">
@@ -116,7 +118,7 @@ export default function SubmitProduct() {
                 </div>
                 </div>
             </div>
-            <Footer />
+
         </>
     )
 }
