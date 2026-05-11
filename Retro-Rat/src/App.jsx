@@ -1,5 +1,5 @@
 // Import CSS
-
+import 'bootstrap/dist/css/bootstrap.min.css'
 import "./App.css";
 
 // Import Components
