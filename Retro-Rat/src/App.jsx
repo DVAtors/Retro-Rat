@@ -10,10 +10,9 @@ import TunePassword from "./components/TunePassword";
 import HeaderFlag from "./components/HeaderFlag";
 import SingleProductImage from "./components/SingleProductImage";
 
-import ProductsPage from './pages/Products';
-import SubmitProduct from './pages/SubmitProduct';
+import ProductsPage from "./pages/Products";
+import SubmitProduct from "./pages/SubmitProduct";
 // Import Pages
-
 
 import SingleProductView from "./pages/SingleProductView";
 
@@ -21,6 +20,7 @@ import Navbar from "./components/Navbar";
 
 // Import Browser Router stuff...
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Footer from "./components/Footer";
 
 function App() {
 	return (
@@ -38,12 +38,13 @@ function App() {
 				<Routes>
 					{/* <Route path="/" element={<Homepage />} /> */}
 					<Route path="/browse" element={<ProductsPage />} />
-					{/* <Route path="/sell" element={<SellForm />} /> */}
+					<Route path="/sell" element={<SubmitProduct />} />
 					{/* <Route path="/cart" element={<CartPage />} /> */}
 					{/* <Route path="/account" element={<AccountsPage />} /> */}
 					{/* <Route path="/logIn" element={<LogInSignUpPage />} /> */}
 					<Route path="/product/:id" element={<SingleProductView />}></Route>
 				</Routes>
+				<Footer></Footer>
 			</BrowserRouter>
 		</>
 	);
