@@ -8,6 +8,7 @@ import CommentSectionComponent from "../components/CommentSectionComponent";
 import { apiGet } from "../client";
 
 import "../pages/SingleProductView.css";
+import "./SingleProductView.css";
 import "../components/SingleProductImage.css";
 import "../components/SingleProductInformation.css";
 

@@ -1,4 +1,4 @@
-import "../components/SingleProductInformation.css";
+import "./SingleProductInformation.css";
 import FlagButtonComponent from "./flagButtonComponent";
 import SellerContainerComponent from "./SellerContainerComponent";
 
