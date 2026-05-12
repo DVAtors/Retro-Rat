@@ -10,6 +10,7 @@ export default function FilterBar() {
 
     //to track what wave of buttons we are currently on, this is saved in the state react thingy
     const [currentWave, setCurrentWave] = useState(1); //TELLS REACT TO RERENDER THE COMPONENT WHENEVER THE WAVE NUMBER CHANGES
+    const [activeFilter, setActiveFilter] = useState("ALL"); 
 
     const rotationAngle = (currentWave - 1) * 90; //make the filter rotate on click when cycling througbh each wave
 
@@ -22,6 +23,12 @@ export default function FilterBar() {
 
     // OH MY DUCKING GAWD I HAVE TO DO A WHOLE USE STATE THING JUST TO CHANGE THE FCKN COLOURS OF A BUTTON LIKE I HATE THIS STUPID PIECE OF AHHHHEIBUWRHVBUREBVUGRBVUHIWVBHWEJHVBUIRVBUIHWEV ANYWAY, I'LL DO THIS BYYY THE END OF TOMORROR o7
 
+    const wave3Colors = {
+        "ALL": "#4A9090",
+        "EXCELLENT": "#4A9090",
+        "GREAT": "#42823E",
+        "MODERATE": ""
+    }
     return (
         <>
 
