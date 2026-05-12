@@ -1,4 +1,4 @@
-import "../components/SellerContainerComponent.css";
+import "./SellerContainerComponent.css";
 
 function SellerContainerComponent() {
 	return (

@@ -1,6 +1,6 @@
 // Imports:
-import "../components/CommentSectionComponent.css";
-import "../components/CommentFieldComponent.css";
+import "./CommentSectionComponent.css";
+import "./CommentFieldComponent.css";
 
 import CommentFieldComponent from "./CommentFieldComponent";
 import PostCommentButton from "./PostCommentButton";

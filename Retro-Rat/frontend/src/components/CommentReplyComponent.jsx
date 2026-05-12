@@ -1,7 +1,7 @@
 // This component is still work in progress...
 
 // Imports:
-import "../components/CommentSectionComponent.css";
+import "./CommentSectionComponent.css";
 
 // Function:
 

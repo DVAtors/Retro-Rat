@@ -5,7 +5,7 @@ import SingleProductImage from "../components/SingleProductImage";
 import SingleProductInformation from "../components/SingleProductInformation";
 import CommentSectionComponent from "../components/CommentSectionComponent";
 
-import "../pages/SingleProductView.css";
+import "./SingleProductView.css";
 import "../components/SingleProductImage.css";
 import "../components/SingleProductInformation.css";
 
