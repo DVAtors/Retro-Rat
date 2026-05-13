@@ -98,8 +98,17 @@
     gap: 16px;
     /* width: 970px;     */
     overflow-x: visible; /*scrollable on mobile?*/
+    overflow-y: scroll;
 }
 
+.filter-bar .filter-buttons::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for WebKit browsers */
+}
+
+.first-wave .p-2 button.active-btn{ /*ARE YOU KIDDING ME I HAVE TO DO A WHOLE JS THING JUST TO MAKE BUTTONS STAY THE COLOUR I CHANGE THEM TO? WTF CSS?*/
+    background-color: #0B8C8C;
+    color: #FFF;
+}
 .wave{
     display: flex;
     flex-direction: row;

@@ -7,6 +7,7 @@ import Img2 from "../assets/Image (Classic Game Console Controller).png";
 import Img3 from "../assets/Image (Sony Walkman Cassette Player).png";
 import { Container, Row } from "react-bootstrap";
 import FilterBar from "../components/FilterBar";
+import Footer from "../components/Footer";
 //DEV MODE: HARD CODED ITEM DETAILS
 const productList = [
   //array to hold data fetched from dadta base
@@ -43,7 +44,15 @@ export default function ProductsPage() {
   return (
     <>
       
+      
       <Container fluid className="product-main-content">
+
+<Container fluid className="product-header">
+        <div className="header-text">
+        <h1>Welcome to Retro Rat</h1>
+        <p>Buy and sell authentic retro electronics from verified collectors</p>
+        </div>
+        </Container>
 
         <FilterBar/>
         
@@ -65,6 +74,8 @@ export default function ProductsPage() {
 
       
       </Container>
+<Footer/>
+
     </>
   );
 }
