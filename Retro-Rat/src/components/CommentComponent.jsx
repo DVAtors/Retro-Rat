@@ -1,5 +1,5 @@
 // Imports:
-import "../components/CommentComponent.css";
+import "./CommentComponent.css";
 
 import CommentReplyComponent from "./CommentReplyComponent";
 

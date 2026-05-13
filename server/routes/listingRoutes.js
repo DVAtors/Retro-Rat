@@ -15,14 +15,10 @@ router.post('/', async (req, res) => {
 
 // GET /api/listings/ — get all approved listings
 router.get('/', async (req, res) => {
-  try {
-    const listings = await Listing.find({ status: 'approved' })
-      .populate('seller', 'name')
-      .sort({ createdAt: -1 });
-    res.json(listings);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+  const listings = await Listing.find({ status: 'approved' })
+    .populate('seller', 'name')  // <-- add this
+    .sort({ createdAt: -1 });    // newest first
+  res.json(listings);
 });
 
 // GET /api/listings/:id — get one listing (and increment views)

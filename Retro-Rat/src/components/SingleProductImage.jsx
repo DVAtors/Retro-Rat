@@ -1,7 +1,7 @@
 // Imports:
 import React from "react";
 
-import "../components/SingleProductImage.css";
+import "./SingleProductImage.css";
 
 import SaveButtonComponent from "./SaveButtonComponent";
 

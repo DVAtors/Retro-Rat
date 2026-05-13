@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs'); //hashing things 
+const bcrypt = require('bcrypt'); //hashing things 
 
 const UserSchema = new mongoose.Schema({
   name: { 
@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     match: [/^\S+@\S+\.\S+$/, 'Invalid email format'] //ensure correct email format
   },
-  passwordHash: { 
+  musicalHash: { 
     type: String, 
     required: true,
     select: false  // never returned in queries unless we specifically ask it to (security stuff)

@@ -1,47 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User'); 
-const bcrypt = require('bcrypt'); 
+const { registerUser, getUsers, loginUser } = require('../controllers/userController');
+const { protect } = require('../middleware/authMiddleware'); // Validation middleware to protect routes
 
-// Create a new user
-router.post('/register', async (req, res) => {
-    const { name, email, password } = req.body;
+// @desc    Register a new user
+// @route   POST /api/users/register
 
-    try {
-        // Generate the salt 
-        const salt = await bcrypt.genSalt(10);
-        
-        // Hash the incoming password with that salt
-        const hashedPassword = await bcrypt.hash(password, salt);
+router.post('/register', registerUser);
+router.post('/login', loginUser);
 
-        // Create the user using the HASHED password
-        const user = new User({ 
-            name, 
-            email, 
-            password: hashedPassword 
-        });
-        
-        await user.save();
-        
-        // Security Note: don't send the hashed password back in the response
-        res.status(201).json({
-            _id: user._id,
-            name: user.name,
-            email: user.email
-        });
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
-});
-
-// Get all users
-router.get('/', async (req, res) => {
-    try {
-        const users = await User.find();
-        res.status(200).json(users);
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
-});
+// @desc    Get all users
+// @route   GET /api/users
+// The 'protect' middleware checks for a valid JWT token before allowing access to the getUsers route.
+router.get('/', protect, getUsers);
 
 module.exports = router;

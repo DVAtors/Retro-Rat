@@ -1,6 +1,6 @@
 // Imports:
-import "../components/CommentSectionComponent.css";
-import "../components/PostCommentButton.css";
+import "./CommentSectionComponent.css";
+import "./PostCommentButton.css";
 // Function:
 
 function PostCommentButton() {
