@@ -1,7 +1,7 @@
 .submit-product-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   padding: 40px 108px;
   gap: 72px;
     width: 100%;
@@ -14,12 +14,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 32px 44px 28px 44px;
-    justify-content: center;
+    justify-content: space-between;
+    text-align: center;
 
+    width: 100%;
+    max-width: 1280px;
+    padding: 32px 44px 28px 44px;
     border: 4px solid #000;
     background-color: #5B2C91;
     box-shadow: 8px 8px 0 0 #000;
+
 }
 
 .submit-product-header h1{
@@ -55,6 +59,15 @@
     gap: 52px;
 }
 
+.form-label{
+    color: #000;
+    font-family: "Inter", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: -0.636px;
+    text-transform: uppercase;
+}
 .product-photo-container{
     display: flex;
     width: 100%;
@@ -78,16 +91,6 @@
     width: 100%;
 }
 
-.product-photo-form label{
-    color: #000;
-    font-family: "Inter", sans-serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: -0.636px;
-    text-transform: uppercase;
-}
-
 .product-photo-form img{
     width: 100%;
     max-width: 60px;
@@ -105,30 +108,8 @@
     background-color: #F0F8FF;
     justify-content: center;
     align-items: center;
-}
 
-.upload-text p{
-    width: 100%;
-    max-width: 924px;
-
-    color: #000;
     text-align: center;
-    font-family: "Inter", sans-serif;
-    font-size: 17.5px;
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: -0.636px;
-    text-transform: uppercase;
-}
-.or p{
-    color: #5B2C91;
-    text-align: center;
-    font-family: "Inter", sans-serif;
-    font-size: 17.5px;
-    font-style: normal;
-    font-weight: 500;
-    letter-spacing: -0.636px;
-    text-transform: uppercase;
 }
 
 button{
@@ -166,7 +147,6 @@ button{
     display: flex;
     padding: 30px;
     flex-direction: column;
-    align-items: start;
     gap: 30px;
     width: 100%;
 
@@ -192,6 +172,15 @@ button{
     color: #F0F8FF;
 }
 
+.product-deatils-form{
+    display: flex;
+    width: 100%;
+    max-width: 1012px;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
 .product-details-form img{
     width: 100%;
     max-width: 25px;
@@ -209,13 +198,12 @@ button{
     display: flex;
     flex-direction: column;
     gap: 15px;
-
-
+    width: 100%;
 
 }
 #product-title, #product-category, #product-price, #era-decade, #product-condition{
     width: 100%;
-    max-width: 400px;
+    /* max-width: 400px; */
     height: 64px;
     padding: 15px 20px;
     align-items: center;
@@ -230,6 +218,104 @@ button{
     font-weight: 500;
     letter-spacing: -0.636px;
     
+}
+
+.product-description-container{
+    display: flex;
+    width: 100%;
+    max-width: 1080px;
+    padding: 4px;
+    flex-direction: column;
+    align-items: center;
+    gap: 44px;
+
+    border: 4px solid #000;
+    background-color: #B30000;
+    box-shadow: 8px 8px 0 0 #000;
+}
+.product-description-form{
+    display: flex;
+    padding: 30px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    align-self: stretch;
+}
+
+.product-location-col{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.product-shipping-container{
+    display: flex;
+    width: 100%;
+    max-width: 1080px;
+    padding: 4px;
+    flex-direction: column;
+    align-items: center;
+    gap: 44px;
+
+    border: 4px solid #000;
+    background-color: #0F5AD1;
+    box-shadow: 8px 8px 0 0 #000;
+}
+
+.product-shipping-form{
+    display: flex;
+    width: 100%;
+    max-width: 1012px;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.shipping-options{
+    display: flex;
+    padding: 22px 22px 2px 22px;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+    align-self: stretch;
+
+    border: 2px solid #000;
+    background-color: #F0F8FF;
+}
+
+.shipping-options li{
+    display: flex;
+    padding-right: 734px;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    width: 100%;
+
+    color: #000;
+    font-family: "Inter", sans-serif;
+    font-size: 1.1rem; /*1.09375rem*/
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: -0.636px;
+    text-transform: uppercase;
+}
+
+.shipping-conditions{
+    width: 100%;
+    max-width: 1012px;
+    display: flex;
+    gap: 10px;
+}
+
+.shipping-conditions p{
+    color: #F0F8FF;
+    font-family: "Inter", sans-serif;
+    font-size: 1.1rem; /*1.09375rem*/
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: -0.636px;
 }
 
 .submit-button-container{
