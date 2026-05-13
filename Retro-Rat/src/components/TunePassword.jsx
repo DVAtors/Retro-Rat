@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./TunePassword.css";
-import BootHeader from "./BootHeader";
+
+import TuneIcon from "../assets/tuneIcon.svg"
+import { Container } from "react-bootstrap";
 
 const NOTES = {
     C4: 261.63,
@@ -16,7 +18,7 @@ const NOTES = {
 
 const NOTE_NAMES = Object.keys(NOTES); //dictionary list of the name of notes with the oscilating frequencies to make the sound of the note o7
 
-const TunePassword = () => {
+export default function TunePassword() {
     // State to hold the current tune (array of note names)
     const [tune, setTune] = useState(Array(8).fill("-")); //the 8 slots for eack password note/tune that the user needs to fill
 
@@ -66,26 +68,30 @@ const TunePassword = () => {
 
     return (
         <>
-    <BootHeader/>
+
             <div className="password-container">
-                <p className="password-heading">Login Required</p>
+<Container fluid className="password-header">
+        <label htmlFor="tune-password" className="password-label">
+            <img src={TuneIcon} alt="Tune Icon" className="tune-icon" />
+            Tune PASSWORD
+        </label>
 
-                <div className="username-container">
-                    <p className="username-text">Username</p>
-                    <p className="username-string">
-                        <div> &gt;
-                            <input
-                                type="text"
-                                name="username" placeholder="Type Username Here"
-                                className="user-input"
-                            />
+        <div className="password-controls">
+                    <button onClick={playSequence} className="controls-btn">
+                        ▶ Play
+                    </button>
 
-                        </div>
-                    </p>
+                    <button
+                        onClick={() => alert(`Saveing password to DB: ${tune.join("")}`)}
+                        className="controls-btn"
+                    >
+                        Save
+                    </button>
                 </div>
+</Container>
 
                 <div className="load-compositionContainer">
-                    <p className="load-text">Load Composition</p>
+                    
 
                     <div className="slider-grid">
                         {tune.map((currentNote, slotIndex) => (
@@ -134,6 +140,7 @@ This sends a messege to the main code saying
                             </div>
                         ))}
                     </div>
+
                 </div>
 
                 {/* initialdropdownmenu thing
@@ -149,25 +156,14 @@ This sends a messege to the main code saying
                 ))}
             </div> */}
 
-                <div className="password-controls">
-                    <button onClick={playSequence} className="controls-btn">
-                        ▶
-                    </button>
-
-                    <button
-                        onClick={() => alert(`Saveing password to DB: ${tune.join("")}`)}
-                        className="controls-btn"
-                    >
-                        Save Password
-                    </button>
-                </div>
-
+                
+{/* 
                 <p className="user-password-string">
                     RETURN USER'S PASSWORD AS STRING: <strong>{tune.join("")}</strong>
-                </p>
+                </p> */}
             </div>
         </>
     );
 };
 
-export default TunePassword;
+

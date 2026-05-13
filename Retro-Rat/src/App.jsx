@@ -17,6 +17,7 @@ import ProductsPage from "./pages/Products";
 import SubmitProduct from "./pages/SubmitProduct";
 import UserConsolePage from "./pages/UserConsolePage";
 import AdminConsolePage from "./pages/AdminConsolePage";
+import LoginPage from "./pages/LoginPage";
 
 // Import Browser Router stuff...
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -45,6 +46,9 @@ function App() {
 					{/* <Route path="/logIn" element={<LogInSignUpPage />} /> */}
 					<Route path="/product/:id" element={<SingleProductView />}></Route>
 				</Routes>
+
+				<LoginPage/>
+
 				<Footer></Footer>
 			</BrowserRouter>
 		</>
