@@ -77,13 +77,13 @@ export default function TunePassword() {
         </label>
 
         <div className="password-controls">
-                    <button onClick={playSequence} className="controls-btn">
+                    <button onClick={playSequence} className="controls-btn play-btn">
                         ▶ Play
                     </button>
 
                     <button
                         onClick={() => alert(`Saveing password to DB: ${tune.join("")}`)}
-                        className="controls-btn"
+                        className="controls-btn save-btn"
                     >
                         Save
                     </button>
