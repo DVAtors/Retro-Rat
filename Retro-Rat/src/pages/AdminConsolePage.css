@@ -1,0 +1,328 @@
+.ac-page {
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 0 20px 60px;
+	font-family: "Inter", sans-serif;
+}
+
+/*  Admin Banner  */
+.ac-banner {
+	background-color: #c96a1a;
+	display: flex;
+	align-items: flex-start;
+	gap: 14px;
+	padding: 14px 24px;
+	border: 2px solid #1a1a1a;
+	margin-bottom: 32px;
+}
+
+.ac-banner-icon {
+	font-size: 1.4rem;
+	margin-top: 2px;
+	color: #fff;
+	flex-shrink: 0;
+}
+
+.ac-banner-title {
+	font-size: 0.85rem;
+	font-weight: 900;
+	font-style: italic;
+	text-transform: uppercase;
+	color: #fff;
+	margin: 0 0 3px;
+	letter-spacing: 0.3px;
+}
+
+.ac-banner-subtitle {
+	font-size: 0.78rem;
+	font-weight: 600;
+	color: rgba(255, 255, 255, 0.9);
+	margin: 0;
+	line-height: 1.4;
+}
+
+/*  Top Row Layout  */
+.ac-top-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px;
+	margin-bottom: 32px;
+	align-items: start;
+}
+
+/*  Profile Card  */
+.ac-profile-card {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+	padding: 20px 24px;
+	height: 100%;
+
+	border: 4px solid #000;
+	background: #fff;
+	box-shadow: 8px 8px 0 0 #000;
+}
+
+.ac-avatar {
+	width: 72px;
+	height: 72px;
+	background-color: #6b21a8;
+	color: #fff;
+	font-size: 2.2rem;
+	font-weight: 900;
+	font-style: italic;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.ac-profile-info {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.ac-username {
+	font-size: 1.4rem;
+	font-weight: 900;
+	font-style: italic;
+	text-transform: uppercase;
+	color: #1a1a1a;
+	margin: 0;
+	letter-spacing: -0.3px;
+}
+
+.ac-admin-since {
+	font-size: 0.75rem;
+	font-weight: 700;
+	font-style: italic;
+	text-transform: uppercase;
+	color: #6b21a8;
+	margin: 0;
+	letter-spacing: 0.3px;
+}
+
+.ac-approvals {
+	font-size: 0.85rem;
+	font-weight: 800;
+	color: #1a1a1a;
+	margin: 4px 0 0;
+}
+
+/*  Nav Buttons  */
+.ac-nav-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.ac-nav-btn {
+	width: 100%;
+	padding: 16px 20px;
+
+	font-family: "Inter", sans-serif;
+	font-size: 0.8rem;
+	font-weight: 900;
+	font-style: italic;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: #dc2626;
+	cursor: pointer;
+	text-align: center;
+	transition: all 0.15s;
+
+	border: 4px solid #000;
+	background: #fff;
+	box-shadow: 8px 8px 0 0 #000;
+}
+
+.ac-nav-btn:hover {
+	background-color: #51d1d1;
+}
+
+.ac-nav-btn.active {
+	background-color: #097070;
+	border: 4px solid #000;
+	box-shadow: 8px 8px 0 0 #000;
+}
+
+/*  Main Content Panel  */
+.ac-content {
+	padding: 24px;
+
+	border: 4px solid #000;
+	background: var(--brandColors-Purple, #5b2c91);
+	box-shadow: 8px 8px 0 0 #000;
+}
+
+.ac-panel-title {
+	font-size: 1.1rem;
+	font-weight: 900;
+	font-style: italic;
+	text-transform: uppercase;
+	color: #fff;
+	margin: 0 0 20px;
+	letter-spacing: 0.5px;
+}
+
+.ac-empty {
+	color: rgba(255, 255, 255, 0.85);
+	font-style: italic;
+	font-size: 0.9rem;
+}
+
+/*  Listing Cards  */
+.ac-listing-list {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.ac-listing-card {
+	background: #fff;
+	border: 2px solid #1a1a1a;
+	display: flex;
+	align-items: stretch;
+	overflow: hidden;
+}
+
+.ac-listing-img {
+	width: 160px;
+	height: 130px;
+	object-fit: cover;
+	flex-shrink: 0;
+}
+
+.ac-listing-body {
+	flex: 1;
+	padding: 16px 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.ac-listing-top {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 12px;
+}
+
+.ac-listing-title {
+	font-size: 0.95rem;
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: 0.3px;
+	color: #1a1a1a;
+	margin: 0 0 4px;
+}
+
+.ac-listing-price {
+	font-size: 1.4rem;
+	font-weight: 900;
+	font-style: italic;
+	color: #1a1a1a;
+	margin: 0 0 4px;
+}
+
+.ac-listing-note {
+	font-size: 0.78rem;
+	font-weight: 700;
+	font-style: italic;
+	text-transform: uppercase;
+	color: #6b21a8;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	margin: 0;
+}
+
+.ac-listing-meta {
+	font-size: 0.78rem;
+	font-weight: 700;
+	font-style: italic;
+	text-transform: uppercase;
+	color: #6b21a8;
+	display: flex;
+	gap: 16px;
+	margin: 4px 0 0;
+}
+
+/*  Status Badge  */
+.ac-status-badge {
+	background: #c96a1a;
+	color: #fff;
+	font-size: 0.72rem;
+	font-weight: 900;
+	font-style: italic;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	padding: 6px 12px;
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+/*  Action Buttons  */
+.ac-listing-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	margin-top: 12px;
+}
+
+.ac-btn {
+	padding: 7px 18px;
+	font-family: "Inter", sans-serif;
+	font-size: 0.75rem;
+	font-weight: 800;
+	font-style: italic;
+	text-transform: uppercase;
+	letter-spacing: 0.3px;
+	cursor: pointer;
+	border: 2px solid #1a1a1a;
+	background: #fff;
+	transition: all 0.15s;
+}
+
+.ac-btn-view {
+	color: #1a1a1a;
+}
+
+.ac-btn-view:hover {
+	background: #1a1a1a;
+	color: #fff;
+}
+
+.ac-btn-approve {
+	color: #16a34a;
+	border-color: #16a34a;
+}
+
+.ac-btn-approve:hover {
+	background: #16a34a;
+	color: #fff;
+}
+
+.ac-btn-delete {
+	color: #dc2626;
+	border-color: #dc2626;
+}
+
+.ac-btn-delete:hover {
+	background: #dc2626;
+	color: #fff;
+}
+
+/*  Responsive (I Tried) */
+@media (max-width: 780px) {
+	.ac-top-row {
+		grid-template-columns: 1fr;
+	}
+
+	.ac-listing-img {
+		width: 100px;
+		height: 100px;
+	}
+}
