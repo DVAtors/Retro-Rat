@@ -4,6 +4,10 @@ import Img1 from "../assets/product-img.png";
 import Img2 from "../assets/Image (Classic Game Console Controller).png";
 import Img3 from "../assets/Image (Sony Walkman Cassette Player).png";
 
+import { Link, Route, Routes } from "react-router-dom";
+
+import SubmitProduct from "./SubmitProduct";
+
 // Mock data — swap with real API calls later
 const mockUser = {
 	username: "TECHCOLLECTOR",
@@ -53,7 +57,7 @@ const STATUS_CONFIG = {
 	sold: { label: "SOLD", className: "status-sold" },
 };
 
-function UserConsolePage() {
+function UserConsolePage({ id }) {
 	const [activeTab, setActiveTab] = useState("listings");
 	const [listings, setListings] = useState(mockListings);
 
@@ -160,6 +164,18 @@ function UserConsolePage() {
 					</div>
 				</div>
 				<button className="uc-list-new-btn">LIST NEW ITEM</button>
+				{/* Test 1: For Linking to Submit Form Page... - Need to do */}
+				{/* <Link
+					to={`./Pages/SubmitProduct.jsx`}
+					style={{ textDecoration: "none", color: "inherit" }}>
+					<button className="uc-list-new-btn">LIST NEW ITEM</button>
+				</Link> */}
+				{/* Test 2 */}
+				{/* <Routes>
+					<Route path="/sell" element={<SubmitProduct />}>
+						<button className="uc-list-new-btn">LIST NEW ITEM</button>
+					</Route>
+				</Routes> */}
 			</div>
 
 			{/* Tab Navigation */}

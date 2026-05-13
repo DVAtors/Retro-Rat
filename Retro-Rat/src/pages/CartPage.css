@@ -1,0 +1,91 @@
+.cart-main-content {
+	display: flex;
+	/* width: 81rem; */
+	width: 100%;
+
+	padding: 0 1.25rem 2.5rem 1.25rem;
+	flex-direction: column;
+	align-items: center;
+	gap: 2.5rem;
+
+	margin: auto;
+	margin-top: 2rem;
+}
+
+.cart-banner {
+	display: flex;
+	height: 8.687rem;
+	padding: 2.75rem 15.75rem 0.25rem 2.75rem;
+	flex-direction: column;
+	align-items: flex-start;
+	align-self: stretch;
+
+	border: 4px solid #000;
+	background: #5b2c91;
+	box-shadow: 8px 8px 0 0 #000;
+}
+
+.cart-banner-title {
+	color: #f0f8ff;
+	font-family: Inter;
+	font-size: 1.875rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 2.5rem; /* 133.333% */
+	letter-spacing: -0.01275rem;
+	text-transform: uppercase;
+}
+
+.cart-banner-sub-title {
+	color: #ffe500;
+	font-family: Inter;
+	font-size: 1.09375rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1.5625rem; /* 142.857% */
+	letter-spacing: 0.00013rem;
+	text-transform: uppercase;
+}
+
+.content-container {
+	display: flex;
+	align-items: flex-start;
+	gap: 2.5rem;
+}
+
+.cart-products-container {
+	display: flex;
+	padding: 1.25rem 0;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1.25rem;
+}
+
+/* TestCard1: */
+.testCard1 {
+	display: flex;
+	width: 51.5rem;
+	/* width: 100%; */
+	height: 10.5rem;
+	padding: 1.5rem 1.5rem 0.25rem 1.5rem;
+	flex-direction: column;
+	align-items: flex-start;
+
+	border: 4px solid #000;
+	background: var(--neutrals-WHITE, #fff);
+	box-shadow: 4px 4px 0 0 #000;
+}
+
+.cart-order-summary-container {
+	display: flex;
+	width: 24.5rem;
+	padding: 2.5rem 2.125rem;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	align-self: stretch;
+
+	border: 4px solid #000;
+	background: var(--brandColors-Gold, #d99e30);
+	box-shadow: 8px 8px 0 0 #000;
+}
