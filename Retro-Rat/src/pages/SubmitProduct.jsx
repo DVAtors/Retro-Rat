@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./SubmitProduct.css";
 import { Container, Row, Col } from "react-bootstrap";
@@ -10,212 +11,352 @@ import CalenderIcon from "../assets/calenderIcon.svg";
 import LocationIcon from "../assets/locationIcon.svg";
 import DescriptionIcon from "../assets/descriptionIcon.svg";
 
+import { uploadImage } from "../cloudinary";
+
+// TEMP: hardcoded seller until i get around to auth
+const TEMP_SELLER_ID = "6a031ed938a375e22177a08c";
+
 export default function SubmitProduct() {
-    return (
-        <>
-            <div className="submit-product-container">
-                <div className="submit-product-header">
-                    <h1 style={{ margin: "0" }}>list your vintage tech</h1>
-                    <p style={{ margin: "0" }}>
-                        Share your retro electronics with collectors
-                    </p>
-                </div>
+  const navigate = useNavigate();
 
-                <div className="submit-product-form">
-                    <Container fluid className="product-photo-container">
-                        <div className="product-photo-form">
-                            <label htmlFor="product-photo" className="form-label">Product Photos</label>
+  const [form, setForm] = useState({
+    productName: "",
+    category: "",
+    price: "",
+    era: "",
+    condition: "",
+    location: "",
+    description: "",
+    shippingOptions: [],
+    authenticityAgreed: false,
+  });
 
-                            <div className="photo-instructions">
-                                <img src={UploadIcon} alt="Upload Icon" />
-                                <p style={{ color: "#000" }}>Drag and drop your images here</p>
-                                <p style={{ color: "#5B2C91", marginTop: "0" }}>or</p>
+  const [imageFile, setImageFile] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
-                                <button className="upload-button">
-                                    Browse Files
-                                    <input
-                                        type="file"
-                                        id="product-photo"
-                                        name="product-photo"
-                                        accept="image/*"
-                                    />
-                                </button>
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
-                                <p style={{ color: " #5B2C91" }}>
-                                    Supported JPG, PNG. Max size: 5MB.
-                                </p>
-                            </div>
-                        </div>
-                    </Container>
+  const handleShippingChange = (e) => {
+    const { value, checked } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      shippingOptions: checked
+        ? [...prev.shippingOptions, value]
+        : prev.shippingOptions.filter((opt) => opt !== value),
+    }));
+  };
 
-                    <Container fluid className="product-details-container">
-                        <div className="product-classification">
-                            <label htmlFor="product-details-header" className="form-label">
-                                Item Classification
-                            </label>
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
 
-                            <form className="product-details-form">
-                                <Col>
-                                    <label htmlFor="product-title">
-                                        <img src={TagIcon} alt="Tag Icon" />
-                                        Item Name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="product-title"
-                                        name="product-title"
-                                        placeholder="e.g. Vintage Mechanical Keyboard"
-                                        required
-                                    />
-                                </Col>
+    if (file.size > 5 * 1024 * 1024) {
+      setError("Image must be under 5MB");
+      return;
+    }
+    setError(null);
+    setImageFile(file);
+  };
 
-                                <Col>
-                                    <Row className="product-details-row">
-                                        <Col>
-                                            <label htmlFor="product-category">Category</label>
-                                            <textarea
-                                                id="product-category"
-                                                name="product-category"
-                                                required
-                                            ></textarea>
-                                        </Col>
-                                        <Col>
-                                            <label htmlFor="product-price">R Price (ZAR)</label>
-                                            <input
-                                                type="number"
-                                                id="product-price"
-                                                name="product-price"
-                                                placeholder="e.g. 150.00"
-                                                step="0.01"
-                                                required
-                                            />
-                                        </Col>
-                                    </Row>
-                                </Col>
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
 
-                                <Col>
-                                    <Row className="product-details-row">
-                                        <Col>
-                                            <label htmlFor="era-decade">
-                                                <img src={CalenderIcon} alt="Calendar Icon" />
-                                                Era/Decade
-                                            </label>
+    if (!imageFile) {
+      setError("Please upload a product photo");
+      return;
+    }
+    if (!form.authenticityAgreed) {
+      setError("You must agree to the authenticity policy");
+      return;
+    }
 
-                                            <select id="era-decade" name="era-decade" required>
-                                                <option value="">Select era/decade</option>
-                                                <option value="1970s">1970s</option>
-                                                <option value="1980s">1980s</option>
-                                                <option value="1990s">1990s</option>
-                                                <option value="2000s">2000s</option>
-                                                <option value="2010s">2010s</option>
-                                            </select>
-                                        </Col>
+    setSubmitting(true);
+    try {
+      const imageUrl = await uploadImage(imageFile);
 
-                                        <Col>
-                                            <label htmlFor="product-condition">Condition</label>
-                                            <select
-                                                id="product-condition"
-                                                name="product-condition"
-                                                required
-                                            >
-                                                <option value="">Select condition</option>
-                                                <option value="excellent">Excellent</option>
-                                                <option value="great">Great</option>
-                                                <option value="moderate">Moderate</option>
-                                                <option value="low">Low</option>
-                                                <option value="poor">Poor</option>
-                                            </select>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                            </form>
-                        </div>
-                    </Container>
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/listings`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          seller: TEMP_SELLER_ID,
+          productName: form.productName,
+          description: form.description,
+          price: Number(form.price),
+          condition: form.condition,
+          era: form.era,
+          category: form.category,
+          location: form.location,
+          shippingOptions: form.shippingOptions,
+          mainImage: imageUrl,
+        }),
+      });
 
-                    <Container fluid className="product-description-container">
-                        <Row className="product-description-form">
-                            <label htmlFor="product-description">Item Information</label>
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || "Submission failed");
+      }
 
-                            <Col className="product-location-col">
-                                <label htmlFor="product-location" className="form-label">
-                                    <img src={LocationIcon} alt="Location Icon" />
-                                    Location
-                                </label>
-                                <input
-                                    type="text"
-                                    id="product-location"
-                                    name="product-location"
-                                    placeholder="eg. Cape Town, South Africa"
-                                    required
-                                />
-                            </Col>
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
-                            <Col className="product-description-col">
-                                <label htmlFor="product-description" className="form-label">
-                                    <img src={DescriptionIcon} alt="Description Icon" />
-                                    Description
-                                </label>
+  return (
+    <>
+      <div className="submit-product-container">
+        <div className="submit-product-header">
+          <h1 style={{ margin: "0" }}>list your vintage tech</h1>
+          <p style={{ margin: "0" }}>
+            Share your retro electronics with collectors
+          </p>
+        </div>
 
-                                <input
-                                    type="text"
-                                    id="product-description"
-                                    name="product-description"
-                                    placeholder="Describe your item's history, condition, functionality, and any unique features.."
-                                    required
-                                />
-
-                                <p style={{ color: "#FFE500" }}>
-                                    Tip: Include details about functionality, original packaging,
-                                    and any included accessories
-                                </p>
-                            </Col>
-                        </Row>
-                    </Container>
-
-                    <Container fluid className="product-shipping-container">
-                        <Row className="product-shipping-form">
-                            <label htmlFor="product-shipping" className="form-label">Shipping Options</label>
-
-                            <Col>
-                                <fieldset className="shipping-options">
-                                    <li>
-                                        <input type="checkbox" id="local-pickup" name="local-pickup" value={"local-pickup"}  />
-                                        <label htmlFor="local-pickup">Local Pickup Available</label>
-                                    </li>
-
-                                    <li>
-                                        <input type="checkbox" id="domestic-shipping" name="domestic-shipping" value={"domestic-shipping"} />
-                                        <label htmlFor="domestic-shipping">Domestic Shipping (SA)</label>
-                                    </li>
-
-                                    <li>
-                                        <input type="checkbox" id="international-shipping" name="international-shipping" value={"international-shipping"} />
-                                        <label htmlFor="internationl-shipping">International Shipping</label>
-                                    </li>
-
-                                </fieldset>
-                            </Col>
-                        </Row>
-
-                        <div className="shipping-conditions">
-                            <input type="checkbox" id="authenticity-policy" name="authenticity-policy" value={"authenticity-policy"}/>
-
-                            <p>
-                                I certify that this item is authentic vintage/retro tech and
-                                accurately described. I agree to RetroTech Market's
-                            <span style={{ color: "#FFE500", fontWeight: "800", textTransform: "uppercase" }}> Seller terms</span> and <span style={{ color: "#FFE500", fontWeight: "800", textTransform: "uppercase"}}>authenticity policy</span>.
-                            </p>
-                        </div>
-                    </Container>
-                </div>
-
-                <div className="submit-button-container">
-                    <div className="button-controls">
-                        <button className="cancel-button">Cancel</button>
-                        <button className="submit-button">Submit For Review</button>
-                    </div>
-                </div>
+        <form className="submit-product-form" onSubmit={handleSubmit}>
+          <Container fluid className="product-photo-container">
+            <div className="product-photo-form">
+              <label htmlFor="product-photo" className="form-label">Product Photos</label>
+              <div className="photo-instructions">
+                <img src={UploadIcon} alt="Upload Icon" />
+                <p style={{ color: "#000" }}>
+                  {imageFile ? imageFile.name : "Drag and drop your images here"}
+                </p>
+                <p style={{ color: "#5B2C91", marginTop: "0" }}>or</p>
+                <button type="button" className="upload-button" onClick={() => document.getElementById('product-photo').click()}>
+                  Browse Files
+                </button>
+                <input
+                  type="file"
+                  id="product-photo"
+                  name="product-photo"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  style={{ display: "none" }}
+                />
+                <p style={{ color: "#5B2C91" }}>
+                  Supported JPG, PNG. Max size: 5MB.
+                </p>
+              </div>
             </div>
-        </>
-    );
+          </Container>
+
+          <Container fluid className="product-details-container">
+            <div className="product-classification">
+              <label className="form-label">Item Classification</label>
+
+              <div className="product-details-form">
+                <Col>
+                  <label htmlFor="product-title">
+                    <img src={TagIcon} alt="Tag Icon" />
+                    Item Name
+                  </label>
+                  <input
+                    type="text"
+                    id="product-title"
+                    name="productName"
+                    placeholder="e.g. Vintage Mechanical Keyboard"
+                    value={form.productName}
+                    onChange={handleChange}
+                    required
+                  />
+                </Col>
+
+                <Col>
+                  <Row className="product-details-row">
+                    <Col>
+                      <label htmlFor="product-category">Category</label>
+                      <select
+                        id="product-category"
+                        name="category"
+                        value={form.category}
+                        onChange={handleChange}
+                        required
+                      >
+                        <option value="">Select category</option>
+                        <option value="Computers">Computers</option>
+                        <option value="Gaming">Gaming</option>
+                        <option value="Audio">Audio</option>
+                        <option value="Mobile">Mobile</option>
+                        <option value="Video">Video</option>
+                        <option value="Cameras">Cameras</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </Col>
+                    <Col>
+                      <label htmlFor="product-price">R Price (ZAR)</label>
+                      <input
+                        type="number"
+                        id="product-price"
+                        name="price"
+                        placeholder="e.g. 150.00"
+                        step="0.01"
+                        value={form.price}
+                        onChange={handleChange}
+                        required
+                      />
+                    </Col>
+                  </Row>
+                </Col>
+
+                <Col>
+                  <Row className="product-details-row">
+                    <Col>
+                      <label htmlFor="era-decade">
+                        <img src={CalenderIcon} alt="Calendar Icon" />
+                        Era/Decade
+                      </label>
+                      <select
+                        id="era-decade"
+                        name="era"
+                        value={form.era}
+                        onChange={handleChange}
+                        required
+                      >
+                        <option value="">Select era/decade</option>
+                        <option value="70s">1970s</option>
+                        <option value="80s">1980s</option>
+                        <option value="90s">1990s</option>
+                        <option value="2000s">2000s</option>
+                      </select>
+                    </Col>
+
+                    <Col>
+                      <label htmlFor="product-condition">Condition</label>
+                      <select
+                        id="product-condition"
+                        name="condition"
+                        value={form.condition}
+                        onChange={handleChange}
+                        required
+                      >
+                        <option value="">Select condition</option>
+                        <option value="Excellent">Excellent</option>
+                        <option value="Great">Great</option>
+                        <option value="Moderate">Moderate</option>
+                        <option value="Low">Low</option>
+                        <option value="Poor">Poor</option>
+                      </select>
+                    </Col>
+                  </Row>
+                </Col>
+              </div>
+            </div>
+          </Container>
+
+          <Container fluid className="product-description-container">
+            <Row className="product-description-form">
+              <label>Item Information</label>
+
+              <Col className="product-location-col">
+                <label htmlFor="product-location" className="form-label">
+                  <img src={LocationIcon} alt="Location Icon" />
+                  Location
+                </label>
+                <input
+                  type="text"
+                  id="product-location"
+                  name="location"
+                  placeholder="eg. Cape Town, South Africa"
+                  value={form.location}
+                  onChange={handleChange}
+                  required
+                />
+              </Col>
+
+              <Col className="product-description-col">
+                <label htmlFor="product-description" className="form-label">
+                  <img src={DescriptionIcon} alt="Description Icon" />
+                  Description
+                </label>
+                <input
+                  type="text"
+                  id="product-description"
+                  name="description"
+                  placeholder="Describe your item's history, condition, functionality, and any unique features.."
+                  value={form.description}
+                  onChange={handleChange}
+                  required
+                />
+                <p style={{ color: "#FFE500" }}>
+                  Tip: Include details about functionality, original packaging, and any included accessories
+                </p>
+              </Col>
+            </Row>
+          </Container>
+
+          <Container fluid className="product-shipping-container">
+            <Row className="product-shipping-form">
+              <label className="form-label">Shipping Options</label>
+              <Col>
+                <fieldset className="shipping-options">
+                  <li>
+                    <input
+                      type="checkbox"
+                      id="local-pickup"
+                      value="local_pickup"
+                      checked={form.shippingOptions.includes("local_pickup")}
+                      onChange={handleShippingChange}
+                    />
+                    <label htmlFor="local-pickup">Local Pickup Available</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      id="domestic-shipping"
+                      value="domestic"
+                      checked={form.shippingOptions.includes("domestic")}
+                      onChange={handleShippingChange}
+                    />
+                    <label htmlFor="domestic-shipping">Domestic Shipping (SA)</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      id="international-shipping"
+                      value="international"
+                      checked={form.shippingOptions.includes("international")}
+                      onChange={handleShippingChange}
+                    />
+                    <label htmlFor="international-shipping">International Shipping</label>
+                  </li>
+                </fieldset>
+              </Col>
+            </Row>
+
+            <div className="shipping-conditions">
+              <input
+                type="checkbox"
+                id="authenticity-policy"
+                checked={form.authenticityAgreed}
+                onChange={(e) => setForm({ ...form, authenticityAgreed: e.target.checked })}
+              />
+              <p>
+                I certify that this item is authentic vintage/retro tech and accurately described. I agree to RetroTech Market's
+                <span style={{ color: "#FFE500", fontWeight: "800", textTransform: "uppercase" }}> Seller terms</span> and <span style={{ color: "#FFE500", fontWeight: "800", textTransform: "uppercase" }}>authenticity policy</span>.
+              </p>
+            </div>
+          </Container>
+
+          {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
+
+          <div className="submit-button-container">
+            <div className="button-controls">
+              <button type="button" className="cancel-button" onClick={() => navigate("/")}>
+                Cancel
+              </button>
+              <button type="submit" className="submit-button" disabled={submitting}>
+                {submitting ? "Submitting..." : "Submit For Review"}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </>
+  );
 }

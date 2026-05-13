@@ -7,7 +7,7 @@ import SaveButtonComponent from "./SaveButtonComponent";
 
 // Function:
 
-function SingleProductImage() {
+function SingleProductImage({ listing }) {
 	return (
 		<div className="imageBlock">
 			<div className="productImage">
@@ -38,7 +38,7 @@ function SingleProductImage() {
 							/>
 						</svg>
 					</div>
-					<p>VIEWS</p>
+					<p>{listing.views} {listing.views === 1 ? 'VIEW' : 'VIEWS'}</p>
 				</div>
 				<SaveButtonComponent />
 			</div>
