@@ -1,5 +1,5 @@
 // Import CSS
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 // Import Components
@@ -40,8 +40,8 @@ function App() {
 					<Route path="/browse" element={<ProductsPage />} />
 					<Route path="/sell" element={<SubmitProduct />} />
 					{/* <Route path="/cart" element={<CartPage />} /> */}
-					<Route path="/account" element={<AdminConsolePage />} />
-					{/* <Route path="/account" element={<UserConsolePage />} /> */}
+					{/* <Route path="/account" element={<AdminConsolePage />} /> */}
+					<Route path="/account" element={<UserConsolePage />} />
 					{/* <Route path="/logIn" element={<LogInSignUpPage />} /> */}
 					<Route path="/product/:id" element={<SingleProductView />}></Route>
 				</Routes>
