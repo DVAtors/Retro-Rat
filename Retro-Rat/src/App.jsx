@@ -1,5 +1,5 @@
 // Import CSS
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 // Import Components
@@ -18,6 +18,7 @@ import SubmitProduct from "./pages/SubmitProduct";
 import UserConsolePage from "./pages/UserConsolePage";
 import AdminConsolePage from "./pages/AdminConsolePage";
 import LoginPage from "./pages/LoginPage";
+import CartPage from "./pages/CartPage";
 
 // Import Browser Router stuff...
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -40,14 +41,15 @@ function App() {
 					{/* <Route path="/" element={<Homepage />} /> */}
 					<Route path="/browse" element={<ProductsPage />} />
 					<Route path="/sell" element={<SubmitProduct />} />
-					{/* <Route path="/cart" element={<CartPage />} /> */}
-					<Route path="/account" element={<AdminConsolePage />} />
-					{/* <Route path="/account" element={<UserConsolePage />} /> */}
+					<Route path="/cart" element={<CartPage />} />
+					{/* <Route path="/account" element={<AdminConsolePage />} /> */}
+					<Route path="/account" element={<UserConsolePage />} />
+					<Route path="/logOut" element={<LoginPage />} />
 					{/* <Route path="/logIn" element={<LogInSignUpPage />} /> */}
 					<Route path="/product/:id" element={<SingleProductView />}></Route>
 				</Routes>
 
-				<LoginPage/>
+				{/* <LoginPage/> */}
 
 				<Footer></Footer>
 			</BrowserRouter>
