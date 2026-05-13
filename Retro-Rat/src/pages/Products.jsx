@@ -7,7 +7,7 @@ import FilterBar from "../components/FilterBar";
 import Footer from "../components/Footer";
 import { apiGet } from "../client";
 
-import Img1 from "../assets/product-img.png"; //NOTE: TEMP, until we get something decided on for images.
+//import Img1 from "../assets/product-img.png"; //NOTE: TEMP, until we get something decided on for images.
 
 export default function ProductsPage() {
   const [listings, setListings] = useState([]);
@@ -47,7 +47,7 @@ export default function ProductsPage() {
               username={listing.seller?.name || "unknown"} //if no name then show unknown
               price={`R${listing.price.toFixed(2)}`} //formatting done here*******
               condition={listing.condition}
-              imgSrc={Img1} //we gonna get back to this (listing.mainImage is the actual thing to go here)
+              imgSrc={listing.mainImage} //we gonna get back to this (listing.mainImage is the actual thing to go here)
             />
           ))}
         </Row>
