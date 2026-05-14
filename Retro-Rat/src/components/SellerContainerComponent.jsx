@@ -56,9 +56,9 @@ function SellerContainerComponent() {
 						</div>
 					</div>
 				</div>
-				<div className="viewShopBtn">
+				{/* <div className="viewShopBtn">
 					<span className="viewShopBtnText">View Shop</span>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);
