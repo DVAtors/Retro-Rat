@@ -1,5 +1,8 @@
 import "./CartPage.css";
 
+// Importing components:
+import CartProductComponent from "../components/CartProductComponent";
+
 function CartPage() {
 	return (
 		<div className="cart-main-content">
@@ -11,9 +14,9 @@ function CartPage() {
 			</div>
 			<div className="content-container">
 				<div className="cart-products-container">
-					<div className="testCard1">Test Card 1</div>
-					<div className="testCard1">Test Card 2</div>
-					<div className="testCard1">Test Card 3</div>
+					<CartProductComponent />
+					<CartProductComponent />
+					<CartProductComponent />
 				</div>
 				<div className="cart-order-summary-container"></div>
 			</div>
