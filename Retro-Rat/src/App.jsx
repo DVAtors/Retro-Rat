@@ -43,6 +43,7 @@ function App() {
 					{/* <Route path="/logIn" element={<LogInSignUpPage />} /> */}
 					<Route path="/product/:id" element={<SingleProductView />}></Route>
 				</Routes>
+				<Footer></Footer>
 			</BrowserRouter>
 		</>
 	);
