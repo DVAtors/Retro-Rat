@@ -1,6 +1,7 @@
 .commentContainer {
 	display: flex;
-	width: 74.25rem;
+	/* max-width: 74.25rem; */
+	width: 100%;
 	height: auto;
 	padding: 0.9375rem 1.5rem;
 	flex-direction: column;

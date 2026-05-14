@@ -263,3 +263,29 @@ p {
 	letter-spacing: -0.04056rem;
 	text-transform: uppercase;
 }
+
+.locationText {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+
+	gap: 5px;
+	padding: 5px;
+}
+
+.location-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+.location-text {
+	color: #fff;
+	font-family: Inter;
+	font-size: 1.09375rem;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 1.5625rem; /* 142.857% */
+	letter-spacing: -0.03975rem;
+	text-transform: uppercase;
+}

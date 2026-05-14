@@ -11,7 +11,7 @@ function SingleProductImage({ listing }) {
 	return (
 		<div className="imageBlock">
 			<div className="productImage">
-				<img src="" alt="" />
+				<img src={listing.mainImage} alt="" className="product-image" />
 			</div>
 			<div className="imageBlockBar">
 				<div className="singleProductViewCount">
@@ -38,7 +38,9 @@ function SingleProductImage({ listing }) {
 							/>
 						</svg>
 					</div>
-					<p>{listing.views} {listing.views === 1 ? 'VIEW' : 'VIEWS'}</p>
+					<span className="item-view-count">
+						{listing.views} {listing.views === 1 ? "VIEW" : "VIEWS"}
+					</span>
 				</div>
 				<SaveButtonComponent />
 			</div>
