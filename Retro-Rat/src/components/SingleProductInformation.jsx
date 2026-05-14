@@ -15,7 +15,7 @@ function SingleProductInformation({ listing }) {
 							<p className="tag3">Verified</p>
 						</div>
 					</div>
-					<FlagButtonComponent />
+					<FlagButtonComponent listingId={listing._id} />
 				</div>
 				<SellerContainerComponent seller={listing.seller} />
 				<div className="divider"></div>
