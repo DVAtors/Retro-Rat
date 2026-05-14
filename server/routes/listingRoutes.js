@@ -36,4 +36,21 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// PUT /listings/:id — update an existing listing
+router.put("/:id", async (req, res) => {
+  try {
+    const updated = await Listing.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+    if (!updated) {
+      return res.status(404).json({ error: "Listing not found" });
+    }
+    res.json(updated);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 module.exports = router;

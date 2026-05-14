@@ -7,3 +7,13 @@ export async function apiGet(path) {
   }
   return res.json();
 }
+
+export async function apiPut(path, body) {
+  const res = await fetch(`${API_URL}${path}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error(`API error: ${res.status}`);
+  return res.json();
+}

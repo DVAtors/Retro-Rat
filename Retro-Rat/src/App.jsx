@@ -20,6 +20,7 @@ import AdminConsolePage from "./pages/AdminConsolePage";
 import LoginPage from "./pages/LoginPage";
 import CartPage from "./pages/CartPage";
 import Homepage from "./pages/Homepage";
+import EditProduct from "./pages/EditProduct";
 
 // Import Browser Router stuff...
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -34,6 +35,7 @@ function App() {
 					<Route path="/" element={<Homepage />} />
 					<Route path="/browse" element={<ProductsPage />} />
 					<Route path="/sell" element={<SubmitProduct />} />
+					<Route path="/sell/:id" element={<EditProduct />} />
 					<Route path="/cart" element={<CartPage />} />
 					{/* <Route path="/account" element={<AdminConsolePage />} /> */}
 					<Route path="/account" element={<UserConsolePage />} />
