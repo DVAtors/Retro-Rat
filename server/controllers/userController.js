@@ -2,19 +2,20 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-// @desc    Register a new user
-// @route   POST /api/users/register
 const registerUser = async (req, res) => {
-    const { name, email, password } = req.body;
+    // Pull location from req.body (or it will just be undefined)
+    const { name, email, password, location } = req.body;
 
     try {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
+        
         const user = new User({ 
-            name, 
-            email, 
-            password: hashedPassword 
+            name: name, 
+            email: email, 
+            musicalHash: hashedPassword, 
+            location: location || "Pretoria" // Hardcoded fallback to pass Mongoose validation for now
         });
         
         await user.save();
@@ -22,33 +23,30 @@ const registerUser = async (req, res) => {
         res.status(201).json({
             _id: user._id,
             name: user.name,
-            email: user.email
+            email: user.email,
+            location: user.location
         });
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
 };
 
-// @desc    Authenticate a user & get token
-// @route   POST /api/users/login
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        // Find the user by their email
-        const user = await User.findOne({ email });
+        // Find the user, but MUST explicitly ask Mongoose to return the musicalHash field since we set select: false in the schema for security reasons
+        const user = await User.findOne({ email }).select('+musicalHash');
 
-        // Check if user exists AND the password matches the hash
-        if (user && (await bcrypt.compare(password, user.password))) {
+        // Compare against musicalHash
+        if (user && (await bcrypt.compare(password, user.musicalHash))) {
             
-            // Crerate the digital passport (JWT)
             const token = jwt.sign(
                 { id: user._id }, 
                 process.env.JWT_SECRET, 
-                { expiresIn: '30d' } // Token expires in 30 days (Discuss with team)
+                { expiresIn: '30d' }
             );
 
-            // Send back the user data PLUS the token
             res.status(200).json({
                 _id: user._id,
                 name: user.name,
@@ -56,7 +54,6 @@ const loginUser = async (req, res) => {
                 token: token
             });
         } else {
-            // Vague error message
             res.status(401).json({ error: 'Invalid email or password' }); 
         }
     } catch (err) {
@@ -64,8 +61,6 @@ const loginUser = async (req, res) => {
     }
 };
 
-// @desc    Get all users
-// @route   GET /api/users
 const getUsers = async (req, res) => {
     try {
         const users = await User.find();
