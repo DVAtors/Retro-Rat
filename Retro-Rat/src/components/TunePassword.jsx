@@ -54,8 +54,14 @@ export default function TunePassword() {
         const newNote = NOTE_NAMES[noteIndex];
         const newTune = [...tune];
         newTune[slotIndex] = newNote;
+
         setTune(newTune);
         playNote(newNote); // Play the note immediately when it's selected
+
+        // Broadcast the password string up to the parent component
+        if (onPasswordChange) {
+            onPasswordChange(newTune.join(""));
+        }
     };
 
     const playSequence = () => {

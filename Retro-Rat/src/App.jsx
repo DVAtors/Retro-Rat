@@ -27,31 +27,25 @@ import Footer from "./components/Footer";
 function App() {
 	return (
 		<>
-			{/* <Navbar /> */}
-			{/* <ProductsPage /> */}
-			{/* <BootSequence /> */}
-			{/* <TunePassword /> */}
-			{/* <ProductsPage /> */}
-			{/* <HeaderFlag /> */}
-			{/* <SingleProductView /> */}
-
 			<BrowserRouter>
-				<Navbar></Navbar>
-				<Routes>
-					{/* <Route path="/" element={<Homepage />} /> */}
-					<Route path="/browse" element={<ProductsPage />} />
-					<Route path="/sell" element={<SubmitProduct />} />
-					<Route path="/cart" element={<CartPage />} />
-					{/* <Route path="/account" element={<AdminConsolePage />} /> */}
-					<Route path="/account" element={<UserConsolePage />} />
-					<Route path="/logOut" element={<LoginPage />} />
-					{/* <Route path="/logIn" element={<LogInSignUpPage />} /> */}
-					<Route path="/product/:id" element={<SingleProductView />}></Route>
-				</Routes>
+                {/* 1. Add this wrapper */}
+				<div className="app-container"> 
+					<Navbar />
+                    
+                    {/* 2. Wrap your Routes in a main tag */}
+					<main className="main-content">
+						<Routes>
+							<Route path="/browse" element={<ProductsPage />} />
+							<Route path="/sell" element={<SubmitProduct />} />
+							<Route path="/cart" element={<CartPage />} />
+							<Route path="/account" element={<UserConsolePage />} />
+							<Route path="/logOut" element={<LoginPage />} />
+							<Route path="/product/:id" element={<SingleProductView />} />
+						</Routes>
+					</main>
 
-				{/* <LoginPage/> */}
-
-				<Footer></Footer>
+					<Footer />
+				</div>
 			</BrowserRouter>
 		</>
 	);
