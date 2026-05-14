@@ -18,7 +18,7 @@ const NOTES = {
 
 const NOTE_NAMES = Object.keys(NOTES); //dictionary list of the name of notes with the oscilating frequencies to make the sound of the note o7
 
-export default function TunePassword() {
+export default function TunePassword({ onPasswordChange }) {
     // State to hold the current tune (array of note names)
     const [tune, setTune] = useState(Array(8).fill("-")); //the 8 slots for eack password note/tune that the user needs to fill
 
@@ -54,8 +54,14 @@ export default function TunePassword() {
         const newNote = NOTE_NAMES[noteIndex];
         const newTune = [...tune];
         newTune[slotIndex] = newNote;
+
         setTune(newTune);
         playNote(newNote); // Play the note immediately when it's selected
+
+        // Broadcast the password string up to the parent component
+        if (onPasswordChange) {
+            onPasswordChange(newTune.join(""));
+        }
     };
 
     const playSequence = () => {

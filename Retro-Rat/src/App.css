@@ -1,0 +1,13 @@
+/* App.css */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Forces the container to span the full height of the screen */
+}
+
+.main-content {
+  flex: 1; /* This is the spring that expands and pushes the footer down */
+  display: flex;
+  flex-direction: column;
+}
