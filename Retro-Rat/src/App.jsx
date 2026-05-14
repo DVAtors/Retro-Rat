@@ -19,6 +19,7 @@ import UserConsolePage from "./pages/UserConsolePage";
 import AdminConsolePage from "./pages/AdminConsolePage";
 import LoginPage from "./pages/LoginPage";
 import CartPage from "./pages/CartPage";
+import Homepage from "./pages/Homepage";
 
 // Import Browser Router stuff...
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -38,7 +39,7 @@ function App() {
 			<BrowserRouter>
 				<Navbar></Navbar>
 				<Routes>
-					{/* <Route path="/" element={<Homepage />} /> */}
+					<Route path="/" element={<Homepage />} />
 					<Route path="/browse" element={<ProductsPage />} />
 					<Route path="/sell" element={<SubmitProduct />} />
 					<Route path="/cart" element={<CartPage />} />
