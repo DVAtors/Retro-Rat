@@ -44,15 +44,15 @@ const UserSchema = new mongoose.Schema({
 
 //hash password automatically before saving
 //only runs if passwordHash was modified (so when updating other fields doesn't re-hash)
-UserSchema.pre('save', async function(next) {
-  if (!this.isModified('passwordHash')) return next();
-  this.passwordHash = await bcrypt.hash(this.passwordHash, 10);
-  next();
-});
+// UserSchema.pre('save', async function(next) {
+//   if (!this.isModified('passwordHash')) return next();
+//   this.passwordHash = await bcrypt.hash(this.passwordHash, 10);
+//   next();
+// });
 
-//compare a plaintext password against the stored hash
-UserSchema.methods.comparePassword = function(plainPassword) {
-  return bcrypt.compare(plainPassword, this.passwordHash);
-};
+// //compare a plaintext password against the stored hash
+// UserSchema.methods.comparePassword = function(plainPassword) {
+//   return bcrypt.compare(plainPassword, this.passwordHash);
+// };
 
 module.exports = mongoose.model('User', UserSchema);

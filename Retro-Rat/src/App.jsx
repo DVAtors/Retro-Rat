@@ -28,14 +28,6 @@ import Footer from "./components/Footer";
 function App() {
 	return (
 		<>
-			{/* <Navbar /> */}
-			{/* <ProductsPage /> */}
-			{/* <BootSequence /> */}
-			{/* <TunePassword /> */}
-			{/* <ProductsPage /> */}
-			{/* <HeaderFlag /> */}
-			{/* <SingleProductView /> */}
-
 			<BrowserRouter>
 				<Navbar></Navbar>
 				<Routes>
@@ -49,10 +41,6 @@ function App() {
 					{/* <Route path="/logIn" element={<LogInSignUpPage />} /> */}
 					<Route path="/product/:id" element={<SingleProductView />}></Route>
 				</Routes>
-
-				{/* <LoginPage/> */}
-
-				<Footer></Footer>
 			</BrowserRouter>
 		</>
 	);
