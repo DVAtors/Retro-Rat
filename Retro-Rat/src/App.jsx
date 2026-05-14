@@ -28,11 +28,9 @@ function App() {
 	return (
 		<>
 			<BrowserRouter>
-                {/* 1. Add this wrapper */}
 				<div className="app-container"> 
 					<Navbar />
                     
-                    {/* 2. Wrap your Routes in a main tag */}
 					<main className="main-content">
 						<Routes>
 							<Route path="/browse" element={<ProductsPage />} />
