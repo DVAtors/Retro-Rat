@@ -6,20 +6,30 @@ import React, { useState } from "react";
 import CartDeleteProductComponent from "./CartDeleteProductComponent";
 
 // component with listing stuff
-function CartProductComponent({ listing }) {
+function CartProductComponent({ listings, title, username, price, imgSrc }) {
 	const [count, setCount] = useState(1);
-	const increment = () => setCount(count + 1);
-	const decrement = () => setCount(count - 1 ? count - 1 : 1);
+	const increment = () => setCount((prevCount) => prevCount + 1);
+	const decrement = () => setCount((prevCount) => Math.max(prevCount - 1, 1));
+
+	const productTitle = title ?? listings?.title ?? "Unknown product";
+	const productUsername = username ?? listings?.username ?? "Unknown seller";
+	const productPrice =
+		price ?? (listings?.price ? `R${listings.price}` : "R0.00");
+	const productImage = imgSrc ?? listings?.imgSrc ?? "";
 
 	return (
 		<div className="cart-card-container">
 			<div className="cart-container-content">
-				<img className="cart-product-image" src={listing.mainImg}></img>
+				<img
+					className="cart-product-image"
+					src={productImage}
+					alt={productTitle}
+				/>
 				<div className="cart-product-info">
 					<div className="product-info-upper">
 						<div className="c-product-titles">
-							<span className="c-product-title">{listing.productName}</span>
-							<span className="c-product-subtitle">{listing.seller}</span>
+							<span className="c-product-title">{productTitle}</span>
+							<span className="c-product-subtitle">{productUsername}</span>
 						</div>
 						<CartDeleteProductComponent />
 					</div>
@@ -70,7 +80,7 @@ function CartProductComponent({ listing }) {
 								</div>
 							</button>
 						</div>
-						<span className="product-price">R{listing.price}</span>
+						<span className="product-price">{productPrice}</span>
 					</div>
 				</div>
 			</div>
