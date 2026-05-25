@@ -17,11 +17,15 @@
 
 .cart-banner {
 	display: flex;
+	width: 80%;
 	height: 8.687rem;
 	padding: 2.75rem 15.75rem 0.25rem 2.75rem;
 	flex-direction: column;
 	align-items: flex-start;
 	align-self: stretch;
+
+	margin-left: auto;
+	margin-right: auto;
 
 	border: 4px solid #000;
 	background: #5b2c91;
@@ -88,18 +92,3 @@
 	background: var(--neutrals-WHITE, #fff);
 	box-shadow: 4px 4px 0 0 #000;
 } */
-
-.cart-order-summary-container {
-	display: flex;
-	width: 24.5rem;
-	height: 584px;
-	padding: 2.5rem 2.125rem;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: flex-start;
-	align-self: stretch;
-
-	border: 4px solid #000;
-	background: var(--brandColors-Gold, #d99e30);
-	box-shadow: 8px 8px 0 0 #000;
-}

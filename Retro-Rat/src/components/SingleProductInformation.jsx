@@ -96,9 +96,11 @@ function SingleProductInformation({ listing }) {
 								/>
 							</svg>
 						</div>
+						{/* This add to cart needs to post the items information to a cart items endpoint for the cart page to pull from. ~Robert */}
 						<span className="buttonText">ADD TO CART</span>
 					</button>
 					<button className="buyNowBtn">
+						{/* Needs to do the same as the add to cart button, but should then immediately take the user to the cart page...  ~Robert */}
 						<span className="buttonText">BUY NOW</span>
 					</button>
 				</div>

@@ -5,16 +5,17 @@ import { apiGet } from "../client";
 
 // Importing components:
 import CartProductComponent from "../components/CartProductComponent";
+import CartOrderSummaryComp from "../components/CartOrderSumComponent";
 
 function CartPage() {
 	const [listings, setListings] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 
+	// This needs to be replaced with the API endpoint that has the add to cart list and not the listings endpoint lol... ~Robert
 	useEffect(() => {
 		apiGet("/listings")
 			.then((data) => setListings(data))
-
 			.catch((err) => setError(err.message))
 			.finally(() => setLoading(false));
 	}, []);
@@ -47,11 +48,11 @@ function CartPage() {
 							title={listings.productName} //rest of this stuff just follows the schema
 							username={listings.seller?.name || "unknown"} //if no name then show unknown
 							price={`R${listings.price.toFixed(2)}`} //formatting done here*******
-							//imgSrc={listings.mainImage} //we gonna get back to this (listing.mainImage is the actual thing to go here)
+							imgSrc={listings.mainImage} //we gonna get back to this (listing.mainImage is the actual thing to go here)
 						/>
 					))}
 				</div>
-				<div className="cart-order-summary-container"></div>
+				<CartOrderSummaryComp />
 			</div>
 		</div>
 	);
