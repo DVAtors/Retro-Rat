@@ -1,8 +1,8 @@
 import "./CartProductComponent.css";
 
-function CartDeleteProductComponent() {
+function CartDeleteProductComponent({ onClick }) {
 	return (
-		<button className="delete-cart-item-btn">
+		<button className="delete-cart-item-btn" onClick={onClick}>
 			<div className="c-delete-icon">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

@@ -27,3 +27,6 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
+//cart routes
+const cartRoutes = require('./routes/cartRoutes');
+app.use('/api/cart', cartRoutes);
