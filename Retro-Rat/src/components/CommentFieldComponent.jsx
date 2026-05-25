@@ -1,19 +1,24 @@
-// Imports:
-// import "../components/CommentSectionComponent.css";
 import "./CommentFieldComponent.css";
+import React from "react";
 
-// Function:
-
-function CommentFieldComponent() {
+// - Props:
+//    - `value` (string): the current input value (controlled from parent).
+//    - `onChange` (fn): called with the new value when the user types.
+//    - `placeholder` (string): optional placeholder text.
+function CommentFieldComponent({
+	value,
+	onChange,
+	placeholder = "Write a comment...",
+}) {
 	return (
-		<input className="commentField"></input>
-
-		// <div className="commentField">
-		// 	<input className="comment">Ask a question about this item...</input>
-		// </div>
+		<input
+			id="commentField"
+			className="commentField"
+			value={value}
+			onChange={(e) => onChange && onChange(e.target.value)}
+			placeholder={placeholder}
+		/>
 	);
 }
-
-// Export Component:
 
 export default CommentFieldComponent;
