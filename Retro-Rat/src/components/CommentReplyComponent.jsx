@@ -1,36 +1,25 @@
-// This component is still work in progress...
-
-// Imports:
+import React from "react";
 import "./CommentSectionComponent.css";
 
-// Function:
+function CommentReplyComponent({ reply }) {
+	const author = reply?.author || "TechCollector";
+	const text = reply?.text || "Sample reply";
+	const time = reply?.time || "3 Days Ago";
 
-function CommentReplyComponent() {
 	return (
-		<div className="commentContainer replyColour">
-			<div className="commentAndReply">
-				<div className="commentSelf">
-					<div className="commentAuthor">
-						<div className="authorImage">
-							<h3>K</h3>
-						</div>
-						<div className="commentInfo">
-							<span className="authorName">KeyboardEnthusiast</span>
-							div.authorTag
-							<div className="commentDate">3 Days Ago</div>
-						</div>
-					</div>
-					<div className="comment">
-						<span className="commentText">
-							Does this have the original keycaps?
-						</span>
-					</div>
+		<div className="comment-reply">
+			<div className="user-icon">
+				<span className="users-icon">{author.charAt(0)}</span>
+			</div>
+			<div className="reply-content">
+				<div className="reply-head">
+					<span className="reply-person-name">{author}</span>
+					<span className="reply-time">{time}</span>
 				</div>
+				<span className="reply-self">{text}</span>
 			</div>
 		</div>
 	);
 }
-
-// Export Component:
 
 export default CommentReplyComponent;

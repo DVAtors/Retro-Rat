@@ -1,6 +1,33 @@
 import "./CartPage.css";
 
+import React, { useEffect, useState } from "react";
+import { apiGet,apiDelete } from "../client";
+
+// Importing components:
+import CartProductComponent from "../components/CartProductComponent";
+import CartOrderSummaryComp from "../components/CartOrderSumComponent";
+
 function CartPage() {
+	const [listings, setListings] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
+
+	const handleRemove = async (id) => {
+		try {
+			await apiDelete(`/cart/${id}`);
+			setListings((prev) => prev.filter((l) => l._id !== id));
+		} catch (err) {
+			console.error("Couldn't remove from cart:", err);
+		}
+	};
+
+	useEffect(() => {
+		apiGet("/cart")
+			.then((data) => setListings(data))
+			.catch((err) => setError(err.message))
+			.finally(() => setLoading(false));
+	}, []);
+
 	return (
 		<div className="cart-main-content">
 			<div className="cart-banner">
@@ -11,11 +38,22 @@ function CartPage() {
 			</div>
 			<div className="content-container">
 				<div className="cart-products-container">
-					<div className="testCard1">Test Card 1</div>
-					<div className="testCard1">Test Card 2</div>
-					<div className="testCard1">Test Card 3</div>
+					{/* <CartProductComponent />
+					<CartProductComponent />
+					<CartProductComponent /> */}
+					{listings.map((listings) => (
+						<CartProductComponent
+							key={listings._id}
+							id={listings._id}
+							title={listings.productName}
+							username={listings.seller?.name || "unknown"}
+							price={`R${listings.price.toFixed(2)}`}
+							imgSrc={listings.mainImage}
+							onRemove={handleRemove}
+						/>
+					))}
 				</div>
-				<div className="cart-order-summary-container"></div>
+				<CartOrderSummaryComp />
 			</div>
 		</div>
 	);

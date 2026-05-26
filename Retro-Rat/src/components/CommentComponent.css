@@ -26,6 +26,7 @@
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 0.3125rem;
+	/* gap: 1rem; */
 }
 
 .commentAuthor {
@@ -90,7 +91,7 @@
 .comment {
 	display: flex;
 	width: 74.25rem;
-	height: 1.875rem;
+	/* height: 1.875rem; */
 	justify-content: flex-end;
 	align-items: flex-start;
 	gap: 0.5rem;

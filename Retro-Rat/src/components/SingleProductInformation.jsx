@@ -1,8 +1,29 @@
 import "./SingleProductInformation.css";
+import { useNavigate } from "react-router-dom";
+import { apiPost } from "../client";
 import FlagButtonComponent from "./flagButtonComponent";
 import SellerContainerComponent from "./SellerContainerComponent";
 
 function SingleProductInformation({ listing }) {
+	const navigate = useNavigate();
+
+	const handleAddToCart = async () => {
+		try {
+			await apiPost("/cart", { listingId: listing._id });
+		} catch (err) {
+			console.error("Couldn't add to cart:", err);
+		}
+	};
+
+	const handleBuyNow = async () => {
+		try {
+			await apiPost("/cart", { listingId: listing._id });
+			navigate("/cart");
+		} catch (err) {
+			console.error("Couldn't add to cart:", err);
+		}
+	};
+
 	return (
 		<div className="singleProductContainer">
 			<div className="product-title-info">
@@ -65,7 +86,7 @@ function SingleProductInformation({ listing }) {
 					</div>
 				</div>
 				<div className="buttonsContainer">
-					<button className="addToCartButton">
+					<button className="addToCartButton" onClick={handleAddToCart}>
 						<div className="cartIconContainer">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -96,9 +117,9 @@ function SingleProductInformation({ listing }) {
 								/>
 							</svg>
 						</div>
-						<span className="buttonText">ADD TO CART</span>
+						<span className="buttonText" onClick={handleAddToCart}>ADD TO CART</span>
 					</button>
-					<button className="buyNowBtn">
+					<button className="buyNowBtn" onClick={handleBuyNow}>
 						<span className="buttonText">BUY NOW</span>
 					</button>
 				</div>
