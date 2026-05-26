@@ -1,7 +1,7 @@
 import "../pages/AdminConsolePage.css";
 import ACBlockListItem from "./ACBlockListItem";
 
-function ACBlockComponent() {
+function ACReviewBlockPending() {
 	return (
 		<div className="ac-main-block">
 			<div className="ac-tab-title">
@@ -18,4 +18,4 @@ function ACBlockComponent() {
 	);
 }
 
-export default ACBlockComponent;
+export default ACReviewBlockPending;

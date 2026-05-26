@@ -9,9 +9,9 @@ import ACBanner from "../components/AdminConsoleBanner";
 import ACTopContentComp from "./ACTopContent";
 import ACBlockComponent from "../components/ACReviewBlockPending";
 
-import PendingListings from "./PendingListingsPage";
-import PastRequests from "./PastRequestsPage";
-import InboxAC from "./InboxPage";
+import ACReviewBlockPending from "../components/ACReviewBlockPending";
+import ACReviewBlockPast from "../components/ACReviewBlockPast";
+import ACReviewBlockNotify from "../components/ACReviewBlockNotify";
 
 function AdminConsolePage() {
 	return (
@@ -30,11 +30,12 @@ function AdminConsolePage() {
 					{activeView === "inbox" && renderInbox()}
 				</div> */}
 				{/* <ACBlockComponent /> */}
+
 				<Routes>
-					{/* <Route index element={<Navigate to="pending" replace />} /> */}
-					<Route path="pending" element={<PendingListings />} />
-					<Route path="past-requests" element={<PastRequests />} />
-					<Route path="inbox" element={<InboxAC />} />
+					<Route index element={<Navigate to="pending" replace />} />
+					<Route path="pending" element={<ACReviewBlockPending />} />
+					<Route path="past-requests" element={<ACReviewBlockPast />} />
+					<Route path="inbox" element={<ACReviewBlockNotify />} />
 				</Routes>
 			</div>
 		</div>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 function ACTopContentComp(onTabChange) {
 	// pull pending listing items fromm api endpoint goes here
@@ -46,6 +47,29 @@ function ACTopContentComp(onTabChange) {
 				</div>
 			</div>
 			<div className="ac-user-actions">
+				<NavLink
+					to="/account/pending"
+					className={({ isActive }) =>
+						isActive ? "ac-pending ac-active" : "ac-pending"
+					}>
+					View Pending Listings
+				</NavLink>
+				<NavLink
+					to="/account/past-requests"
+					className={({ isActive }) =>
+						isActive ? "ac-past-req ac-active" : "ac-past-req"
+					}>
+					View Past Requests
+				</NavLink>
+				<NavLink
+					to="/account/inbox"
+					className={({ isActive }) =>
+						isActive ? "ac-inbox ac-active" : "ac-inbox"
+					}>
+					Inbox
+				</NavLink>
+			</div>
+			{/* <div className="ac-user-actions">
 				<button className="ac-pending ac-active">
 					<span className="pending-text ac-active-text">
 						View Pending Listings
@@ -57,7 +81,7 @@ function ACTopContentComp(onTabChange) {
 				<button className="ac-inbox">
 					<span className="inbox-text">Inbox</span>
 				</button>
-			</div>
+			</div> */}
 			{/* <div className="ac-user-actions">
 				<button
 					className={`ac-pending ${activeTab === "pending" ? "ac-active" : ""}`}
