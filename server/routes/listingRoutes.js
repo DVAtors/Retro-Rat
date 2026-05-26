@@ -1,22 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const Listing = require('../models/Listing');
+const Listing = require('../models/Listing'); // Keep this for Troy's GET routes
 
-// POST /api/listings — create a new listing
-router.post('/', async (req, res) => {
-  try {
-    const listing = new Listing(req.body);
-    await listing.save();
-    res.status(201).json(listing);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-});
+// Controller function for creating a listing... yes
+const { createListing } = require('../controllers/listingController');
+const { protect } = require('../middleware/authMiddleware');
+const upload = require('../middleware/uploadMiddleware');
+
+// Basically: protect -> upload to Cloudinary -> save to DB
+router.post('/', protect, upload.single('image'), createListing);
+
+// =====================================================================
+// TROY'S CODE BELOWWWWW.
+// =====================================================================
 
 // GET /api/listings/ — get all approved listings
 router.get('/', async (req, res) => {
   const listings = await Listing.find({ status: 'approved' })
-    .populate('seller', 'name')  // <-- add this
+    .populate('seller', 'name')  
     .sort({ createdAt: -1 });    // newest first
   res.json(listings);
 });
