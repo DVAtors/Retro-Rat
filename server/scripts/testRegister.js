@@ -1,9 +1,9 @@
-fetch('http://localhost:5000/api/users/register', {
+fetch('http://localhost:5001/api/users/register', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
-    name: 'Test User 69',
-    email: 'test69@example.com',
+    name: 'Tshedzaa',
+    email: 'tshedzam@gmail.com',
     password: '123456',
   }),
 })
