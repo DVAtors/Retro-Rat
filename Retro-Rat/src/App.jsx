@@ -38,10 +38,13 @@ function App() {
 					<Route path="/sell/:id" element={<EditProduct />} />
 					<Route path="/cart" element={<CartPage />} />
 					{/* <Route path="/account" element={<AdminConsolePage />} /> */}
-					<Route path="/account" element={<UserConsolePage />} />
+					{/* <Route path="/account" element={<UserConsolePage />} /> */}
 					<Route path="/logOut" element={<LoginPage />} />
 					{/* <Route path="/logIn" element={<LogInSignUpPage />} /> */}
 					<Route path="/product/:id" element={<SingleProductView />}></Route>
+
+					{/* route for switching tabs on admin console page */}
+					<Route path="/account/*" element={<AdminConsolePage />} />
 				</Routes>
 				<Footer></Footer>
 			</BrowserRouter>

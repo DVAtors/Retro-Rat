@@ -1,9 +1,10 @@
 .ac-page {
+	display: flex;
+	/* padding: 2.5rem 1.25rem; */
 	width: 100%;
-	max-width: 1100px;
-	margin: 0 auto;
-	padding: 0 20px 60px;
-	font-family: "Inter", sans-serif;
+	flex-direction: column;
+	align-items: flex-start;
+	/* gap: 5rem; */
 }
 
 /*  Admin Banner  */
@@ -11,8 +12,12 @@
 	background-color: #c96a1a;
 	display: flex;
 	align-items: flex-start;
+	align-self: stretch;
 	gap: 14px;
-	padding: 14px 24px;
+	/* padding: 14px 24px; */
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	padding-left: 13rem;
 	border: 2px solid #1a1a1a;
 	margin-bottom: 32px;
 }
@@ -42,287 +47,226 @@
 	line-height: 1.4;
 }
 
-/*  Top Row Layout  */
-.ac-top-row {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 24px;
-	margin-bottom: 32px;
-	align-items: start;
-}
+/* Admin Console Main Content */
 
-/*  Profile Card  */
-.ac-profile-card {
-	display: flex;
-	align-items: center;
-	gap: 18px;
-	padding: 20px 24px;
-	height: 100%;
-
-	border: 4px solid #000;
-	background: #fff;
-	box-shadow: 8px 8px 0 0 #000;
-}
-
-.ac-avatar {
-	width: 72px;
-	height: 72px;
-	background-color: #6b21a8;
-	color: #fff;
-	font-size: 2.2rem;
-	font-weight: 900;
-	font-style: italic;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-shrink: 0;
-}
-
-.ac-profile-info {
-	display: flex;
-	flex-direction: column;
-	gap: 2px;
-}
-
-.ac-username {
-	font-size: 1.4rem;
-	font-weight: 900;
-	font-style: italic;
-	text-transform: uppercase;
-	color: #1a1a1a;
-	margin: 0;
-	letter-spacing: -0.3px;
-}
-
-.ac-admin-since {
-	font-size: 0.75rem;
-	font-weight: 700;
-	font-style: italic;
-	text-transform: uppercase;
-	color: #6b21a8;
-	margin: 0;
-	letter-spacing: 0.3px;
-}
-
-.ac-approvals {
-	font-size: 0.85rem;
-	font-weight: 800;
-	color: #1a1a1a;
-	margin: 4px 0 0;
-}
-
-/*  Nav Buttons  */
-.ac-nav-buttons {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
-
-.ac-nav-btn {
-	width: 100%;
-	padding: 16px 20px;
-
-	font-family: "Inter", sans-serif;
-	font-size: 0.8rem;
-	font-weight: 900;
-	font-style: italic;
-	text-transform: uppercase;
-	letter-spacing: 0.5px;
-	color: #dc2626;
-	cursor: pointer;
-	text-align: center;
-	transition: all 0.15s;
-
-	border: 4px solid #000;
-	background: #fff;
-	box-shadow: 8px 8px 0 0 #000;
-}
-
-.ac-nav-btn:hover {
-	background-color: #51d1d1;
-}
-
-.ac-nav-btn.active {
-	background-color: #097070;
-	border: 4px solid #000;
-	box-shadow: 8px 8px 0 0 #000;
-}
-
-/*  Main Content Panel  */
 .ac-content {
-	padding: 24px;
+	display: flex;
+	padding: 2.5rem 1.25rem;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 5rem;
+
+	min-height: 100vh;
+
+	width: 80%;
+
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*  Top Content  */
+
+.ac-user-row {
+	display: flex;
+	align-items: flex-start;
+	gap: 2.5rem;
+	align-self: stretch;
+}
+
+.ac-user-card {
+	display: flex;
+	height: 11.125rem;
+	padding: 1.625rem 2.125rem;
+	/* flex-direction: column; */
+	flex-direction: row;
+	justify-content: center;
+	/* align-items: left; */
+	align-items: center;
+	align-self: stretch;
+	flex: 1 0 0;
+
+	gap: 1.25rem;
+
+	border: 4px solid #000;
+	background: var(--RainbowMarch-Coral-Red, #ff4040);
+	box-shadow: 8px 8px 0 0 #000;
+}
+
+/* other user card styling here */
+
+.ac-user-icon {
+	display: flex;
+	width: 6.25rem;
+	height: 6.25rem;
+	padding: 0 2.02394rem;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+
+	border: 4px solid #000;
+	background: var(--brandColors-Purple, #5b2c91);
+}
+
+.ac-ui-text {
+	color: #fff;
+	font-family: Inter;
+	font-size: 2.8125rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 3.125rem; /* 111.111% */
+	letter-spacing: 0.01019rem;
+}
+
+.ac-user-information {
+	display: flex;
+	width: 19.34719rem;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.5rem;
+	flex-shrink: 0;
+
+	margin-right: auto;
+}
+
+.ac-user-name {
+	color: #000;
+	font-family: Inter;
+	font-size: 2.34375rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 2.8125rem; /* 120% */
+	letter-spacing: -0.02369rem;
+	text-transform: uppercase;
+}
+
+.ac-user-account {
+	color: var(--brandColors-Yellow, #ffe500);
+	font-family: Inter;
+	font-size: 1.09375rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1.5625rem; /* 142.857% */
+	letter-spacing: -0.03975rem;
+	text-transform: uppercase;
+}
+
+.ac-user-pending-list {
+	color: #000;
+	font-family: Inter;
+	font-size: 1.09375rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1.5625rem; /* 142.857% */
+	letter-spacing: -0.03975rem;
+	text-transform: uppercase;
+}
+
+/* ac user actions styling */
+
+.ac-user-actions {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1.25rem;
+	flex: 1 0 0;
+	align-self: stretch;
+}
+
+.ac-pending,
+.ac-past-req,
+.ac-inbox {
+	display: flex;
+	/* padding: 1.1875rem 2.0625rem; */
+	justify-content: center;
+	align-items: center;
+	gap: 0.625rem;
+	flex: 1 0 0;
+	align-self: stretch;
+
+	border: 4px solid #000;
+	background: #fff;
+	box-shadow: 4px 4px 0 0 #000;
+}
+
+.pending-text,
+.past-req-text,
+.inbox-text {
+	color: var(--brandColors-Red, #d9411e);
+	text-align: center;
+	font-family: Inter;
+	font-size: 1.25rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1.875rem; /* 150% */
+	letter-spacing: -0.04056rem;
+	text-transform: uppercase;
+}
+
+.ac-active {
+	border: 4px solid #000;
+	background: var(--brandColors-Turquoise, #0b8c8c);
+	box-shadow: 8px 8px 0 0 #000;
+}
+
+.ac-active-text {
+	color: #fff;
+	text-align: center;
+	font-family: Inter;
+	font-size: 1.25rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1.875rem; /* 150% */
+	letter-spacing: -0.04056rem;
+	text-transform: uppercase;
+}
+
+.ac-past-req:active {
+	border: 4px solid #000;
+	background: var(--brandColors-Turquoise, #006565);
+	/* box-shadow: none; */
+}
+
+/* AC main block with lists styling*/
+
+.ac-main-block {
+	display: flex;
+	/* width: 78.5rem; */
+	min-height: 20rem;
+	padding: 2.125rem;
+	flex-direction: column;
+	align-items: flex-start;
+	align-self: stretch;
+	gap: 1.25rem;
 
 	border: 4px solid #000;
 	background: var(--brandColors-Purple, #5b2c91);
 	box-shadow: 8px 8px 0 0 #000;
 }
 
-.ac-panel-title {
-	font-size: 1.1rem;
-	font-weight: 900;
-	font-style: italic;
-	text-transform: uppercase;
-	color: #fff;
-	margin: 0 0 20px;
-	letter-spacing: 0.5px;
-}
-
-.ac-empty {
-	color: rgba(255, 255, 255, 0.85);
-	font-style: italic;
-	font-size: 0.9rem;
-}
-
-/*  Listing Cards  */
-.ac-listing-list {
+.ac-tab-title {
 	display: flex;
-	flex-direction: column;
-	gap: 12px;
-}
-
-.ac-listing-card {
-	background: #fff;
-	border: 2px solid #1a1a1a;
-	display: flex;
-	align-items: stretch;
-	overflow: hidden;
-}
-
-.ac-listing-img {
-	width: 160px;
-	height: 130px;
-	object-fit: cover;
-	flex-shrink: 0;
-}
-
-.ac-listing-body {
-	flex: 1;
-	padding: 16px 20px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.ac-listing-top {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	gap: 12px;
-}
-
-.ac-listing-title {
-	font-size: 0.95rem;
-	font-weight: 800;
-	text-transform: uppercase;
-	letter-spacing: 0.3px;
-	color: #1a1a1a;
-	margin: 0 0 4px;
-}
-
-.ac-listing-price {
-	font-size: 1.4rem;
-	font-weight: 900;
-	font-style: italic;
-	color: #1a1a1a;
-	margin: 0 0 4px;
-}
-
-.ac-listing-note {
-	font-size: 0.78rem;
-	font-weight: 700;
-	font-style: italic;
-	text-transform: uppercase;
-	color: #6b21a8;
-	display: flex;
+	/* padding-right: 56.9375rem; */
 	align-items: center;
-	gap: 4px;
-	margin: 0;
+	align-self: stretch;
 }
 
-.ac-listing-meta {
-	font-size: 0.78rem;
+.tab-title {
+	color: var(--neutrals-WHITE, #fff);
+	font-family: Inter;
+	font-size: 1.875rem;
+	font-style: normal;
 	font-weight: 700;
-	font-style: italic;
+	line-height: 2.5rem; /* 133.333% */
+	letter-spacing: -0.01275rem;
 	text-transform: uppercase;
-	color: #6b21a8;
-	display: flex;
-	gap: 16px;
-	margin: 4px 0 0;
 }
 
-/*  Status Badge  */
-.ac-status-badge {
-	background: #c96a1a;
-	color: #fff;
-	font-size: 0.72rem;
-	font-weight: 900;
-	font-style: italic;
-	text-transform: uppercase;
-	letter-spacing: 0.5px;
-	padding: 6px 12px;
-	white-space: nowrap;
+.ac-block-items-list {
+	display: flex;
+	/* height: 43.37356rem; */
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1.25rem;
 	flex-shrink: 0;
-}
-
-/*  Action Buttons  */
-.ac-listing-actions {
-	display: flex;
-	justify-content: flex-end;
-	gap: 8px;
-	margin-top: 12px;
-}
-
-.ac-btn {
-	padding: 7px 18px;
-	font-family: "Inter", sans-serif;
-	font-size: 0.75rem;
-	font-weight: 800;
-	font-style: italic;
-	text-transform: uppercase;
-	letter-spacing: 0.3px;
-	cursor: pointer;
-	border: 2px solid #1a1a1a;
-	background: #fff;
-	transition: all 0.15s;
-}
-
-.ac-btn-view {
-	color: #1a1a1a;
-}
-
-.ac-btn-view:hover {
-	background: #1a1a1a;
-	color: #fff;
-}
-
-.ac-btn-approve {
-	color: #16a34a;
-	border-color: #16a34a;
-}
-
-.ac-btn-approve:hover {
-	background: #16a34a;
-	color: #fff;
-}
-
-.ac-btn-delete {
-	color: #dc2626;
-	border-color: #dc2626;
-}
-
-.ac-btn-delete:hover {
-	background: #dc2626;
-	color: #fff;
-}
-
-/*  Responsive (I Tried) */
-@media (max-width: 780px) {
-	.ac-top-row {
-		grid-template-columns: 1fr;
-	}
-
-	.ac-listing-img {
-		width: 100px;
-		height: 100px;
-	}
+	align-self: stretch;
 }
