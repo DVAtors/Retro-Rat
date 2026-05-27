@@ -61,13 +61,13 @@ function ACTopContentComp(onTabChange) {
 					}>
 					View Past Requests
 				</NavLink>
-				<NavLink
+				{/* <NavLink
 					to="/account/inbox"
 					className={({ isActive }) =>
 						isActive ? "ac-inbox ac-active" : "ac-inbox"
 					}>
 					Inbox
-				</NavLink>
+				</NavLink> */}
 			</div>
 			{/* <div className="ac-user-actions">
 				<button className="ac-pending ac-active">
