@@ -40,18 +40,19 @@ function App() {
 					<Route path="/sell" element={<SubmitProduct />} />
 					<Route path="/sell/:id" element={<EditProduct />} />
 					<Route path="/cart" element={<CartPage />} />
-					{/* <Route path="/logOut" element={<LoginPage />} /> */}
-					<Route path="/login" element={<LoginPage />}>
-						<Route index element={<LoginForm />} />
-						<Route path="signup" element={<SignUpForm />} />
-					</Route>
+
+					{/* Single Product overview page route */}
 					<Route path="/product/:id" element={<SingleProductView />}></Route>
 
 					{/* route for switching tabs on admin console page */}
 					<Route path="/account/*" element={<AdminConsolePage />} />
 					{/* <Route path="/account" element={<UserConsolePage />} /> */}
 
-					{/* routes for panel switching on lig in and sign up page will fgo here */}
+					{/* routes for panel switching on login and sign up page */}
+					<Route path="/login" element={<LoginPage />}>
+						<Route index element={<LoginForm />} />
+						<Route path="signup" element={<SignUpForm />} />
+					</Route>
 				</Routes>
 				<Footer></Footer>
 			</BrowserRouter>
