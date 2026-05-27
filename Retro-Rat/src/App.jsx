@@ -22,6 +22,9 @@ import CartPage from "./pages/CartPage";
 import Homepage from "./pages/Homepage";
 import EditProduct from "./pages/EditProduct";
 
+import LoginForm from "./components/LoginForm";
+import SignUpForm from "./components/SignUpForm";
+
 // Import Browser Router stuff...
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Footer from "./components/Footer";
@@ -37,14 +40,18 @@ function App() {
 					<Route path="/sell" element={<SubmitProduct />} />
 					<Route path="/sell/:id" element={<EditProduct />} />
 					<Route path="/cart" element={<CartPage />} />
-					{/* <Route path="/account" element={<AdminConsolePage />} /> */}
-					{/* <Route path="/account" element={<UserConsolePage />} /> */}
-					<Route path="/logOut" element={<LoginPage />} />
-					{/* <Route path="/logIn" element={<LogInSignUpPage />} /> */}
+					{/* <Route path="/logOut" element={<LoginPage />} /> */}
+					<Route path="/login" element={<LoginPage />}>
+						<Route index element={<LoginForm />} />
+						<Route path="signup" element={<SignUpForm />} />
+					</Route>
 					<Route path="/product/:id" element={<SingleProductView />}></Route>
 
 					{/* route for switching tabs on admin console page */}
 					<Route path="/account/*" element={<AdminConsolePage />} />
+					{/* <Route path="/account" element={<UserConsolePage />} /> */}
+
+					{/* routes for panel switching on lig in and sign up page will fgo here */}
 				</Routes>
 				<Footer></Footer>
 			</BrowserRouter>
