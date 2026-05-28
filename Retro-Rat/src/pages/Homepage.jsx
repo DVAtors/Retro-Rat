@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Homepage.css'
-
+import { apiGet } from "../client";
 import bootRatWhite from '../assets/bootRatWhite.svg';
+import ProductCard from "../components/ProductCard";
 
 
 export default function Homepage() {
+
+        const [listings, setListings] = useState([]);
+
+        useEffect(() => {
+            apiGet("/listings")
+                .then((data) => setListings(data))
+        }, []);
 
     return (
         <>
@@ -45,7 +53,18 @@ export default function Homepage() {
                             <Row className="popular-items">
 
                                 <Col md={4}>
-                                Insert Card
+                                                    {listings.map((listing) => (
+                                                        <ProductCard
+                                                            key={listing._id} //react prop, used to know if something is the same or not when reloading the component.
+                                                            id={listing._id} //the actual id property of the listing
+                                                            title={listing.productName} //rest of this stuff just follows the schema
+                                                            year={listing.era}
+                                                            username={listing.seller?.name || "unknown"} //if no name then show unknown
+                                                            price={`R${listing.price.toFixed(2)}`} //formatting done here*******
+                                                            condition={listing.condition}
+                                                            imgSrc={listing.mainImage} //we gonna get back to this (listing.mainImage is the actual thing to go here)
+                                                        />
+                                                    ))}
                                 </Col>
 
                                 <Col md={4}>
