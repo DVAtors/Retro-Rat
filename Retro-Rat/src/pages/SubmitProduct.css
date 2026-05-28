@@ -5,7 +5,7 @@
   |   / _|\__ \ _|  | |  
   |_|_\___|___/___| |_|  
   
-  CRITICAL: 01. EMERGENCY WRAPPER RESET (DO NOT TOUCH OR THE WHOLE PAGE DIES)
+ WRAPPER RESET (DO NOT TOUCH OR THE WHOLE PAGE DIES)
   ========================================================================== 
 */
 .submit-page-wrapper {
@@ -22,7 +22,7 @@
   | __ | _|| |__|  _/
   |_||_|___|____|_|  
   
-  NOTICE: 02. THE BANNER OF JUDGMENT (WHY IS ADMIN WATCHING ME HELP)
+BANNER OF JUDGMENT (WHY IS ADMIN WATCHING ME HELP)
   ========================================================================== 
 */
 .admin-verification-banner {
@@ -55,7 +55,7 @@
   | __ | _| / _ \| |) | _||   /
   |_||_|___/_/ \_\___/|___|_|_\
   
-  PURPLE: 03. THE PURPLE VOID HEADER (TITLES, TEARS, AND CATCHY SUBTEXT)
+HEADER (TITLES, TEARS, AND  SUBTEXT)
   ========================================================================== 
 */
 .submit-product-container {
@@ -113,7 +113,7 @@
  | (__ / _ \|   / |---| (__ 
   \___/_/ \_\_|_\|     \___|
   
-  BASE: 04. THE BRUTALIST BASE CARDS (IF SPAGHETTI RECYCLING WAS AN ART FORM)
+IF SPAGHETTI RECYCLING WAS AN ART FORM
   ========================================================================== 
 */
 .form-section-card {
@@ -194,7 +194,7 @@
  |  _/ __ | (_) || || (_) |
  |_| |_||_|\___/ |_| \___/ 
                            
-  PHOTOS: 05. THE PHOTO UPLOAD ABYSS (PRAY IT ACCEPTS THE JPEG FILE)
+   THE PHOTO UPLOAD ABYSS (PRAY IT ACCEPTS THE JPEG FILE)
   ========================================================================== 
 */
 .photo-instructions-box {
@@ -264,7 +264,7 @@
   | _||   / |) |/ _ \|   / |) |
   |_| |_|_\___//_/ \_\_|__\___/
   
-  GRID: 06. ITEM CLASSIFICATION (THE GRID BLOCK THAT I FINALLY ALIGNED)
+ITEM CLASSIFICATION (THE GRID BLOCK THAT I FINALLY ALIGNED)
   ========================================================================== 
 */
 .product-details-form {
@@ -279,7 +279,7 @@
    | |  | \| | __/ _ \ 
   |___| |_|\_|_| \___/ 
                        
-  TEXTAREA: 07. ITEM INFO & TEXTAREA HELL (I FIXED THE TEXTAREA TYPO LETS GOOO)
+ITEM INFO & TEXTAREA HELL (I FIXED THE TEXTAREA TYPO LETS GOOO)
   ========================================================================== 
 */
 .form-tip-text {
@@ -297,7 +297,7 @@
   \__ \ __ || ||  _/
   |___/_||_|___|_|  
   
-  INPUTS: 08. CHECKBOXES FROM THE UNDERWORLD (SHIPPING & SOUL AGREEMENTS)
+CHECKBOXES SHIPPING &  AGREEMENTS
   ========================================================================== 
 */
 .shipping-options-list {
@@ -361,42 +361,49 @@
  | _ \| |_| | | |   | || (_) | .` \__ \
  |___/ \___/  |_|   |_| \___/|_|\_|___/
                                        
-  ROW: 09. THE ESCAPE PLAN (THE "GET ME OUT OF THIS CODE" BUTTON ROW)
   ========================================================================== 
 */
+
 .submit-action-row {
     display: flex;
-    justify-content: flex-end;
-    gap: 24px;
     width: 100%;
+    gap: 24px;
     margin-top: 16px;
 }
 
 .action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 16px 40px;
     font-family: "Inter", sans-serif;
     font-size: 18px;
     font-weight: 700;
     text-transform: uppercase;
     border: 4px solid #000;
-    box-shadow: 4px 4px 0 #000;
+    box-shadow: 6px 6px 0 #000;
     cursor: pointer;
     transition: transform 0.05s ease;
 }
 
 .action-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 #000;
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0 #000;
 }
 
 .cancel-btn {
     background-color: #fff;
     color: #000;
+    min-width: 160px; /* Gives cancel a solid, reliable footprint */
+    text-align: center;
 }
 
+/* This is the magic line that makes it stretch exactly like your screenshot */
 .process-btn {
     background-color: #0b8c8c;
     color: #fff;
+    flex-grow: 1; 
+    text-align: center;
 }
 
 .error-display-msg {
