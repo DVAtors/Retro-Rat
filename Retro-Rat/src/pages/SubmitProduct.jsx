@@ -76,23 +76,39 @@ export default function SubmitProduct() {
 
 		setSubmitting(true);
 		try {
-			const imageUrl = await uploadImage(imageFile);
+			// Step 1: Get the JWT passport
+			const token = localStorage.getItem("token");
+			if (!token) {
+				throw new Error("Authentication error: Please log in again.");
+			}
 
-			const res = await fetch(`${import.meta.env.VITE_API_URL}/listings`, {
+			// Step 2: Get everything into a FormData object (This converts the image into a binary stream)
+			const formDataPayload = new FormData();
+			formDataPayload.append("productName", form.productName);
+			formDataPayload.append("description", form.description);
+			formDataPayload.append("price", form.price);
+			formDataPayload.append("condition", form.condition);
+			formDataPayload.append("era", form.era);
+			formDataPayload.append("category", form.category);
+			formDataPayload.append("location", form.location);
+			
+			// Append each shipping option
+			form.shippingOptions.forEach(opt => {
+				formDataPayload.append("shippingOptions", opt);
+			});
+
+			// IMPORTANTTT: This name 'image' must perfectly match upload.single('image') in the backend route
+			// because multer looks for that key to extract the file from the request
+			formDataPayload.append("image", imageFile);
+
+			// Step 3: Send the package at your backend pipeline
+			const res = await fetch("http://localhost:5001/api/listings", {
 				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({
-					seller: TEMP_SELLER_ID,
-					productName: form.productName,
-					description: form.description,
-					price: Number(form.price),
-					condition: form.condition,
-					era: form.era,
-					category: form.category,
-					location: form.location,
-					shippingOptions: form.shippingOptions,
-					mainImage: imageUrl,
-				}),
+				headers: {
+					// Present the token to the backend for verification and authentication
+					"Authorization": `Bearer ${token}`
+				},
+				body: formDataPayload,
 			});
 
 			if (!res.ok) {
@@ -100,7 +116,6 @@ export default function SubmitProduct() {
 				throw new Error(errData.error || "Submission failed");
 			}
 
-			navigate("/");
 		} catch (err) {
 			setError(err.message);
 		} finally {

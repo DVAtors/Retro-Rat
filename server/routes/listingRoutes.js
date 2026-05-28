@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Listing = require('../models/Listing'); // Keep this for Troy's GET routes
+const Listing = require('../models/Listing'); // for Troy's GET routes
 
 // Controller function for creating a listing... yes
 const { createListing } = require('../controllers/listingController');
