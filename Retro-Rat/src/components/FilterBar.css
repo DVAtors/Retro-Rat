@@ -12,6 +12,10 @@
     font-weight: 700;
     line-height: 143%; /* 25 px */
     text-transform: uppercase;
+
+    /* cause bootsrap is a bitch - Stops Bootstrap from growing/shrinking this column based on screen space */
+    flex: 0 0 auto !important; 
+    width: auto !important;
 }
 
 .category-icon img{ 
@@ -59,6 +63,9 @@
     justify-content: flex-start;
     align-items: center;
     gap: 26px;
+
+    /* Freezes the container width so it doesn't shift when text lengths change */
+    flex: 0 0 auto !important; /*PLEASE FOR THE LOVE OF GAWD LET THIS OWRK T-T*/
 }
 .filter-button{ /*THIS IS THE ARROW WITH THE DOTS UNDERNEATH THINGY*/
     display: flex;
