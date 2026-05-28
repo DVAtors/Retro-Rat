@@ -35,7 +35,7 @@ function AdminConsolePage() {
 					<Route index element={<Navigate to="pending" replace />} />
 					<Route path="pending" element={<ACReviewBlockPending />} />
 					<Route path="past-requests" element={<ACReviewBlockPast />} />
-					<Route path="inbox" element={<ACReviewBlockNotify />} />
+					{/* <Route path="inbox" element={<ACReviewBlockNotify />} /> */}
 				</Routes>
 			</div>
 		</div>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
+import LogoutBtnComp from "../components/LogOutBtnComponent";
+
 function ACTopContentComp(onTabChange) {
 	// pull pending listing items fromm api endpoint goes here
 
@@ -37,14 +39,17 @@ function ACTopContentComp(onTabChange) {
 	return (
 		<div className="ac-user-row">
 			<div className="ac-user-card">
-				<div className="ac-user-icon">
-					<span className="ac-ui-text">T</span>
-				</div>
-				<div className="ac-user-information">
-					<span className="ac-user-name">Admin_01</span>
-					<span className="ac-user-account">Administrator</span>
-					<span className="ac-user-pending-list">23 Pending Listings</span>
-				</div>
+				<container className="ac-user-info">
+					<div className="ac-user-icon">
+						<span className="ac-ui-text">T</span>
+					</div>
+					<div className="ac-user-information">
+						<span className="ac-user-name">Admin_01</span>
+						<span className="ac-user-account">Administrator</span>
+						<span className="ac-user-pending-list">23 Pending Listings</span>
+					</div>
+				</container>
+				<LogoutBtnComp />
 			</div>
 			<div className="ac-user-actions">
 				<NavLink
@@ -61,13 +66,13 @@ function ACTopContentComp(onTabChange) {
 					}>
 					View Past Requests
 				</NavLink>
-				<NavLink
+				{/* <NavLink
 					to="/account/inbox"
 					className={({ isActive }) =>
 						isActive ? "ac-inbox ac-active" : "ac-inbox"
 					}>
 					Inbox
-				</NavLink>
+				</NavLink> */}
 			</div>
 			{/* <div className="ac-user-actions">
 				<button className="ac-pending ac-active">

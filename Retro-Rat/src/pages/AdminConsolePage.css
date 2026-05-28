@@ -92,6 +92,15 @@
 	box-shadow: 8px 8px 0 0 #000;
 }
 
+.ac-user-info {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	gap: 1rem;
+}
+
 /* other user card styling here */
 
 .ac-user-icon {

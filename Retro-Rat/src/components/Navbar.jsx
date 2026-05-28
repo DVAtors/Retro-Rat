@@ -77,8 +77,16 @@ export default function Navbar() {
 								onClick={() => setIsMenuOpen(false)}>
 								Account
 							</Link>
-							<Link to="/logout" className="logout-btn">
+							{/* <Link to="/logout" className="logout-btn">
 								Logout
+							</Link> */}
+							<Link
+								to="/login"
+								className={
+									location.pathname.startsWith("/login") ? "active" : ""
+								}
+								onClick={() => setIsMenuOpen(false)}>
+								Login
 							</Link>
 						</div>
 					</div>
