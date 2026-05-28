@@ -68,7 +68,7 @@ export default function LoginForm() {
 				<Row className="login-sign-up-submit-button">
 					<Col className="login-submit-button">
 						<button type="submit" form="auth-form">
-							Submit
+							Log In Now!!
 						</button>
 					</Col>
 				</Row>

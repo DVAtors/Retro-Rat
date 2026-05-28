@@ -88,7 +88,7 @@ export default function SignUpForm() {
 				<Row className="login-sign-up-submit-button">
 					<Col className="login-submit-button">
 						<button type="submit" form="auth-form">
-							Submit
+							Sign Up Today!!
 						</button>
 					</Col>
 				</Row>
