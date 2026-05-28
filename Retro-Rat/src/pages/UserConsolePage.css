@@ -92,8 +92,16 @@
 }
 
 /* List New Item Button */
+.uc-card-btns {
+	display: flex;
+	flex-direction: column;
+
+	gap: 1rem;
+}
+
 .uc-list-new-btn {
 	color: #fff;
+	text-decoration: none;
 
 	padding: 14px 28px;
 	font-family: "Inter", sans-serif;

@@ -4,7 +4,9 @@ import Img1 from "../assets/product-img.png";
 import Img2 from "../assets/Image (Classic Game Console Controller).png";
 import Img3 from "../assets/Image (Sony Walkman Cassette Player).png";
 
-import { Link, Route, Routes } from "react-router-dom";
+import LogoutBtnComp from "../components/LogOutBtnComponent";
+
+import { Link, Route, Routes, NavLink } from "react-router-dom";
 
 import SubmitProduct from "./SubmitProduct";
 
@@ -163,7 +165,13 @@ function UserConsolePage({ id }) {
 						</p>
 					</div>
 				</div>
-				<button className="uc-list-new-btn">LIST NEW ITEM</button>
+				<div className="uc-card-btns">
+					<LogoutBtnComp />
+					{/* <button className="uc-list-new-btn">LIST NEW ITEM</button> */}
+					<NavLink to="/sell" className="uc-list-new-btn">
+						LIST NEW ITEM
+					</NavLink>
+				</div>
 				{/* Test 1: For Linking to Submit Form Page... - Need to do */}
 				{/* <Link
 					to={`./Pages/SubmitProduct.jsx`}
