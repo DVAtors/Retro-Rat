@@ -51,6 +51,19 @@ router.get("/", async (req, res) => {
 // 	}
 // });
 
+// Another TestRoute by rob for getting the user's listings
+// GET /api/listings/my — get all listings for the logged-in user
+// router.get("/my", protect, async (req, res) => {
+// 	try {
+// 		const listings = await Listing.find({ seller: req.user.id }).sort({
+// 			createdAt: -1,
+// 		});
+// 		res.json(listings);
+// 	} catch (err) {
+// 		res.status(500).json({ error: err.message });
+// 	}
+// });
+
 // GET /api/listings/:id — get one listing (and increment views)
 router.get("/:id", async (req, res) => {
 	try {
