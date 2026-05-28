@@ -1,7 +1,7 @@
 import "./ACBlockListItem.css";
 
 function ACBlockListItem({ listing, onApprove, onDeny }) {
-	console.log(listing); // temp check
+	// console.log(listing); // temp check
 	const { _id, productName, price, mainImage, seller } = listing;
 
 	return (

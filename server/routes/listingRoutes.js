@@ -23,17 +23,33 @@ router.get("/", async (req, res) => {
 });
 
 // Robert added this part... for testing
+// This works, just commented it out, as I'm not backend ~Robert
 // GET /api/listings/pending — get all pending listings (admin only)
-router.get("/pending", async (req, res) => {
-	try {
-		const listings = await Listing.find({ status: "pending" })
-			.populate("seller", "name")
-			.sort({ createdAt: -1 }); // sorts them newest first
-		res.json(listings);
-	} catch (err) {
-		res.status(500).json({ error: err.message });
-	}
-});
+// router.get("/pending", async (req, res) => {
+// 	try {
+// 		const listings = await Listing.find({ status: "pending" })
+// 			.populate("seller", "name")
+// 			.sort({ createdAt: -1 }); // sorts them newest first
+// 		res.json(listings);
+// 	} catch (err) {
+// 		res.status(500).json({ error: err.message });
+// 	}
+// });
+
+// Another Robert added route... I'm so sorry troy :(
+// GET /api/listings/past — get all approved and rejected listings
+// router.get("/past", async (req, res) => {
+// 	try {
+// 		const listings = await Listing.find({
+// 			status: { $in: ["approved", "rejected"] },
+// 		})
+// 			.populate("seller", "name")
+// 			.sort({ createdAt: -1 });
+// 		res.json(listings);
+// 	} catch (err) {
+// 		res.status(500).json({ error: err.message });
+// 	}
+// });
 
 // GET /api/listings/:id — get one listing (and increment views)
 router.get("/:id", async (req, res) => {
