@@ -1,12 +1,13 @@
 import "./ACBlockListItem.css";
 
 function ACBlockListItem({ listing, onApprove, onDeny }) {
-	const { _id, productName, price, mainImg, seller } = listing;
+	console.log(listing); // temp check
+	const { _id, productName, price, mainImage, seller } = listing;
 
 	return (
 		<div className="ac-list-item">
 			<div className="ac-list-item-image">
-				<img src="{mainImg}" alt="{productName}" />
+				<img src={mainImage} alt={productName} />
 			</div>
 			<div className="ac-list-item-information">
 				<div className="ac-info-top">
