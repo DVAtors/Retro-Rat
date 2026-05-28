@@ -31,13 +31,24 @@
     min-height: 54px;
     width: 100%;
     align-items: center;
-    align-self: stretch;
-    justify-content: space-between;
+    /* align-self: stretch; */
+    
+    /*space-between to flex-start so it locks to the left side sio no bouncy jumpy from the right */
+    justify-content: flex-start; 
+    gap: 30px; 
 }
 
 .filter-bar button{
     border: none;
     background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    color: inherit;
+    cursor: pointer;
 }
 
 .filter-buttons-container{ /*NO TOUCHY TOUCHY*/
@@ -105,17 +116,33 @@
     display: none; /* Hide scrollbar for WebKit browsers */
 }
 
+/* === WAVE 1: BLUEY STYLING === */
+.first-wave .p-2:has(button.active-btn) {
+    background-color: #0B8C8C; /* Changes the outer retro box block color */
+}
 .first-wave .p-2 button.active-btn{ /*ARE YOU KIDDING ME I HAVE TO DO A WHOLE JS THING JUST TO MAKE BUTTONS STAY THE COLOUR I CHANGE THEM TO? WTF CSS?*/
-    background-color: #0B8C8C;
     color: #FFF;
 }
+
+/* === WAVE 2: BRIGHT YELLOW STYLING === */
+.second-wave .p-2:has(button.active-btn) {
+    background-color: #F4D03F; /* Slaps  yellow the whole box */
+}
+.second-wave .p-2 button.active-btn {
+    color: #000; /* Keeps text dark so it stays readable over the yellow */
+}
+
+/* === WAVE 3: RAINBOW TEXT STYLE === */
+.third-wave .p-2 button.active-btn {
+    color: #FFF; /* Ensures all  rainbow buttons get crisp white text */
+}
+
 .wave{
     display: flex;
     flex-direction: row;
     gap: 16px;
     align-items: center;
 }
-
 
 .filter-buttons .p-2{ /*seems to be ok >:D*/
     padding: 12px 21px; /*wierd figma ratio but ok i gues*/
@@ -137,4 +164,5 @@
     font-weight: 700;
     letter-spacing: -0.649px;
     text-transform: uppercase;
+    transition: background-color 0.15s ease; /* Quick transition makes clicking feel snappy */
 }
