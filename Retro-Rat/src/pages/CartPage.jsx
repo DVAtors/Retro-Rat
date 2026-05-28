@@ -1,7 +1,7 @@
 import "./CartPage.css";
 
 import React, { useEffect, useState } from "react";
-import { apiGet,apiDelete } from "../client";
+import { apiGet, apiDelete } from "../client";
 
 // Importing components:
 import CartProductComponent from "../components/CartProductComponent";
@@ -53,7 +53,9 @@ function CartPage() {
 						/>
 					))}
 				</div>
-				<CartOrderSummaryComp />
+				<div className="cart-order-summary-wrapper">
+					<CartOrderSummaryComp />
+				</div>
 			</div>
 		</div>
 	);

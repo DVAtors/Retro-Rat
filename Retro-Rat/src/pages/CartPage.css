@@ -56,12 +56,22 @@
 
 .content-container {
 	display: flex;
+	flex-direction: row;
+	/* justify-content: flex-end; */
+	/* align-items: flex-end; */
 	align-items: flex-start;
 	gap: 2.5rem;
+	width: 77%;
+	margin: 0 auto;
 
 	/* height: 584px; */
 
 	/* overflow-y: scroll; */
+}
+
+.cart-order-summary-wrapper {
+	position: sticky;
+	top: 2rem;
 }
 
 .cart-products-container {
@@ -70,6 +80,8 @@
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 1.25rem;
+
+	flex: 1;
 
 	/* This is for scrolling, will fix later lol */
 	/* height: 600px; */

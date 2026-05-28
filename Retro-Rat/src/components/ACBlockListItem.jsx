@@ -1,16 +1,18 @@
 import "./ACBlockListItem.css";
 
-function ACBlockListItem(params) {
+function ACBlockListItem({ listing, onApprove, onDeny }) {
+	const { _id, productName, price, mainImg, seller } = listing;
+
 	return (
 		<div className="ac-list-item">
 			<div className="ac-list-item-image">
-				<img src="" alt="" />
+				<img src="{mainImg}" alt="{productName}" />
 			</div>
 			<div className="ac-list-item-information">
 				<div className="ac-info-top">
 					<div className="top-info">
-						<span className="prod-name">Temp Prod name</span>
-						<span className="prod-price">R245.00</span>
+						<span className="prod-name">{productName}</span>
+						<span className="prod-price">R{Number(price).toFixed(2)}</span>
 					</div>
 					<div className="pending-tag">
 						<span className="tag-text">Pending Review</span>
@@ -22,10 +24,12 @@ function ACBlockListItem(params) {
 						<button className="ac-view-item-btn">
 							<span className="ac-view-item">View Item</span>
 						</button>
-						<button className="ac-approve-item-btn">
+						<button
+							className="ac-approve-item-btn"
+							onClick={() => onApprove(_id)}>
 							<span className="ac-approve-item">Approve</span>
 						</button>
-						<button className="ac-delete-item-btn">
+						<button className="ac-delete-item-btn" onClick={() => onDeny(_id)}>
 							<span className="ac-delete-item">Deny</span>
 						</button>
 					</div>

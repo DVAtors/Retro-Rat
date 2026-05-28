@@ -91,9 +91,9 @@ export default function SubmitProduct() {
 			formDataPayload.append("era", form.era);
 			formDataPayload.append("category", form.category);
 			formDataPayload.append("location", form.location);
-			
+
 			// Append each shipping option
-			form.shippingOptions.forEach(opt => {
+			form.shippingOptions.forEach((opt) => {
 				formDataPayload.append("shippingOptions", opt);
 			});
 
@@ -106,16 +106,16 @@ export default function SubmitProduct() {
 				method: "POST",
 				headers: {
 					// Present the token to the backend for verification and authentication
-					"Authorization": `Bearer ${token}`
+					Authorization: `Bearer ${token}`,
 				},
 				body: formDataPayload,
 			});
 
 			if (!res.ok) {
 				const errData = await res.json();
+				console.log("Server Response: ", rawText);
 				throw new Error(errData.error || "Submission failed");
 			}
-
 		} catch (err) {
 			setError(err.message);
 		} finally {

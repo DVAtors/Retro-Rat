@@ -46,7 +46,7 @@ function App() {
 
 					{/* route for switching tabs on admin console page */}
 					<Route path="/account/*" element={<AdminConsolePage />} />
-					<Route path="/account" element={<UserConsolePage />} />
+					{/* <Route path="/account" element={<UserConsolePage />} /> */}
 
 					{/* routes for panel switching on login and sign up page */}
 					<Route path="/login" element={<LoginPage />}>
