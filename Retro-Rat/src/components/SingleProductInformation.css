@@ -40,6 +40,23 @@
 	margin-bottom: 1rem;
 }
 
+.flagIconBtn svg {
+	display: flex;
+	width: 1.5rem;
+	height: 1.5rem;
+	/* padding: 0.125rem; */
+	flex-direction: column;
+	align-items: center;
+	flex-shrink: 0;
+
+	color: #000;
+}
+
+.flagIconBtn svg:hover {
+	color: rgb(255, 115, 29);
+	transition: color 0.15s ease;
+}
+
 .flagIconBtn {
 	display: flex;
 	width: 3.0625rem;
