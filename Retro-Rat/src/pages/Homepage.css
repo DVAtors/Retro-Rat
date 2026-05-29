@@ -1,91 +1,333 @@
+.home-container {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 .home-content {
-	display: flex;
-	width: 100%;
-	height: 100%;
-	max-width: 1296px;
-	padding: 40px 20px 0 20px; /*wierd but ok*/
-
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 64px;
+  display: flex;
+  width: 100%;
+  padding: 40px 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 64px;
 }
 
+/* grid container wrapper thingy so the grid structure stays */
+.section-inner-wrapper {
+  width: 100%;
+  max-width: 1256px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* === HERO SECTION === */
 .hero-section {
-	display: flex;
-	width: 100%;
-	max-width: 1256px;
-	height: 100%;
-	max-height: 637px;
-
-	background-image: url(../assets/heroImg.png);
+  max-width: 1256px;
+  height: 637px;
+  padding: 0 !important;
+  background: url('./src/assets/heroImg.png') lightgray 50% / cover no-repeat;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 0 #000;
 }
 
-.hero-container {
-	display: flex;
-	width: 100%;
-	height: 100%;
-	padding: 40px;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: flex-start;
-	flex-shrink: 0;
-
-	background: linear-gradient(101deg, #000 0.21%, rgba(0, 0, 0, 0) 99.79%);
+.hero-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  background: linear-gradient(101deg, #000 0.21%, rgba(0, 0, 0, 0) 99.79%);
 }
 
-.hero-text-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 32px;
+.hero-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-image {
+  width: 340px;
+  height: 340px;
+}
+
+.hero-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
 }
 
 .hero-text {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 10px;
-	height: 85px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .hero-text h1 {
-	color: #f0f8ff;
-	font-family: "Inter", sans-serif;
-	font-size: 2.344rem; /* 37.5px */
-	font-weight: 700;
-	letter-spacing: -0.379px;
-	text-transform: uppercase;
+  color: #f0f8ff;
+  font-family: 'Inter', sans-serif;
+  font-size: 2.344rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
 }
 
 .hero-text p {
-	color: #ffe500;
-	font-family: "Inter", sans-serif;
-	font-size: 1.25rem; /* 20px */
-	font-weight: 500;
-	letter-spacing: -0.051px;
-	text-transform: uppercase;
+  color: #ffe500;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0;
 }
 
-.hero-container button {
-	display: flex;
-	padding: 19px 48px;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
+.browse-button {
+  padding: 19px 48px;
+  background-color: #d99e30;
+  border-radius: 4px;
+  border: 4px solid #000000;
+  box-shadow: 4px 4px 0 0 #000;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
 
-	background-color: #d99e30;
-	border-radius: 4px;
-	border: 4px solid #000000;
-	box-shadow: 4px 4px 0 0 #000;
+/* === POPULAR SECTION === */
+.popular-section {
+  background: rgba(91, 44, 145, 0.9); 
+  padding: 48px 20px !important;
+  width: 100vw;
+}
 
-	color: #fff;
-	text-align: center;
-	font-family: "Inter", sans-serif;
-	font-size: 1.25rem; /* 20px */
-	font-weight: 700;
-	letter-spacing: -0.649px;
-	text-transform: uppercase;
+.popular-banner {
+  display: flex;
+  padding: 44px;
+  border: 4px solid #000;
+  background: #0b8c8c;
+  box-shadow: 8px 8px 0 0 #000;
+}
 
-	cursor: pointer;
+.popular-text h2 {
+  color: #f0f8ff;
+  font-family: 'Inter', sans-serif;
+  font-size: 37.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.popular-text p {
+  color: #ffe500;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 5px 0 0 0;
+}
+
+.popular-items {
+  margin-top: 20px;
+}
+
+.view-listed-btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.view-listed-btn button {
+  width: 398.66px;
+  padding: 12px 21px;
+  border: 2px solid #000;
+  background: #fff;
+  box-shadow: 8px 8px 0 0 #000;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* === JOIN SECTION === */
+.join-section {
+  padding: 0 !important;
+}
+
+.join-banner {
+  display: flex;
+  padding: 44px;
+  border: 4px solid #000;
+  background: #d99e30;
+  box-shadow: 8px 8px 0 0 #000;
+}
+
+.join-text-banner h2 {
+  color: #f0f8ff;
+  font-family: 'Inter', sans-serif;
+  font-size: 37.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.join-text-banner p {
+  color: #5b2c91;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 5px 0 0 0;
+}
+
+.join-hero {
+  height: 450px;
+  border: 4px solid #000;
+  background: url('../assets/joinHeroImg.jpg') lightgray 50% / cover no-repeat;
+  box-shadow: 8px 8px 0 0 #000;
+  overflow: hidden;
+}
+
+.join-content {
+  display: flex;
+  padding: 40px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  background: linear-gradient(0deg, #000 15.78%, rgba(0, 0, 0, 0) 100%),
+              linear-gradient(131deg, rgba(0, 255, 161, 0.3) 15.41%, rgba(238, 0, 255, 0.3) 84.59%);
+}
+
+.join-text h2 {
+  color: #f0f8ff;
+  font-family: 'Inter', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.join-text p {
+  color: #ffe500;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.join-btn-container {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+}
+
+.join-btn-container button {
+  flex: 1;
+  height: 54px;
+  border: 2px solid #000;
+  background: #fff;
+  box-shadow: 8px 8px 0 0 #000;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* === ALREADY A MEMBER SECTION === */
+.already-a-member-section {
+  background: #0b8c8c; /* Dynamic teal container background */
+  padding: 48px 20px !important;
+  width: 100vw;
+}
+
+.already-banner {
+  display: flex;
+  padding: 44px;
+  border: 4px solid #000;
+  background: #d9411e;
+  box-shadow: 8px 8px 0 0 #000;
+}
+
+.already-text h2 {
+  color: #f0f8ff;
+  font-family: "Inter", sans-serif;
+  font-size: 37.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.already-text p {
+  color: #ffe500;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 5px 0 0 0;
+}
+
+.already-col {
+  display: flex;
+  height: 400px;
+  padding: 40px;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 0 #000;
+}
+
+.add-your-listing {
+  background: linear-gradient(0deg, #000 15.78%, rgba(0, 0, 0, 0) 100%),
+              url('../assets/add-your-listingImg.jpg') lightgray 50% / cover no-repeat;
+}
+
+.view-product-approval-status {
+  background: linear-gradient(0deg, #000 15.78%, rgba(0, 0, 0, 0) 100%), 
+              url('../assets/approval-statusImg.jpg') lightgray 50% / cover no-repeat;
+}
+
+.already-col .title-text h2 {
+  color: #f0f8ff;
+  font-family: 'Inter', sans-serif;
+  font-size: 22.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.already-col .title-text p {
+  color: #ffe500;
+  font-family: 'Inter', sans-serif;
+  font-size: 17.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.already-btn-container {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+}
+
+.already-btn-container button {
+  flex: 1;
+  height: 54px;
+  border: 2px solid #000;
+  background: #FFF;
+  box-shadow: 8px 8px 0 0 #000;
+  color: #000;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
