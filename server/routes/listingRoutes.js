@@ -22,47 +22,47 @@ router.get("/", async (req, res) => {
 	res.json(listings);
 });
 
-// Robert added this part... for testing
+// Robert added this part... for testing (All this had to go before :id block, else it wouldn't work)
 // This works, just commented it out, as I'm not backend ~Robert
 // GET /api/listings/pending — get all pending listings (admin only)
-// router.get("/pending", async (req, res) => {
-// 	try {
-// 		const listings = await Listing.find({ status: "pending" })
-// 			.populate("seller", "name")
-// 			.sort({ createdAt: -1 }); // sorts them newest first
-// 		res.json(listings);
-// 	} catch (err) {
-// 		res.status(500).json({ error: err.message });
-// 	}
-// });
+router.get("/pending", async (req, res) => {
+	try {
+		const listings = await Listing.find({ status: "pending" })
+			.populate("seller", "name")
+			.sort({ createdAt: -1 }); // sorts them newest first
+		res.json(listings);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+});
 
 // Another Robert added route... I'm so sorry troy :(
 // GET /api/listings/past — get all approved and rejected listings
-// router.get("/past", async (req, res) => {
-// 	try {
-// 		const listings = await Listing.find({
-// 			status: { $in: ["approved", "rejected"] },
-// 		})
-// 			.populate("seller", "name")
-// 			.sort({ createdAt: -1 });
-// 		res.json(listings);
-// 	} catch (err) {
-// 		res.status(500).json({ error: err.message });
-// 	}
-// });
+router.get("/past", async (req, res) => {
+	try {
+		const listings = await Listing.find({
+			status: { $in: ["approved", "rejected"] },
+		})
+			.populate("seller", "name")
+			.sort({ createdAt: -1 });
+		res.json(listings);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+});
 
 // Another TestRoute by rob for getting the user's listings
 // GET /api/listings/my — get all listings for the logged-in user
-// router.get("/my", protect, async (req, res) => {
-// 	try {
-// 		const listings = await Listing.find({ seller: req.user.id }).sort({
-// 			createdAt: -1,
-// 		});
-// 		res.json(listings);
-// 	} catch (err) {
-// 		res.status(500).json({ error: err.message });
-// 	}
-// });
+router.get("/my", protect, async (req, res) => {
+	try {
+		const listings = await Listing.find({ seller: req.user.id }).sort({
+			createdAt: -1,
+		});
+		res.json(listings);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+});
 
 // GET /api/listings/:id — get one listing (and increment views)
 router.get("/:id", async (req, res) => {
