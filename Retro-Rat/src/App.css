@@ -11,3 +11,22 @@
   display: flex;
   flex-direction: column;
 }
+
+/* custom cursor bc why not? */
+html, body, #root {
+
+/* cursor: url('your-custom-grab-icon.svg'), grab; */
+cursor: url('../src/assets/retroCursor.svg') 3 0, auto !important;
+}
+
+a,
+button,
+input[type="button"],
+input[type="submit"],
+input,
+select,
+textarea,
+[role="button"] {
+  cursor: url('../src/assets/retroCursor.svg') 3 0, auto !important;
+}
+
