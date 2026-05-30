@@ -16,6 +16,10 @@
 }
 
 .cart-banner {
+	/* added for the shiney effect */
+	position: relative;
+    overflow: hidden;
+
 	display: flex;
 	width: 80%;
 	height: 8.687rem;
@@ -33,6 +37,11 @@
 }
 
 .cart-banner-title {
+	/* Anchor system for stars */
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+
 	color: #f0f8ff;
 	font-family: Inter;
 	font-size: 1.875rem;
@@ -44,6 +53,11 @@
 }
 
 .cart-banner-sub-title {
+	/* Anchor for  stars */
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+
 	color: #ffe500;
 	font-family: Inter;
 	font-size: 1.09375rem;
@@ -92,3 +106,97 @@
 	background: var(--neutrals-WHITE, #fff);
 	box-shadow: 4px 4px 0 0 #000;
 } */
+
+/* * ==========================================================================
+   ✨ SUPER COOL SWEEP SHINE & EXTRA TWISTY SPARKLES ✨
+  ========================================================================== */ 
+
+
+.cart-banner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -200%;
+    width: 80%;
+    height: 100%;
+
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 10%,
+        rgba(255, 255, 255, 0.3) 20%,
+        rgba(255, 255, 255, 0) 20.1%,
+        rgba(255, 255, 255, 0) 25%,
+        rgba(255, 255, 255, 0.8) 25.1%,
+        rgba(255, 255, 255, 0.8) 45%,
+        rgba(255, 255, 255, 0) 45.1%,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(255, 255, 255, 0.5) 50.1%,
+        rgba(255, 255, 255, 0.5) 60%,
+        rgba(255, 255, 255, 0) 60.1%
+    );
+
+    transform: skewX(-35deg);
+    pointer-events: none;
+    z-index: 2;
+
+    animation: banner-shine-load 1.2s ease-out 0.5s forwards;
+}
+
+.cart-banner:hover::after {
+    animation: banner-shine-hover 1.2s ease-out forwards;
+}
+
+/* i hate doing this */
+.cart-banner-title::before,
+.cart-banner-title::after,
+.cart-banner-sub-title::after {
+    content: "";
+    position: absolute;
+    background-color: #fff; 
+    clip-path: polygon(50% 0%, 55% 45%, 100% 50%, 55% 55%, 50% 100%, 45% 55%, 0% 50%, 45% 45%);
+    opacity: 0;
+    transform: scale(0) rotate(-90deg); /* Incorporates the deep spin start */
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* Star  Top Left of "Your shopping cart" text*/
+.cart-banner-title::before {
+    left: -32px; 
+    top: -4px;
+    width: 22px;
+    height: 22px;
+    animation: sparkle-pop-load 0.8s ease-out 0.6s forwards; 
+}
+
+/* Star Bottom Right of "Your shopping cart" */
+.cart-banner-title::after {
+    right: -28px; 
+    bottom: 2px;
+    width: 18px;
+    height: 18px;
+    animation: sparkle-pop-load 0.8s ease-out 1.2s forwards; 
+}
+
+/* Star Right of Yellow Subtitle (Yellow Star) */
+.cart-banner-sub-title::after {
+    right: -30px; 
+    top: -1px;
+    width: 24px;
+    height: 24px;
+    background-color: #ffe500; 
+    animation: sparkle-pop-load 0.8s ease-out 1.3s forwards; 
+}
+
+/* ---  HOVER TRIGGERS FOR SPARKLES --- */
+.cart-banner:hover .cart-banner-title::before { 
+	animation: sparkle-pop-hover 0.8s ease-out 0.1s forwards; 
+}
+
+.cart-banner:hover .cart-banner-title::after { 
+	animation: sparkle-pop-hover 0.8s ease-out 0.7s forwards; 
+}
+.cart-banner:hover .cart-banner-sub-title::after { 
+	animation: sparkle-pop-hover 0.8s ease-out 0.8s forwards; 
+}

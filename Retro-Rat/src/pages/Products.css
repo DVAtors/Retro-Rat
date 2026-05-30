@@ -220,7 +220,7 @@ body {
 	width: fit-content;
 }
 
-/* Star 3: Right of Yellow Subtitle (Making this one yellow!) */
+/* Star Right of Yellow Subtitle (Making this one yellow >:D) */
 .product-header .header-text p::after {
     right: -30px; 
     top: -5px;
