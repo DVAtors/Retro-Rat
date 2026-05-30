@@ -17,6 +17,11 @@ body {
 }
 
 .product-header {
+
+	/* for the shiny effect */
+	position: relative;
+	overflow: hidden;
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -27,10 +32,137 @@ body {
 	box-shadow: 8px 8px 0 0;
 }
 
+/* SHINY SWEEPING card addition */
+.product-header::after{
+	content: "";
+	position: absolute;
+	top: 0;
+
+	left: -200%;
+	width: 80%;
+	height: 100%;
+
+	background: linear-gradient( /*i hate this*/
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        
+        /* First thin grey line */
+        rgba(255, 255, 255, 0.3) 10%,
+        rgba(255, 255, 255, 0.3) 20%,
+        rgba(255, 255, 255, 0) 20.1%,
+        
+        /* Second THICK bright line */
+        rgba(255, 255, 255, 0) 25%,
+        rgba(255, 255, 255, 0.8) 25.1%,
+        rgba(255, 255, 255, 0.8) 45%,
+        rgba(255, 255, 255, 0) 45.1%,
+        
+        /* Third medium trailing line */
+        rgba(255, 255, 255, 0) 50%,
+        rgba(255, 255, 255, 0.5) 50.1%,
+        rgba(255, 255, 255, 0.5) 60%,
+        
+        rgba(255, 255, 255, 0) 60.1%
+    );
+
+	transform: skewX(-35deg);
+	pointer-events: none;
+	z-index: 2;
+
+	/*DO THE SINY THING ON FIRST PAGE LOAD*/
+	animation: banner-shine-load 1.2s ease-out 0.5s forwards;
+}
+
+.product-header:hover::after{
+	/* animation: banner-shine 0.8s ease-out forwards; */
+	animation: banner-shine-hover 1.2s ease-out forwards; /*DO THE SINY THING ON FIRST PAGE LOAD*/
+}
+
+
+/* THE KEYFRAMES FOR THE SHINEY BANNER THING */
+
+
+/* @keyframes banner-shine { THE SHINEY
+	100% {
+		left: 150%;
+	}
+	
+} */
+
+/* =============================================================*/
+/* YOU ONLY NEED TO DO THE KEYFRAMES ONCE CAUSE THEY'RE GLOBAL */
+/* =============================================================*/
+@keyframes banner-shine-load {
+	100% {
+		left: 150%;
+	}
+}
+
+@keyframes banner-shine-hover {
+	0% {
+		left: -200%; /*REST POSITION BEFORE WEEPING AGAIN*/
+	}
+	100% {
+		left: 150%;
+	}
+}
+@keyframes sparkle-pop-load {
+    0% { 
+		opacity: 0; 
+		transform: scale(0) rotate(-90deg); 
+	}
+	25% { 
+        opacity: 1; 
+        transform: scale(1.4) rotate(0deg);
+    }
+    80% { /*TO CONTROL THE VISIBILITY AND ROTATION OF THE STARS*/
+		opacity: 1; 
+		transform: scale(1.2) rotate(45deg); 
+	}
+    100% { /* Fade out */
+		opacity: 0; 
+		transform: scale(0) rotate(90deg); 
+	} 
+}
+
+@keyframes sparkle-pop-hover {
+    0% { 
+		opacity: 0; 
+		transform: scale(0) rotate(-90deg); 
+	}
+    25% { 
+		opacity: 1; 
+		transform: scale(1.4) rotate(0deg); 
+	}
+    80% { 
+		opacity: 1; 
+		transform: scale(1.2) rotate(45deg); 
+	}
+    100% { 
+		opacity: 0; 
+		transform: scale(0) rotate(90deg); 
+	}
+}
+
 .product-header .header-text {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+	position: relative;
+}
+
+.product-header .header-text h1::before,
+.product-header .header-text h1::after,
+.product-header .header-text p::after {
+    content: "";
+    position: absolute;
+    background-color: #fff; 
+	/* this better work or i'm crashing out - i hate youtroy */
+    clip-path: polygon(50% 0%, 55% 45%, 100% 50%, 55% 55%, 50% 100%, 45% 55%, 0% 50%, 45% 45%);
+    opacity: 0;
+    transform: scale(0) rotate(-45deg);
+    pointer-events: none;
+    z-index: 3;
 }
 
 .product-header .header-text h1 {
@@ -40,9 +172,39 @@ body {
 	font-style: italic;
 	letter-spacing: -0.379px;
 	text-transform: uppercase;
-
+	position: relative;
 	margin: 0;
 }
+/* Star 1: Top Left of Title */
+.product-header .header-text h1::before {
+    left: -30px; 
+    top: -10px;
+    width: 40px;
+    height: 40px;
+    
+    animation: sparkle-pop-load 2s ease-out 0.6s forwards; 
+}
+
+/* Star 2: Bottom Right of Title */
+.product-header .header-text h1::after {
+    right: -25px; 
+    bottom: -5px;
+    width: 18px;
+    height: 18px;
+    /* Pops late in the sweep */
+    animation: sparkle-pop-load 2s ease-out 1.2s forwards; 
+}
+
+/* ========================== */
+/* hover triggers for the sparkles */
+.product-header:hover .header-text h1::before { 
+	animation: sparkle-pop-hover 1s ease-out 0.1s forwards; 
+}
+
+.product-header:hover .header-text h1::after { 
+	animation: sparkle-pop-hover 1s ease-out 0.7s forwards; 
+}
+/* =========================== */
 
 .product-header .header-text p {
 	color: #ffe500;
@@ -52,6 +214,26 @@ body {
 	font-weight: 500;
 	letter-spacing: 0.051px;
 	text-transform: uppercase;
+
+	/* for the sparkly on the text ( help me) */
+	position: relative;
+	width: fit-content;
+}
+
+/* Star 3: Right of Yellow Subtitle (Making this one yellow!) */
+.product-header .header-text p::after {
+    right: -30px; 
+    top: -5px;
+    width: 24px;
+    height: 24px;
+    background-color: #ffe500; 
+    /* Pops slightly after the title star */
+    animation: sparkle-pop-load 2s ease-out 1.3s forwards; 
+}
+
+.product-header:hover .header-text p::after {
+
+    animation: sparkle-pop-hover 1s ease-out 0.8s forwards;
 }
 
 .product-card-container {
