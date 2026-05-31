@@ -4,19 +4,18 @@ import "./CommentComponent.css";
 import CommentReplyComponent from "./CommentReplyComponent";
 import ReplyCommentFieldComponent from "./ReplyCommentField";
 
-// - Accepts a `comment` prop (object with `author`, `text`, `time`) created by
-//   the parent (`CommentSectionComponent`). If no `comment` is provided,
-//   this component falls back to sample/default values for demo purposes.
+
 function CommentComponent({ comment }) {
 	// Controls whether the reply input is shown for this comment
 	const [showReplyField, setShowReplyField] = useState(false);
 	// Local array of replies for this comment
 	const [replies, setReplies] = useState([]);
 
-	// Use provided comment data or sensible defaults for demo
-	const author = comment?.author || "KeyboardEnthusiast";
-	const text = comment?.text || "Does this have the original keycaps?";
-	const time = comment?.time || "3 Days Ago";
+	const authorName = comment?.author?.name || "Unknown User";
+	const time = comment?.createdAt 
+    ? new Date(comment.createdAt).toLocaleDateString() 
+    : "Just now";
+	const text = comment?.text || "No text provided";
 
 	// Called by ReplyCommentFieldComponent when the user posts a reply.
 	// Creates a small reply object and prepends it into `replies`.
@@ -38,10 +37,10 @@ function CommentComponent({ comment }) {
 				<div className="commentSelf">
 					<div className="commentAuthor">
 						<div className="authorImage">
-							<h3>{author.charAt(0)}</h3>
+							<h3>{authorName.charAt(0)}</h3>
 						</div>
 						<div className="commentInfo">
-							<span className="authorName">{author}</span>
+							<span className="authorName">{authorName}</span>
 							<div className="commentDate">{time}</div>
 							{/* Reply button: toggles the inline reply field */}
 							<button

@@ -37,7 +37,7 @@ function SingleProductView() {
 					<SingleProductImage listing={listing} />
 					<SingleProductInformation listing={listing} />
 				</div>
-				<CommentSectionComponent />
+				<CommentSectionComponent listingId={listing._id} />
 			</div>
 		</div>
 	);

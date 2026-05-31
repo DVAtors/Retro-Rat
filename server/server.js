@@ -30,3 +30,7 @@ app.listen(PORT, () => {
 //cart routes
 const cartRoutes = require('./routes/cartRoutes');
 app.use('/api/cart', cartRoutes);
+
+
+const commentRoutes = require('./routes/commentRoutes');
+app.use('/api/comments', commentRoutes);

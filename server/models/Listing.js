@@ -85,8 +85,7 @@ const ListingSchema = new mongoose.Schema({
   views: { 
     type: Number, 
     default: 0 
-  },
-  comments: [CommentSchema],
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Listing', ListingSchema);

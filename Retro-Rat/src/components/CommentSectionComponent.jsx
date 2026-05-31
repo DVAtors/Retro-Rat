@@ -27,15 +27,12 @@ function CommentSectionComponent() {
 
 	return (
 		<div className="commentSection">
-			{/* Controlled input: value and onChange are wired to local state */}
-			<CommentFieldComponent value={input} onChange={setInput} />
+				<CommentFieldComponent value={input} onChange={setInput} />
 
-			{/* Post button: disabled when input is empty; calls handlePost */}
-			<PostCommentButton onClick={handlePost} disabled={!input.trim()} />
+				<PostCommentButton onClick={handlePost} disabled={!input.trim()} />
 
-			{/* Render each posted comment. Each child manages its own replies. */}
 			{comments.map((c) => (
-				<CommentComponent key={c.id} comment={c} />
+    			<CommentComponent key={c._id || c.id} comment={c} />
 			))}
 		</div>
 	);

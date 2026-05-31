@@ -1,14 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const Listing = require('../models/Listing'); // for Troy's GET routes
+const Listing = require('../models/Listing'); 
 
 // Controller function for creating a listing... yes
-const { createListing } = require('../controllers/listingController');
+const { createListing, addComment } = require('../controllers/listingController');
 const { protect } = require('../middleware/authMiddleware');
 const upload = require('../middleware/uploadMiddleware');
 
 // Basically: protect -> upload to Cloudinary -> save to DB
 router.post('/', protect, upload.single('image'), createListing);
+
+// For Comment 
+// POST http://localhost:5001/api/listings/<LISTING_ID>/comments
+router.post('/:id/comments', protect, addComment);
 
 // =====================================================================
 // TROY'S CODE BELOWWWWW.
@@ -28,7 +32,7 @@ router.get('/:id', async (req, res) => {
     const listing = await Listing.findByIdAndUpdate(
       req.params.id,
       { $inc: { views: 1 } },
-      { new: true }
+      { returnDocument: 'after' }
     ).populate('seller', 'name');
     if (!listing) return res.status(404).json({ error: 'Listing not found' });
     res.json(listing);
@@ -43,7 +47,7 @@ router.put("/:id", async (req, res) => {
     const updated = await Listing.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true, runValidators: true }
+      { returnDocument: 'after', runValidators: true }
     );
     if (!updated) {
       return res.status(404).json({ error: "Listing not found" });
