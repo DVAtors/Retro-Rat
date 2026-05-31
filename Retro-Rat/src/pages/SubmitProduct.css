@@ -293,6 +293,41 @@ ITEM INFO & TEXTAREA HELL (I FIXED THE TEXTAREA TYPO LETS GOOO)
     font-weight: 700;
 }
 
+
+.province-dropdown {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #ffffff; 
+    color: #000000;
+    border: 2px solid #e0e0e0; 
+    border-radius: 4px;
+    font-size: 1rem;
+
+    cursor: pointer;
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    
+
+}
+
+
+.province-dropdown:hover,
+.province-dropdown:focus {
+    outline: none;
+    background-color: #0B8C8C; 
+    border-color: #0B8C8C;
+    color: #ffffff; 
+    
+}
+
+
+.province-dropdown option {
+    background-color: #ffffff;
+    color: #000000;
+}
+
 /* 
   ==========================================================================
    ___ _  _ ___ ___ 
