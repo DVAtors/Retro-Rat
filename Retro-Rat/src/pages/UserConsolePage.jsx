@@ -64,37 +64,40 @@ const STATUS_CONFIG = {
 function UserConsolePage({ id }) {
 	// Updating the signed in user's name on the card
 	const [user, setUser] = useState(null);
-	const [loading, setLoading] = useState(true); 
-	const navigate = useNavigate(); 
+	const [loading, setLoading] = useState(true);
+	const navigate = useNavigate();
 
 	useEffect(() => {
-        // Fetch "my" details.
-        apiGet('/users/me')
-            .then(data => {
-                setUser(data);
-                setLoading(false);
-            })
-            .catch(err => {
-                console.error("Auth failed:", err);
-                localStorage.removeItem('token');
-                navigate('/login');
-            });
-    }, [navigate]);
+		// Fetch "my" details.
+		apiGet("/users/me")
+			.then((data) => {
+				setUser(data);
+				setLoading(false);
+			})
+			.catch((err) => {
+				console.error("Auth failed:", err);
+				localStorage.removeItem("token");
+				navigate("/login");
+			});
+	}, [navigate]);
 
 	function handleLogout() {
-        // get rid of token and force a hard refresh
-        localStorage.removeItem("token");
-        window.location.href = "/";
-    }
+		// get rid of token and force a hard refresh
+		localStorage.removeItem("token");
+		window.location.href = "/";
+	}
 
 	// fetch signed in user's listings
 	const [listings, setListings] = useState([]);
 	const [listingsLoading, setListingsLoading] = useState(true);
 	const [listingsError, setListingsError] = useState(null);
 
-	const joinDate = user?.createdAt 
-    ? new Date(user.createdAt).toLocaleString('default', { month: 'long', year: 'numeric' }) 
-    : "Loading...";
+	const joinDate = user?.createdAt
+		? new Date(user.createdAt).toLocaleString("default", {
+				month: "long",
+				year: "numeric",
+			})
+		: "Loading...";
 
 	useEffect(() => {
 		const fetchMyListings = async () => {
@@ -118,8 +121,18 @@ function UserConsolePage({ id }) {
 	const [activeTab, setActiveTab] = useState("listings");
 	// const [listings, setListings] = useState(mockListings);
 
-	const handleDelete = (id) => {
-		setListings((prev) => prev.filter((l) => l.id !== id));
+	const handleDelete = async (id) => {
+		// setListings((prev) => prev.filter((l) => l.id !== id));
+
+		try {
+			const token = localStorage.getItem("token");
+			const res = await fetch(`http://localhost:5001/api/listings/${id}`, {
+				method: "DELETE",
+				headers: { Authorization: `Bearer ${token}` },
+			});
+		} catch (error) {
+			console.error("Couldn't delete listing:", error);
+		}
 	};
 
 	const renderListings = () => {
@@ -171,9 +184,17 @@ function UserConsolePage({ id }) {
 										</span>
 									</div>
 									<div className="uc-listing-actions">
-										<button className="uc-btn uc-btn-view">VIEW</button>
+										<button
+											className="uc-btn uc-btn-view"
+											onClick={() => navigate(`/product/${item._id}`)}>
+											VIEW
+										</button>
 										{item.status === "approved" && (
-											<button className="uc-btn uc-btn-edit">✏ EDIT</button>
+											<button
+												className="uc-btn uc-btn-edit"
+												onClick={() => navigate(`/sell/${item._id}`)}>
+												✏ EDIT
+											</button>
 										)}
 										<button
 											className="uc-btn uc-btn-delete"

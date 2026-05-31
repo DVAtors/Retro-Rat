@@ -312,3 +312,7 @@ p {
 	align-items: center;
 	gap: 0.5rem;
 }
+
+.locationMarker {
+	color: aliceblue;
+}

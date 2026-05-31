@@ -3,10 +3,31 @@ import { useNavigate } from "react-router-dom";
 import { apiPost } from "../client";
 import FlagButtonComponent from "./flagButtonComponent";
 import SellerContainerComponent from "./SellerContainerComponent";
-import CartDeleteProductComponent from "./CartDeleteProductComponent";
+import DeleteItemBtn from "./AdminDeleteItemBtnComponent";
+
+// FontAwesome icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 function SingleProductInformation({ listing }) {
 	const navigate = useNavigate();
+
+	const handleDelete = async () => {
+		try {
+			const token = localStorage.getItem("token");
+			const res = await fetch(
+				`http://localhost:5001/api/listings/${listing._id}`,
+				{
+					method: "DELETE",
+					headers: { Authorization: `Bearer ${token}` },
+				},
+			);
+			if (!res.ok) throw new Error("Failed to delete listing");
+			navigate("/account");
+		} catch (error) {
+			console.error("Couldn't delete listing:", err);
+		}
+	};
 
 	const handleAddToCart = async () => {
 		try {
@@ -37,7 +58,7 @@ function SingleProductInformation({ listing }) {
 							<p className="tag3">Verified</p>
 						</div>
 						<div className="locationText">
-							<svg
+							{/* <svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="20"
 								height="20"
@@ -58,14 +79,18 @@ function SingleProductInformation({ listing }) {
 									stroke-linecap="round"
 									stroke-linejoin="round"
 								/>
-							</svg>
+							</svg> */}
+							<FontAwesomeIcon
+								className="locationMarker"
+								icon={faLocationDot}
+							/>
 							<span className="location-text">Gauteng</span>
 							{/* <p>{listing.productLocation}</p> */}
 						</div>
 					</div>
 					<div className="item-controls-container">
 						<FlagButtonComponent listingId={listing._id} />
-						<CartDeleteProductComponent listingId={listing._id} />
+						<DeleteItemBtn listingId={listing._id} onClick={handleDelete} />
 					</div>
 				</div>
 				<SellerContainerComponent seller={listing.seller} />

@@ -1,7 +1,11 @@
 import "./ACBlockListItem.css";
+import { useNavigate } from "react-router-dom";
 
 function ACBlockListItem({ listing, onApprove, onDeny }) {
 	// console.log(listing); // temp check
+
+	const navigate = useNavigate();
+
 	const { _id, productName, price, mainImage, seller } = listing;
 
 	return (
@@ -22,7 +26,9 @@ function ACBlockListItem({ listing, onApprove, onDeny }) {
 
 				<div className="ac-info-bot">
 					<div className="ac-bot-info">
-						<button className="ac-view-item-btn">
+						<button
+							className="ac-view-item-btn"
+							onClick={() => navigate(`/product/${_id}`)}>
 							<span className="ac-view-item">View Item</span>
 						</button>
 						<button
