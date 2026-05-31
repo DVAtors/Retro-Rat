@@ -117,7 +117,7 @@ function SingleProductInformation({ listing }) {
 								/>
 							</svg>
 						</div>
-						<span className="buttonText" onClick={handleAddToCart}>ADD TO CART</span>
+						<span className="buttonText">ADD TO CART</span>
 					</button>
 					<button className="buyNowBtn" onClick={handleBuyNow}>
 						<span className="buttonText">BUY NOW</span>

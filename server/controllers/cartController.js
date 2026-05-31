@@ -1,5 +1,4 @@
 const Cart = require('../models/Cart');
-const TEMP_USER_ID = '6a031ed938a375e22177a08c';
 
 //find the cart or make a new one if its not there for some reason
 async function getOrCreateCart(userId) {
