@@ -1,14 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const Listing = require("../models/Listing"); // for Troy's GET routes
+const Listing = require("../models/Listing");
 
 // Controller function for creating a listing... yes
-const { createListing } = require("../controllers/listingController");
+const {
+	createListing,
+	addComment,
+} = require("../controllers/listingController");
 const { protect } = require("../middleware/authMiddleware");
 const upload = require("../middleware/uploadMiddleware");
 
 // Basically: protect -> upload to Cloudinary -> save to DB
 router.post("/", protect, upload.single("image"), createListing);
+
+// For Comment
+// POST http://localhost:5001/api/listings/<LISTING_ID>/comments
+router.post("/:id/comments", protect, addComment);
 
 // =====================================================================
 // TROY'S CODE BELOWWWWW.
@@ -60,6 +67,16 @@ router.get("/my", protect, async (req, res) => {
 		res.status(500).json({ error: err.message });
 	}
 });
+router.get("/my", protect, async (req, res) => {
+	try {
+		const listings = await Listing.find({ seller: req.user.id }).sort({
+			createdAt: -1,
+		});
+		res.json(listings);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+});
 
 // GET /api/listings/:id — get one listing (and increment views)
 router.get("/:id", async (req, res) => {
@@ -67,7 +84,7 @@ router.get("/:id", async (req, res) => {
 		const listing = await Listing.findByIdAndUpdate(
 			req.params.id,
 			{ $inc: { views: 1 } },
-			{ new: true },
+			{ returnDocument: "after" },
 		).populate("seller", "name");
 		if (!listing) return res.status(404).json({ error: "Listing not found" });
 		res.json(listing);
@@ -80,7 +97,7 @@ router.get("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
 	try {
 		const updated = await Listing.findByIdAndUpdate(req.params.id, req.body, {
-			new: true,
+			returnDocument: "after",
 			runValidators: true,
 		});
 		if (!updated) {
