@@ -306,3 +306,9 @@ p {
 	letter-spacing: -0.03975rem;
 	text-transform: uppercase;
 }
+
+.item-controls-container {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}

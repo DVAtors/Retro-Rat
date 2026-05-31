@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { apiPost } from "../client";
 import FlagButtonComponent from "./flagButtonComponent";
 import SellerContainerComponent from "./SellerContainerComponent";
+import DeleteItemBtn from "./AdminDeleteItemBtnComponent";
 
 function SingleProductInformation({ listing }) {
 	const navigate = useNavigate();
@@ -63,7 +64,10 @@ function SingleProductInformation({ listing }) {
 							{/* <p>{listing.productLocation}</p> */}
 						</div>
 					</div>
-					<FlagButtonComponent listingId={listing._id} />
+					<div className="item-controls-container">
+						<FlagButtonComponent listingId={listing._id} />
+						<DeleteItemBtn listingId={listing._id} />
+					</div>
 				</div>
 				<SellerContainerComponent seller={listing.seller} />
 				<div className="divider"></div>
