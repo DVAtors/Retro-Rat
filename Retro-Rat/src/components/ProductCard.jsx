@@ -78,29 +78,25 @@ lg={4}: 3 cards per row on desktops */}
 				<Link
 					to={`/product/${id}`}
 					style={{ textDecoration: "none", color: "inherit" }}>
-					<div className="product-img">
-						<img src={imgSrc} alt={title} />
-					</div>
 
-					<div className="product-desc">
-						<div className="price-container">
-							<div className="price-text">{price}</div>
-							<div className="condition-status">{condition}</div>
-						</div>
+<div className="product-img">
+                        <div className="product-year">{year}</div>
+                        <img src={imgSrc} alt={title} />
+                    </div>
 
-						<div className="product-row-top">
-							<div className="product-col">
-								<p className="product-title">{title}</p>
-							</div>
+                    <div className="product-desc">
+                        <div className="price-container">
+                            <div className="price-text">{price}</div>
+                            <div className="condition-status">{condition}</div>
+                        </div>
 
-							<div className="product-col">
-								<div className="product-year">{year}</div>
-							</div>
-						</div>
-						<div className="product-row">
-							<p className="seller-username">{username}</p>
-						</div>
-					</div>
+                        
+                        <div className="product-text-stack">
+                            <p className="product-title">{title}</p>
+                            
+                            <p className="seller-username">BY {username}</p>
+                        </div>
+                    </div>
 				</Link>
 			</Col>
 		</>
