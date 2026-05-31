@@ -77,5 +77,5 @@ const getMe = async (req, res) => {
 	}
 };
 
-module.exports = { registerUser, loginUser, getUsers, getMe };
-// module.exports = { registerUser, loginUser, getUsers };
+// module.exports = { registerUser, loginUser, getUsers, getMe };
+module.exports = { registerUser, loginUser, getUsers, getMe};

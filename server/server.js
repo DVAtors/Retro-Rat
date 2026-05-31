@@ -30,3 +30,6 @@ app.listen(PORT, () => {
 //cart routes
 const cartRoutes = require('./routes/cartRoutes');
 app.use('/api/cart', cartRoutes);
+
+const savedRoutes = require('./routes/savedRoutes');
+app.use('/api/saved', savedRoutes);

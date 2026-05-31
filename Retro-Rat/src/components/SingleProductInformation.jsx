@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { apiPost } from "../client";
 import FlagButtonComponent from "./flagButtonComponent";
 import SellerContainerComponent from "./SellerContainerComponent";
-import DeleteItemBtn from "./AdminDeleteItemBtnComponent";
 
 function SingleProductInformation({ listing }) {
 	const navigate = useNavigate();
@@ -60,14 +59,10 @@ function SingleProductInformation({ listing }) {
 								/>
 							</svg>
 							<span className="location-text">Gauteng</span>
-							{/* <span className="location-text">{listing.productLocation}</span> */}
 							{/* <p>{listing.productLocation}</p> */}
 						</div>
 					</div>
-					<div className="item-controls-container">
-						<FlagButtonComponent listingId={listing._id} />
-						<DeleteItemBtn listingId={listing._id} />
-					</div>
+					<FlagButtonComponent listingId={listing._id} />
 				</div>
 				<SellerContainerComponent seller={listing.seller} />
 				<div className="divider"></div>
@@ -122,9 +117,7 @@ function SingleProductInformation({ listing }) {
 								/>
 							</svg>
 						</div>
-						<span className="buttonText" onClick={handleAddToCart}>
-							ADD TO CART
-						</span>
+						<span className="buttonText">ADD TO CART</span>
 					</button>
 					<button className="buyNowBtn" onClick={handleBuyNow}>
 						<span className="buttonText">BUY NOW</span>

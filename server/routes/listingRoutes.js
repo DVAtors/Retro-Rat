@@ -22,9 +22,7 @@ router.get("/", async (req, res) => {
 	res.json(listings);
 });
 
-// Robert added this part... for testing (All this had to go before :id block, else it wouldn't work)
-// This works, just commented it out, as I'm not backend ~Robert
-// GET /api/listings/pending — get all pending listings (admin only)
+//GET /api/listings/pending — get all pending listings (admin only) --robert's code
 router.get("/pending", async (req, res) => {
 	try {
 		const listings = await Listing.find({ status: "pending" })
@@ -36,8 +34,7 @@ router.get("/pending", async (req, res) => {
 	}
 });
 
-// Another Robert added route... I'm so sorry troy :(
-// GET /api/listings/past — get all approved and rejected listings
+// GET /api/listings/past — get all approved and rejected listings --robert too
 router.get("/past", async (req, res) => {
 	try {
 		const listings = await Listing.find({

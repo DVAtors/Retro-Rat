@@ -43,7 +43,7 @@ function CartPage() {
 					<CartProductComponent /> */}
 					{listings.map((listings) => (
 						<CartProductComponent
-							key={listings._id}
+							key={listings._id} //change to what?
 							id={listings._id}
 							title={listings.productName}
 							username={listings.seller?.name || "unknown"}
@@ -54,7 +54,7 @@ function CartPage() {
 					))}
 				</div>
 				<div className="cart-order-summary-wrapper">
-					<CartOrderSummaryComp />
+					<CartOrderSummaryComp listings={listings} />
 				</div>
 			</div>
 		</div>
