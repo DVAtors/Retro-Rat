@@ -26,7 +26,7 @@ function getAuthHeaders() {
 export async function apiPut(path, body) {
 	const res = await fetch(`${API_URL}${path}`, {
 		method: "PUT",
-		headers: { "Content-Type": "application/json", ...authHeaders() },
+		headers: { "Content-Type": "application/json", ...getAuthHeaders() },
 		body: JSON.stringify(body),
 	});
 	if (!res.ok) throw new Error(`API error: ${res.status}`);
@@ -50,7 +50,7 @@ export async function apiPost(path, body) {
 export async function apiDelete(path) {
 	const res = await fetch(`${API_URL}${path}`, {
 		method: "DELETE",
-		headers: { ...authHeaders() },
+		headers: { ...getAuthHeaders() },
 	});
 	if (!res.ok) throw new Error(`API error: ${res.status}`);
 	return res.json();
