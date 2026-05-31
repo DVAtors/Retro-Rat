@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Comment = require('../models/Comment');
 const Reply = require('../models/Reply');
-const { protect } = require('../middleware/authMiddleware'); // Reusing your auth
+const { protect } = require('../middleware/authMiddleware'); 
 
 // Get all comments for a specific listing
 router.get('/listing/:listingId', async (req, res) => {
@@ -21,7 +21,7 @@ router.post('/listing/:listingId', protect, async (req, res) => {
     try {
         const newComment = new Comment({
             listing: req.params.listingId,
-            author: req.user.id, // Comes from your auth token
+            author: req.user.id,
             text: req.body.text
         });
         await newComment.save();

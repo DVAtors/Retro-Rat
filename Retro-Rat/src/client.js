@@ -33,7 +33,7 @@ export async function apiPut(path, body) {
 export async function apiPost(path, body) {
   const res = await fetch(`${API_URL}${path}`, {
     method: "POST",
-    headers: getAuthHeaders(), // Injecting the token here
+    headers: getAuthHeaders(),
     body: JSON.stringify(body),
   });
   

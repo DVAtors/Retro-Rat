@@ -38,14 +38,12 @@ const addComment = async (req, res) => {
             return res.status(400).json({ error: 'Comment text is required' });
         }
 
-        // Fetch the parent document
+        // Fetch parent document
         const listing = await Listing.findById(listingId);
         if (!listing) {
             return res.status(404).json({ error: 'Listing not found' });
         }
 
-        // Create the comment matching
-        // The authMiddleware makes sure req.user.id exists and is really the user's ID
         const newComment = {
             author: req.user.id,
             text: text
