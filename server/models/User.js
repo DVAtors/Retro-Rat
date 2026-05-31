@@ -42,6 +42,7 @@ const UserSchema = new mongoose.Schema(
 				"Northern Cape",
 				"North West",
 				"Western Cape",
+				"Pretoria",
 			],
 			required: true,
 		},
