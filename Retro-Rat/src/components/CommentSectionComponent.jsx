@@ -1,21 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./CommentSectionComponent.css";
 
 import CommentFieldComponent from "./CommentFieldComponent";
 import PostCommentButton from "./PostCommentButton";
 import CommentComponent from "./CommentComponent";
 
-import { apiPost } from "../client";
+import { apiPost, apiGet } from "../client";
 
 
 function CommentSectionComponent({ listingId }) {
-	// `input` holds the value of the comment field (controlled input)
 	const [input, setInput] = useState("");
-	// `comments` is an array of posted comment objects shown below the input
 	const [comments, setComments] = useState([]);
 
-	// handlePost: validate input, create a lightweight comment object,
-	// prepend it to `comments` and clear the input field.
+	useEffect(() => {
+        if (!listingId) return;
+
+        apiGet(`/comments/listing/${listingId}`)
+            .then(fetchedComments => {
+                setComments(fetchedComments);
+            })
+            .catch(err => {
+                console.error("Failed to load comments:", err);
+            });
+            
+    }, [listingId]);
+	
 	function handlePost() {
     if (!input.trim()) return;
 
