@@ -34,8 +34,8 @@ function SingleProductView() {
 			<div className="mainContent">
 				{/* <div className="breadcrumbs"></div> */}
 				<div className="productDetails">
-					<SingleProductImage listing={listing} />
-					<SingleProductInformation listing={listing} />
+    				<SingleProductImage listing={listing} />
+    				<SingleProductInformation listing={listing} />
 				</div>
 				<CommentSectionComponent listingId={listing._id} />
 			</div>

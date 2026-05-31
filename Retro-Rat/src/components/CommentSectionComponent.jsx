@@ -5,7 +5,10 @@ import CommentFieldComponent from "./CommentFieldComponent";
 import PostCommentButton from "./PostCommentButton";
 import CommentComponent from "./CommentComponent";
 
-function CommentSectionComponent() {
+import { apiPost } from "../client";
+
+
+function CommentSectionComponent({ listingId }) {
 	// `input` holds the value of the comment field (controlled input)
 	const [input, setInput] = useState("");
 	// `comments` is an array of posted comment objects shown below the input
@@ -14,16 +17,18 @@ function CommentSectionComponent() {
 	// handlePost: validate input, create a lightweight comment object,
 	// prepend it to `comments` and clear the input field.
 	function handlePost() {
-		if (!input.trim()) return; // guard against empty submissions
-		const newComment = {
-			id: Date.now(),
-			author: "You",
-			text: input.trim(),
-			time: "Just now",
-		};
-		setComments((c) => [newComment, ...c]);
-		setInput("");
-	}
+    if (!input.trim()) return;
+
+    apiPost(`/comments/listing/${listingId}`, { text: input.trim() })
+        .then(savedComment => {
+            // ONLY update the screen if the server sends back the saved comment
+            setComments(prev => [savedComment, ...prev]);
+            setInput("");
+        })
+        .catch(err => {
+            console.error("Failed to post comment:", err);
+        });
+}
 
 	return (
 		<div className="commentSection">

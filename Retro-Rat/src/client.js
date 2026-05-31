@@ -1,11 +1,23 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
+
 export async function apiGet(path) {
   const res = await fetch(`${API_URL}${path}`);
   if (!res.ok) {
     throw new Error(`API error: ${res.status}`);
   }
   return res.json();
+}
+
+function getAuthHeaders() {
+  const headers = { "Content-Type": "application/json" };
+  
+  const token = localStorage.getItem('token'); 
+  
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+  return headers;
 }
 
 export async function apiPut(path, body) {
@@ -21,10 +33,14 @@ export async function apiPut(path, body) {
 export async function apiPost(path, body) {
   const res = await fetch(`${API_URL}${path}`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: getAuthHeaders(), // Injecting the token here
     body: JSON.stringify(body),
   });
-  if (!res.ok) throw new Error(`API error: ${res.status}`);
+  
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}));
+    throw new Error(errorData.error || `API error: ${res.status}`);
+  }
   return res.json();
 }
 
