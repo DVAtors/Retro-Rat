@@ -108,7 +108,7 @@
 .product-info-lower {
 	display: flex;
 	height: 2.75rem;
-	justify-content: space-between;
+	justify-content: flex-end;
 	align-items: center;
 	flex-shrink: 0;
 	align-self: stretch;

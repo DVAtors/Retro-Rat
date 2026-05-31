@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { apiGet } from "../client";
 import "./UserConsolePage.css";
 import Img1 from "../assets/product-img.png";
 import Img2 from "../assets/Image (Classic Game Console Controller).png";
 import Img3 from "../assets/Image (Sony Walkman Cassette Player).png";
 
-import { Link, Route, Routes } from "react-router-dom";
+import LogoutBtnComp from "../components/LogOutBtnComponent";
+
+import { Link, Route, Routes, NavLink } from "react-router-dom";
 
 import SubmitProduct from "./SubmitProduct";
 
@@ -52,81 +56,139 @@ const mockSavedItems = [];
 const mockNotifications = [];
 
 const STATUS_CONFIG = {
-	active: { label: "ACTIVE", className: "status-active" },
+	approved: { label: "ACTIVE", className: "status-active" },
 	pending: { label: "PENDING REVIEW", className: "status-pending" },
-	sold: { label: "SOLD", className: "status-sold" },
+	rejected: { label: "DENIED", className: "status-sold" },
 };
 
 function UserConsolePage({ id }) {
+	// Updating the signed in user's name on the card
+	const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(true); 
+	const navigate = useNavigate(); 
+
+	useEffect(() => {
+        // Fetch "my" details.
+        apiGet('/users/me')
+            .then(data => {
+                setUser(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error("Auth failed:", err);
+                localStorage.removeItem('token');
+                navigate('/login');
+            });
+    }, [navigate]);
+
+	function handleLogout() {
+        // get rid of token and force a hard refresh
+        localStorage.removeItem("token");
+        window.location.href = "/";
+    }
+
+	// fetch signed in user's listings
+	const [listings, setListings] = useState([]);
+	const [listingsLoading, setListingsLoading] = useState(true);
+	const [listingsError, setListingsError] = useState(null);
+
+	const joinDate = user?.createdAt 
+    ? new Date(user.createdAt).toLocaleString('default', { month: 'long', year: 'numeric' }) 
+    : "Loading...";
+
+	useEffect(() => {
+		const fetchMyListings = async () => {
+			try {
+				const token = localStorage.getItem("token");
+				const res = await fetch("http://localhost:5001/api/listings/my", {
+					headers: { Authorization: `Bearer ${token}` },
+				});
+				if (!res.ok) throw new Error("Failed to fetch listings");
+				const data = await res.json();
+				setListings(data);
+			} catch (error) {
+				setListingsError(error.message);
+			} finally {
+				setListingsLoading(false);
+			}
+		};
+		fetchMyListings();
+	}, []);
+
 	const [activeTab, setActiveTab] = useState("listings");
-	const [listings, setListings] = useState(mockListings);
+	// const [listings, setListings] = useState(mockListings);
 
 	const handleDelete = (id) => {
 		setListings((prev) => prev.filter((l) => l.id !== id));
 	};
 
-	const renderListings = () => (
-		<div className="uc-panel">
-			<h2 className="uc-panel-title">YOUR LISTINGS</h2>
-			<div className="uc-listing-list">
-				{listings.map((item) => {
-					const statusCfg = STATUS_CONFIG[item.status];
-					return (
-						<div className="uc-listing-card" key={item.id}>
-							<img
-								src={item.imgSrc}
-								alt={item.title}
-								className="uc-listing-img"
-							/>
-							<div className="uc-listing-body">
-								<div className="uc-listing-top">
-									<div>
-										<p className="uc-listing-title">{item.title}</p>
-										<p className="uc-listing-price">{item.price}</p>
-										{item.note && (
-											<p className="uc-listing-note">
-												<span className="uc-clock-icon">🕐</span> {item.note}
+	const renderListings = () => {
+		const activeAndPending = listings.filter(
+			(item) => item.status === "approved" || item.status === "pending",
+		);
+
+		return (
+			<div className="uc-panel">
+				<h2 className="uc-panel-title">Active and Pending Review Listings:</h2>
+				{listingsLoading && <p>Loading...</p>}
+				{listingsError && <p style={{ color: "red" }}>{listingsError}</p>}
+				{!listingsLoading && activeAndPending.length === 0 && (
+					<p className="uc-empty">
+						No Active Listings or Listings Pending Review...
+					</p>
+				)}
+				<div className="uc-listing-list">
+					{activeAndPending.map((item) => {
+						const statusCfg = STATUS_CONFIG[item.status];
+						return (
+							<div className="uc-listing-card" key={item._id}>
+								<img
+									src={item.mainImage}
+									alt={item.productName}
+									className="uc-listing-img"
+								/>
+								<div className="uc-listing-body">
+									<div className="uc-listing-top">
+										<div>
+											<p className="uc-listing-title">{item.productName}</p>
+											<p className="uc-listing-price">
+												R{Number(item.price).toFixed(2)}
 											</p>
-										)}
-										{(item.views || item.comments) && (
+											{item.status === "pending" && (
+												<p className="uc-listing-note">
+													<span className="uc-clock-icon">🕐</span> AWAITING
+													ADMIN APPROVAL
+												</p>
+											)}
 											<p className="uc-listing-meta">
-												{item.views && (
-													<span>
-														<span className="uc-icon">👁</span> {item.views}{" "}
-														VIEWS
-													</span>
-												)}
-												{item.comments && (
-													<span>
-														<span className="uc-icon">💬</span> {item.comments}{" "}
-														COMMENTS
-													</span>
-												)}
+												<span>
+													<span className="uc-icon">👁</span> {item.views} VIEWS
+												</span>
 											</p>
-										)}
+										</div>
+										<span className={`uc-status-badge ${statusCfg.className}`}>
+											{statusCfg.label}
+										</span>
 									</div>
-									<span className={`uc-status-badge ${statusCfg.className}`}>
-										{statusCfg.label}
-									</span>
-								</div>
-								<div className="uc-listing-actions">
-									<button className="uc-btn uc-btn-view">VIEW</button>
-									{item.status === "active" && (
-										<button className="uc-btn uc-btn-edit">✏ EDIT</button>
-									)}
-									<button
-										className="uc-btn uc-btn-delete"
-										onClick={() => handleDelete(item.id)}>
-										🗑 DELETE
-									</button>
+									<div className="uc-listing-actions">
+										<button className="uc-btn uc-btn-view">VIEW</button>
+										{item.status === "approved" && (
+											<button className="uc-btn uc-btn-edit">✏ EDIT</button>
+										)}
+										<button
+											className="uc-btn uc-btn-delete"
+											onClick={() => handleDelete(item._id)}>
+											🗑 DELETE
+										</button>
+									</div>
 								</div>
 							</div>
-						</div>
-					);
-				})}
+						);
+					})}
+				</div>
 			</div>
-		</div>
-	);
+		);
+	};
 
 	const renderSaved = () => (
 		<div className="uc-panel">
@@ -139,10 +201,53 @@ function UserConsolePage({ id }) {
 
 	const renderNotifications = () => (
 		<div className="uc-panel">
-			<h2 className="uc-panel-title">NOTIFICATIONS</h2>
-			{mockNotifications.length === 0 ? (
-				<p className="uc-empty">No new notifications.</p>
-			) : null}
+			<h2 className="uc-panel-title">YOUR LISTINGS:</h2>
+			{listingsLoading && <p>Loading...</p>}
+			{listingsError && <p style={{ color: "red" }}>{listingsError}</p>}
+			{!listingsLoading && listings.length === 0 && (
+				<p className="uc-empty">No listings yet.</p>
+			)}
+			<div className="uc-listing-list">
+				{listings.map((item) => {
+					const statusCfg = STATUS_CONFIG[item.status] || {
+						label: item.status.toUpperCase(),
+						className: "status-pending",
+					};
+					return (
+						<div className="uc-listing-card" key={item._id}>
+							<img
+								src={item.mainImage}
+								alt={item.productName}
+								className="uc-listing-img"
+							/>
+							<div className="uc-listing-body">
+								<div className="uc-listing-top">
+									<div>
+										<p className="uc-listing-title">{item.productName}</p>
+										<p className="uc-listing-price">
+											R{Number(item.price).toFixed(2)}
+										</p>
+										{item.status === "pending" && (
+											<p className="uc-listing-note">
+												<span className="uc-clock-icon">🕐</span> AWAITING ADMIN
+												APPROVAL
+											</p>
+										)}
+										<p className="uc-listing-meta">
+											<span>
+												<span className="uc-icon">👁</span> {item.views} VIEWS
+											</span>
+										</p>
+									</div>
+									<span className={`uc-status-badge ${statusCfg.className}`}>
+										{statusCfg.label}
+									</span>
+								</div>
+							</div>
+						</div>
+					);
+				})}
+			</div>
 		</div>
 	);
 
@@ -151,11 +256,19 @@ function UserConsolePage({ id }) {
 			{/* Profile Header */}
 			<div className="uc-profile-header">
 				<div className="uc-profile-left">
-					<div className="uc-avatar">{mockUser.initial}</div>
+					<div className="uc-avatar">
+						{user?.name?.[0]?.toUpperCase() || "?"}
+					</div>
 					<div className="uc-profile-info">
-						<h1 className="uc-username">{mockUser.username}</h1>
+						<h1 className="uc-username">{user?.name || "Loading..."}</h1>
 						<p className="uc-member-since">
-							MEMBER SINCE {mockUser.memberSince}
+							MEMBER SINCE{" "}
+							{user
+								? new Date(user.createdAt).toLocaleDateString("en-US", {
+										month: "long",
+										year: "numeric",
+									})
+								: ""}
 						</p>
 						<p className="uc-stats">
 							<span className="uc-star">★</span> {mockUser.rating} RATING
@@ -163,7 +276,13 @@ function UserConsolePage({ id }) {
 						</p>
 					</div>
 				</div>
-				<button className="uc-list-new-btn">LIST NEW ITEM</button>
+				<div className="uc-card-btns">
+					<LogoutBtnComp onLogout={handleLogout} />
+					{/* <button className="uc-list-new-btn">LIST NEW ITEM</button> */}
+					<NavLink to="/sell" className="uc-list-new-btn">
+						LIST NEW ITEM
+					</NavLink>
+				</div>
 				{/* Test 1: For Linking to Submit Form Page... - Need to do */}
 				{/* <Link
 					to={`./Pages/SubmitProduct.jsx`}
@@ -183,7 +302,7 @@ function UserConsolePage({ id }) {
 				<button
 					className={`uc-tab ${activeTab === "notifications" ? "uc-tab-active" : ""}`}
 					onClick={() => setActiveTab("notifications")}>
-					♡ NOTIFICATIONS
+					♡ All Listings
 				</button>
 				<button
 					className={`uc-tab ${activeTab === "listings" ? "uc-tab-active uc-tab-purple" : ""}`}

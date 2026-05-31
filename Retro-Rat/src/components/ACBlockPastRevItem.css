@@ -77,17 +77,28 @@
 	letter-spacing: 0.01225rem;
 }
 
-.pending-tag {
+.approved-tag {
 	display: flex;
 	padding: 0.4375rem 1.22556rem;
 	justify-content: center;
 	align-items: center;
 
 	border: 2px solid #000;
-	background: #d99e30;
+	background: var(--RainbowMarch-LightGreen, #26ab81);
 }
 
-.tag-text {
+.denied-tag {
+	display: flex;
+	padding: 0.4375rem 1.22556rem;
+	justify-content: center;
+	align-items: center;
+
+	border: 2px solid #000;
+	background: var(--RainbowMarch-Coral-Red, #ff4040);
+}
+
+.approved-tag-text,
+.denied-tag-text {
 	color: #fff;
 	font-family: Inter;
 	font-size: 1.09375rem;

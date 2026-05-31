@@ -1,7 +1,7 @@
 import "./CartPage.css";
 
 import React, { useEffect, useState } from "react";
-import { apiGet,apiDelete } from "../client";
+import { apiGet, apiDelete } from "../client";
 
 // Importing components:
 import CartProductComponent from "../components/CartProductComponent";
@@ -43,7 +43,7 @@ function CartPage() {
 					<CartProductComponent /> */}
 					{listings.map((listings) => (
 						<CartProductComponent
-							key={listings._id}
+							key={listings._id} //change to what?
 							id={listings._id}
 							title={listings.productName}
 							username={listings.seller?.name || "unknown"}
@@ -53,7 +53,9 @@ function CartPage() {
 						/>
 					))}
 				</div>
-				<CartOrderSummaryComp />
+				<div className="cart-order-summary-wrapper">
+					<CartOrderSummaryComp listings={listings} />
+				</div>
 			</div>
 		</div>
 	);

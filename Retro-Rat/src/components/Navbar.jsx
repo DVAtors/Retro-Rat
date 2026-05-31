@@ -18,6 +18,7 @@ export default function Navbar() {
 	const toggleMenu = () => {
 		setIsMenuOpen(!isMenuOpen);
 	};
+	const isLoggedIn = !!localStorage.getItem("token");
 
 	return (
 		<>
@@ -71,23 +72,21 @@ export default function Navbar() {
 								onClick={() => setIsMenuOpen(false)}>
 								Cart
 							</Link>
-							<Link
-								to="/account"
-								className={location.pathname === "/account" ? "active" : ""}
-								onClick={() => setIsMenuOpen(false)}>
-								Account
-							</Link>
-							{/* <Link to="/logout" className="logout-btn">
-								Logout
-							</Link> */}
-							<Link
-								to="/login"
-								className={
-									location.pathname.startsWith("/login") ? "active" : ""
-								}
-								onClick={() => setIsMenuOpen(false)}>
-								Login
-							</Link>
+							{isLoggedIn ? (
+    							<Link
+       	 							to="/account"
+        							className={location.pathname === "/account" ? "active" : ""}
+        							onClick={() => setIsMenuOpen(false)}>
+        							Account
+    							</Link>
+							) : (
+    							<Link
+        							to="/login"
+        							className={location.pathname.startsWith("/login") ? "active" : ""}
+        							onClick={() => setIsMenuOpen(false)}>
+        							Login
+    							</Link>
+							)}
 						</div>
 					</div>
 				</div>
