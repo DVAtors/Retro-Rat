@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { apiGet } from "../client";
 import "./UserConsolePage.css";
 import Img1 from "../assets/product-img.png";
 import Img2 from "../assets/Image (Classic Game Console Controller).png";
@@ -62,27 +64,37 @@ const STATUS_CONFIG = {
 function UserConsolePage({ id }) {
 	// Updating the signed in user's name on the card
 	const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(true); 
+	const navigate = useNavigate(); 
 
 	useEffect(() => {
-		const fetchUser = async () => {
-			try {
-				const token = localStorage.getItem("token");
-				const res = await fetch("http://localhost:5001/api/users/me", {
-					headers: { Authorization: `Bearer ${token}` },
-				});
-				const data = await res.json();
-				setUser(data);
-			} catch (err) {
-				console.error("Failed to fetch user:", err);
-			}
-		};
-		fetchUser();
-	}, []);
+        // Fetch "my" details.
+        apiGet('/users/me')
+            .then(data => {
+                setUser(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error("Auth failed:", err);
+                localStorage.removeItem('token');
+                navigate('/login');
+            });
+    }, [navigate]);
+
+	function handleLogout() {
+        // get rid of token and force a hard refresh
+        localStorage.removeItem("token");
+        window.location.href = "/";
+    }
 
 	// fetch signed in user's listings
 	const [listings, setListings] = useState([]);
 	const [listingsLoading, setListingsLoading] = useState(true);
 	const [listingsError, setListingsError] = useState(null);
+
+	const joinDate = user?.createdAt 
+    ? new Date(user.createdAt).toLocaleString('default', { month: 'long', year: 'numeric' }) 
+    : "Loading...";
 
 	useEffect(() => {
 		const fetchMyListings = async () => {
@@ -265,7 +277,7 @@ function UserConsolePage({ id }) {
 					</div>
 				</div>
 				<div className="uc-card-btns">
-					<LogoutBtnComp />
+					<LogoutBtnComp onLogout={handleLogout} />
 					{/* <button className="uc-list-new-btn">LIST NEW ITEM</button> */}
 					<NavLink to="/sell" className="uc-list-new-btn">
 						LIST NEW ITEM

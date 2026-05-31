@@ -2,7 +2,10 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 
 export async function apiGet(path) {
-  const res = await fetch(`${API_URL}${path}`);
+  const res = await fetch(`${API_URL}${path}`, {
+    method: "GET",
+    headers: getAuthHeaders(), 
+  });
   if (!res.ok) {
     throw new Error(`API error: ${res.status}`);
   }

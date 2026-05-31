@@ -1,8 +1,8 @@
 import "./LogOutBtnComponent.css";
 
-function LogoutBtnComp(params) {
+function LogoutBtnComp({ onLogout }) {
 	return (
-		<button className="logoutBtn">
+		<button className="logoutBtn" onClick={onLogout}>
 			Log Out
 			{/* <span className="logout-btn-text">LogOut</span> */}
 		</button>

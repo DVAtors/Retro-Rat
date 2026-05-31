@@ -19,8 +19,8 @@ router.post("/login", loginUser);
 router.get("/", protect, getUsers);
 
 // testing route from robert...
-// const { getMe } = require("../controllers/userController");
+const { getMe } = require("../controllers/userController");
 
-// router.get("/me", protect, getMe);
+router.get("/me", protect, getMe);
 
 module.exports = router;
