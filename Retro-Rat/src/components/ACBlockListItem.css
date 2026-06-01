@@ -125,6 +125,51 @@
 	background: #fff;
 }
 
+.ac-view-item-btn:hover {
+	border: 2px solid #000;
+	background: #000;
+
+	color: aliceblue;
+
+	transition: color 0.15s ease;
+}
+
+.ac-view-item:hover {
+	color: aliceblue;
+
+	transition: color 0.15s ease;
+}
+
+.ac-approve-item-btn:hover {
+	border: 2px solid #000;
+	background: var(--brandColors-Green, #0b8c34);
+
+	color: aliceblue;
+
+	transition: color 0.15s ease;
+}
+
+.ac-approve-item:hover {
+	color: aliceblue;
+
+	transition: color 0.15s ease;
+}
+
+.ac-delete-item-btn:hover {
+	border: 2px solid #000;
+	background: #d9411e;
+
+	color: aliceblue;
+
+	transition: color 0.15s ease;
+}
+
+.ac-delete-item:hover {
+	color: aliceblue;
+
+	transition: color 0.15s ease;
+}
+
 .ac-view-item-btn {
 	color: #000;
 }
