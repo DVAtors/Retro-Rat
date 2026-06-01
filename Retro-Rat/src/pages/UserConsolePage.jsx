@@ -12,6 +12,14 @@ import { Link, Route, Routes, NavLink } from "react-router-dom";
 
 import SubmitProduct from "./SubmitProduct";
 
+import {
+	FontAwesomeIcon,
+	faPenToSquare,
+	faClock,
+	faEye,
+	faTrashCan,
+} from "@fortawesome/free-regular-svg-icons";
+
 // Mock data — swap with real API calls later
 const mockUser = {
 	username: "TECHCOLLECTOR",
@@ -169,13 +177,14 @@ function UserConsolePage({ id }) {
 											</p>
 											{item.status === "pending" && (
 												<p className="uc-listing-note">
-													<span className="uc-clock-icon">🕐</span> AWAITING
-													ADMIN APPROVAL
+													<FontAwesomeIcon icon={faClock} />
+													AWAITING ADMIN APPROVAL
 												</p>
 											)}
 											<p className="uc-listing-meta">
 												<span>
-													<span className="uc-icon">👁</span> {item.views} VIEWS
+													<FontAwesomeIcon icon={faEye} />
+													{item.views} VIEWS
 												</span>
 											</p>
 										</div>
@@ -187,19 +196,22 @@ function UserConsolePage({ id }) {
 										<button
 											className="uc-btn uc-btn-view"
 											onClick={() => navigate(`/product/${item._id}`)}>
-											VIEW
+											<FontAwesomeIcon icon={faEye} />
+											<span>EDIT</span>
 										</button>
 										{item.status === "approved" && (
 											<button
 												className="uc-btn uc-btn-edit"
 												onClick={() => navigate(`/sell/${item._id}`)}>
-												✏ EDIT
+												<FontAwesomeIcon icon={faPenToSquare} />
+												<span>EDIT</span>
 											</button>
 										)}
 										<button
 											className="uc-btn uc-btn-delete"
 											onClick={() => handleDelete(item._id)}>
-											🗑 DELETE
+											<FontAwesomeIcon icon={faTrashCan} />
+											<span>DELETE</span>
 										</button>
 									</div>
 								</div>
