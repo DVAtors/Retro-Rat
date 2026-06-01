@@ -86,8 +86,8 @@ export default function FilterBar({ onFilterChange }) {
     // LIKE I HATE THIS STUPID PIECE OF AHHHHEIBUWRHVBUREBVUGRBVUHIWVBHWEJHVBUIRVBUIHWEV 
     // ANYWAY, I'LL DO THIS BYYY THE END OF TOMORROR o7
     const wave3Colors = {
-        "ALL": "#4A9090", "EXCELLENT": "#4A9090", "GREAT": "#42823E",
-        "MODERATE": "#F4D03F", "LOW": "#C6934B", "POOR": "#C24932"
+        "ALL": "#0B8C8C", "EXCELLENT": "#0B8C8C", "GREAT": "#0B8C34",
+        "MODERATE": "#FFE500", "LOW": "#D99E30", "POOR": "#D9411E"
     };
 
 
@@ -219,6 +219,7 @@ export default function FilterBar({ onFilterChange }) {
 
     return (
         <Container fluid>
+            <div className="filter-bar-container">
             <Row className="filter-bar">
                 <Col className="category-block">
                     <img className="category-icon" src={Filter} alt="Category Icon" />
@@ -251,6 +252,7 @@ export default function FilterBar({ onFilterChange }) {
                     </div>
                 </Col>
             </Row>
+            </div>
         </Container>
     );
 }
