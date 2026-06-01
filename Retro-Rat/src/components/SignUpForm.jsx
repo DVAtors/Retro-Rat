@@ -3,6 +3,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import TunePassword from "../components/TunePassword";
 
+import LocationIcon from "../assets/LocationIcon.svg";
+
 import "../pages/LoginPage.css";
 
 export default function SignUpForm() {
@@ -12,6 +14,15 @@ export default function SignUpForm() {
 	const [errorMessage, setErrorMessage] = useState("");
 	const navigate = useNavigate();
 
+	const [form, setForm] = useState({
+		location: "",
+	});
+
+	const handleChange = (e) => {
+		setForm({ ...form, [e.target.name]: e.target.value });
+	};
+
+	// Borrowed from Remmy's code on the Submit Product form
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setErrorMessage("");
@@ -20,7 +31,12 @@ export default function SignUpForm() {
 			const response = await fetch("http://localhost:5001/api/users/register", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ name: username, email, password: tunePassword }),
+				body: JSON.stringify({
+					name: username,
+					email,
+					password: tunePassword,
+					location: form.location,
+				}),
 			});
 
 			const data = await response.json();
@@ -69,6 +85,38 @@ export default function SignUpForm() {
 								placeholder="e.g. leeBernersTimCERN@hotmail.com"
 								required
 							/>
+						</div>
+
+						<div className="input-group-block">
+							<label htmlFor="product-location" className="field-label">
+								<img
+									src={LocationIcon}
+									alt="Location"
+									className="label-inline-icon"
+								/>{" "}
+								Location
+							</label>
+
+							<select
+								id="product-location"
+								name="location"
+								className="province-dropdown"
+								value={form.location}
+								onChange={handleChange}
+								required>
+								<option value="" disabled hidden>
+									Select Province
+								</option>
+								<option value="Eastern Cape">Eastern Cape</option>
+								<option value="Free State">Free State</option>
+								<option value="Gauteng">Gauteng</option>
+								<option value="KwaZulu-Natal">KwaZulu-Natal</option>
+								<option value="Limpopo">Limpopo</option>
+								<option value="Mpumalanga">Mpumalanga</option>
+								<option value="Northern Cape">Northern Cape</option>
+								<option value="North West">North West</option>
+								<option value="Western Cape">Western Cape</option>
+							</select>
 						</div>
 					</form>
 				</Col>
