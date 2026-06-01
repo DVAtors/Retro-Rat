@@ -1,7 +1,16 @@
 body {
-	background-image: url(../assets/background.png);
-	background-repeat: repeat-y;
-	background-size: 100vw;
+	/* I REGRET ALL MY LIFE CHOICES */
+	background-image: 
+	var(--tetris-intro), 
+    var(--tetris-loop),
+	url(../assets/background.png);
+
+	background-position: 0px 600px, 0px 900px, 0px 0px;
+
+	background-repeat: repeat-x, repeat, repeat-y;
+	background-size: auto, auto, 100vw;
+	background-attachment: scroll, scroll, scroll;
+	
 	overflow-x: hidden;
 }
 
