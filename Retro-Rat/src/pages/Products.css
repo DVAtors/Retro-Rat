@@ -1,17 +1,55 @@
-body {
-	/* I REGRET ALL MY LIFE CHOICES */
-	background-image: 
-	var(--tetris-intro), 
-    var(--tetris-loop),
-	url(../assets/background.png);
+/* Products.css */
 
-	background-position: 0px 600px, 0px 900px, 0px 0px;
+/* * ============================================================================
 
-	background-repeat: repeat-x, repeat, repeat-y;
-	background-size: auto, auto, 100vw;
-	background-attachment: scroll, scroll, scroll;
-	
-	overflow-x: hidden;
+ * I KNEW I'd have to resort to ::before/::after black magic css bullshit to fix the tiling.
+
+ * ============================================================================
+ */
+
+ .tetris-page-wrapper {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    
+
+    background-image: url(../assets/background.png);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: 100vw;
+    z-index: 0; 
+}
+
+/* THE INTRO LAYER:floating blocks */
+.tetris-page-wrapper::before {
+    content: "";
+    position: absolute;
+    
+    top: 100vh; 
+    left: 0; 
+    right: 0;
+    
+    height: var(--tetris-intro-height); 
+    background-image: var(--tetris-intro);
+    background-repeat: repeat; 
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* THE INFINITE LOOP: The dense block wall */
+.tetris-page-wrapper::after {
+    content: "";
+    position: absolute;
+    /* Starts exactly where the intro ends */
+    top: calc(100vh + var(--tetris-loop-start)); 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    
+    background-image: var(--tetris-loop);
+    background-repeat: repeat;
+    z-index: -2; 
+    pointer-events: none;
 }
 
 .product-main-content {

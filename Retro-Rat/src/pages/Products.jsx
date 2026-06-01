@@ -102,6 +102,7 @@ export default function ProductsPage() {
 
 	return (
 		<>
+		<div className="tetris-page-wrapper">
 			<TetrisBackground />
 			<Container fluid className="product-main-content">
 				<Container fluid className="product-header">
@@ -148,6 +149,7 @@ export default function ProductsPage() {
 					))}
 				</Row>
 			</Container>
+			</div>
 		</>
 	);
 }
