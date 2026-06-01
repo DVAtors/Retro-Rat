@@ -8,6 +8,7 @@ import { apiGet } from "../client";
 import bootRatWhite from "../assets/bootRatWhite.svg";
 import ProductCard from "../components/ProductCard";
 import RetroToast from "../components/RetroToast";
+import TetrisWrapper from "../components/TetrisWrapper";
 
 export default function Homepage() {
 	const [listings, setListings] = useState([]);
@@ -65,6 +66,7 @@ export default function Homepage() {
 				</Container>
 
 				{/* === POPULAR SECTION === */}
+				<TetrisWrapper bgColor="#5b2c91">
 				<Container fluid className="popular-section">
 					<div className="section-inner-wrapper">
 						<div className="popular-banner">
@@ -111,7 +113,7 @@ export default function Homepage() {
 							</button>
 						</div>
 					</div>
-				</Container>
+				</Container></TetrisWrapper>
 
 				{/* === JOIN SECTION === */}
 				<Container fluid className="join-section">
@@ -153,6 +155,7 @@ export default function Homepage() {
 				</Container>
 
 				{/* === ALREADY A MEMBER SECTION === */}
+				<TetrisWrapper bgColor="#0B8C8C">
 				<Container fluid className="already-a-member-section">
 					<div className="section-inner-wrapper">
 						<Row className="flex-column gap-4">
@@ -209,7 +212,7 @@ export default function Homepage() {
 							</Col>
 						</Row>
 					</div>
-				</Container>
+				</Container></TetrisWrapper>
 			</div>
 			<RetroToast
 				isOpen={isToastOpen}
