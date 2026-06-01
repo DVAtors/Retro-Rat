@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"; 
 import "./SingleProductInformation.css";
 import { useNavigate } from "react-router-dom";
-import { apiPost, apiGet } from "../client"; 
+import { apiPost, apiGet, apiDelete } from "../client"; 
 import FlagButtonComponent from "./flagButtonComponent";
 import SellerContainerComponent from "./SellerContainerComponent";
 import CartDeleteProductComponent from "./CartDeleteProductComponent";
@@ -24,7 +24,9 @@ function SingleProductInformation({ listing }) {
 
 	const sellerId = listing.seller?._id || listing.seller; 
     const isOwner = currentUser && (currentUser._id === sellerId);
-	
+	const isAdmin = localStorage.getItem("isAdmin") === "true";
+	const canDelete = isOwner || isAdmin;
+
 	const handleAddToCart = async () => {
 		try {
 			await apiPost("/cart", { listingId: listing._id });
@@ -39,6 +41,23 @@ function SingleProductInformation({ listing }) {
 			navigate("/cart");
 		} catch (err) {
 			console.error("Couldn't add to cart:", err);
+		}
+	};
+
+	const handleDeleteListing = async () => {
+		// are you sure...
+		const confirmDelete = window.confirm("Are you sure you want to delete this listing? This cannot be undone.");
+		if (!confirmDelete) return;
+
+		try {
+            // alright...
+			await apiDelete(`/listings/${listing._id}`);
+            
+            // nothing to see, let's look at some other stuff
+			navigate("/browse"); 
+		} catch (err) {
+			console.error("Failed to delete listing:", err);
+			alert("Failed to delete the listing.");
 		}
 	};
 
@@ -82,7 +101,9 @@ function SingleProductInformation({ listing }) {
 					</div>
 					<div className="item-controls-container">
 						<FlagButtonComponent listingId={listing._id} />
-						<CartDeleteProductComponent listingId={listing._id} />
+						{canDelete && (
+							<CartDeleteProductComponent listingId={listing._id} onClick={handleDeleteListing} />
+						)}
 					</div>
 				</div>
 				<SellerContainerComponent seller={listing.seller} />
@@ -107,43 +128,55 @@ function SingleProductInformation({ listing }) {
 					</div>
 				</div>
 				<div className="buttonsContainer">
-					<button className="addToCartButton" onClick={handleAddToCart}>
-						<div className="cartIconContainer">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="25"
-								height="25"
-								viewBox="0 0 25 25"
-								fill="none">
-								<path
-									d="M8.33268 22.9163C8.90798 22.9163 9.37435 22.45 9.37435 21.8747C9.37435 21.2994 8.90798 20.833 8.33268 20.833C7.75739 20.833 7.29102 21.2994 7.29102 21.8747C7.29102 22.45 7.75739 22.9163 8.33268 22.9163Z"
-									stroke="white"
-									strokeWidth="2.08333"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
-								<path
-									d="M19.7917 22.9163C20.367 22.9163 20.8333 22.45 20.8333 21.8747C20.8333 21.2994 20.367 20.833 19.7917 20.833C19.2164 20.833 18.75 21.2994 18.75 21.8747C18.75 22.45 19.2164 22.9163 19.7917 22.9163Z"
-									stroke="white"
-									strokeWidth="2.08333"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
-								<path
-									d="M2.13477 2.13574H4.2181L6.98893 15.0732C7.09058 15.5471 7.35421 15.9706 7.73446 16.271C8.11472 16.5714 8.58779 16.7299 9.07227 16.7191H19.2598C19.7339 16.7183 20.1936 16.5558 20.5629 16.2585C20.9322 15.9611 21.1891 15.5467 21.291 15.0837L23.0098 7.34408H5.33268"
-									stroke="white"
-									strokeWidth="2.08333"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
-							</svg>
-						</div>
-						<span className="buttonText">ADD TO CART</span>
-					</button>
-					<button className="buyNowBtn" onClick={handleBuyNow}>
-						<span className="buttonText">BUY NOW</span>
-					</button>
+					{isOwner ? (
+					    <button 
+					        className="buyNowBtn" 
+					        onClick={() => navigate(`/edit/${listing._id}`)} 
+					    >
+					        <span className="buttonText">EDIT LISTING</span>
+					    </button>
+					) : (
+					    <>
+					        <button className="addToCartButton" onClick={handleAddToCart}>
+					            <div className="cartIconContainer">
+					                <svg
+					                    xmlns="http://www.w3.org/2000/svg"
+					                    width="25"
+					                    height="25"
+					                    viewBox="0 0 25 25"
+					                    fill="none">
+					                    <path
+					                        d="M8.33268 22.9163C8.90798 22.9163 9.37435 22.45 9.37435 21.8747C9.37435 21.2994 8.90798 20.833 8.33268 20.833C7.75739 20.833 7.29102 21.2994 7.29102 21.8747C7.29102 22.45 7.75739 22.9163 8.33268 22.9163Z"
+					                        stroke="white"
+					                        strokeWidth="2.08333"
+					                        strokeLinecap="round"
+					                        strokeLinejoin="round"
+					                    />
+					                    <path
+					                        d="M19.7917 22.9163C20.367 22.9163 20.8333 22.45 20.8333 21.8747C20.8333 21.2994 20.367 20.833 19.7917 20.833C19.2164 20.833 18.75 21.2994 18.75 21.8747C18.75 22.45 19.2164 22.9163 19.7917 22.9163Z"
+					                        stroke="white"
+					                        strokeWidth="2.08333"
+					                        strokeLinecap="round"
+					                        strokeLinejoin="round"
+					                    />
+					                    <path
+					                        d="M2.13477 2.13574H4.2181L6.98893 15.0732C7.09058 15.5471 7.35421 15.9706 7.73446 16.271C8.11472 16.5714 8.58779 16.7299 9.07227 16.7191H19.2598C19.7339 16.7183 20.1936 16.5558 20.5629 16.2585C20.9322 15.9611 21.1891 15.5467 21.291 15.0837L23.0098 7.34408H5.33268"
+					                        stroke="white"
+					                        strokeWidth="2.08333"
+					                        strokeLinecap="round"
+					                        strokeLinejoin="round"
+					                    />
+					                </svg>
+					            </div>
+					            <span className="buttonText">ADD TO CART</span>
+					        </button>
+					        <button className="buyNowBtn" onClick={handleBuyNow}>
+					            <span className="buttonText">BUY NOW</span>
+					        </button>
+					    </>
+					)}
 				</div>
+				<div className="divider"></div>
 			</div>
 		</div>
 	);

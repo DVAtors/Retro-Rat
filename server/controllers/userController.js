@@ -14,7 +14,7 @@ const registerUser = async (req, res) => {
 			name: name,
 			email: email,
 			musicalHash: hashedPassword,
-			location: location || "Pretoria", // Hardcoded fallback to pass Mongoose validation for now
+			location: location || "Gauteng", // Hardcoded fallback to pass Mongoose validation for now
 		});
 
 		await user.save();
@@ -47,6 +47,7 @@ const loginUser = async (req, res) => {
 				_id: user._id,
 				name: user.name,
 				email: user.email,
+				isAdmin: user.isAdmin,
 				token: token,
 			});
 		} else {

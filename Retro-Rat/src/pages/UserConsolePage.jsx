@@ -84,6 +84,7 @@ function UserConsolePage({ id }) {
 	function handleLogout() {
         // get rid of token and force a hard refresh
         localStorage.removeItem("token");
+		localStorage.removeItem("isAdmin");
         window.location.href = "/";
     }
 

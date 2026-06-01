@@ -109,4 +109,19 @@ router.put("/:id", async (req, res) => {
 	}
 });
 
+// DELETE /api/listings/:id — delete a listing entirely
+router.delete("/:id", protect, async (req, res) => {
+  try {
+    const deletedListing = await Listing.findByIdAndDelete(req.params.id);
+    
+    if (!deletedListing) {
+      return res.status(404).json({ error: "Listing not found" });
+    }
+    
+    res.json({ message: "Listing deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;

@@ -19,6 +19,7 @@ export default function Navbar() {
 		setIsMenuOpen(!isMenuOpen);
 	};
 	const isLoggedIn = !!localStorage.getItem("token");
+	const isAdmin = localStorage.getItem("isAdmin") === "true";
 
 	return (
 		<>
@@ -73,19 +74,32 @@ export default function Navbar() {
 								Cart
 							</Link>
 							{isLoggedIn ? (
-    							<Link
-       	 							to="/account"
-        							className={location.pathname === "/account" ? "active" : ""}
-        							onClick={() => setIsMenuOpen(false)}>
-        							Account
-    							</Link>
+    							<>
+							        {/* If bro are logged in, bro gets an Account button */}
+							        <Link
+							            to="/account"
+							            className={location.pathname === "/account" ? "active" : ""}
+							            onClick={() => setIsMenuOpen(false)}>
+							            Account
+							        </Link>
+
+							        {/* ONLY show this link if the bro is an admin */}
+							        {isAdmin && (
+							            <Link
+							                to="/admin"
+							                className={location.pathname.startsWith("/admin") ? "active" : ""}
+							                onClick={() => setIsMenuOpen(false)}>
+							                Admin
+							            </Link>
+							        )}
+							    </>
 							) : (
-    							<Link
-        							to="/login"
-        							className={location.pathname.startsWith("/login") ? "active" : ""}
-        							onClick={() => setIsMenuOpen(false)}>
-        							Login
-    							</Link>
+							    <Link
+							        to="/login"
+							        className={location.pathname.startsWith("/login") ? "active" : ""}
+							        onClick={() => setIsMenuOpen(false)}>
+							        Login
+							    </Link>
 							)}
 						</div>
 					</div>

@@ -47,11 +47,25 @@ export async function apiPost(path, body) {
 	return res.json();
 }
 
+// export async function apiDelete(path) {
+// 	const res = await fetch(`${API_URL}${path}`, {
+// 		method: "DELETE",
+// 		headers: { ...getAuthHeaders() },
+// 	});
+// 	if (!res.ok) throw new Error(`API error: ${res.status}`);
+// 	return res.json();
+// }
+
 export async function apiDelete(path) {
-	const res = await fetch(`${API_URL}${path}`, {
-		method: "DELETE",
-		headers: { ...getAuthHeaders() },
-	});
-	if (!res.ok) throw new Error(`API error: ${res.status}`);
-	return res.json();
+  const res = await fetch(`${API_URL}${path}`, {
+    method: "DELETE",
+    headers: getAuthHeaders(),
+  });
+  
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}));
+    throw new Error(errorData.error || `API error: ${res.status}`);
+  }
+  
+  return res.json();
 }

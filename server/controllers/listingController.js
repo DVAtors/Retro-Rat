@@ -2,13 +2,10 @@ const Listing = require('../models/Listing');
 
 const createListing = async (req, res) => {
     try {
-        // So i get the exact fields Troy's schema demands
-        const { productName, description, price, condition, era, category } = req.body;
+        const { productName, description, price, condition, era, category, location } = req.body;
 
-        // Cloudinary URL
         const imageUrl = req.file ? req.file.path : '';
 
-        // Then i match the field names exactly to Troy's schema, and rely on defaults for 'status' and 'views'
         const listing = new Listing({
             productName: productName,
             description: description,
@@ -16,6 +13,7 @@ const createListing = async (req, res) => {
             condition: condition,
             era: era,
             category: category,
+            location: location, 
             mainImage: imageUrl, 
             seller: req.user.id 
         });

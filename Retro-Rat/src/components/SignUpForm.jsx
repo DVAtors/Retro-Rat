@@ -20,7 +20,7 @@ export default function SignUpForm() {
 			const response = await fetch("http://localhost:5001/api/users/register", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ name: username, email, password: tunePassword }),
+				body: JSON.stringify({ name: username, email, password: tunePassword, location: "Gauteng" }),
 			});
 
 			const data = await response.json();
