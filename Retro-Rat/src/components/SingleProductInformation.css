@@ -164,6 +164,8 @@
 .cartIconContainer {
 	width: 1.5625rem;
 	height: 1.5625rem;
+
+	color: aliceblue;
 }
 
 .buttonText {
@@ -311,4 +313,8 @@ p {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
+}
+
+.locationMarker {
+	color: aliceblue;
 }

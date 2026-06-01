@@ -15,9 +15,10 @@ function ACReviewBlockPast() {
 		const fetchPending = async () => {
 			try {
 				const token = localStorage.getItem("token");
-				const res = await fetch("http://localhost:5001/api/listings", {
+				const res = await fetch("http://localhost:5001/api/listings/past", {
+					// const res = await fetch("http://localhost:5001/api/listings", {
 					// this is for getting the past reviewed listings... we don't have a route for that yet ~Robert
-					// const res = await fetch("http://localhost:5001/api/listings/past", {
+
 					headers: { Authorization: `Bearer ${token}` },
 				});
 				if (!res.ok) throw new Error("Failed to fetch pending listings");

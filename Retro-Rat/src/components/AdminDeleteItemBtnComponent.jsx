@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
-function DeleteItemBtn({ listingId }) {
+function DeleteItemBtn({ listingId, onClick }) {
 	return (
-		<Link className="trashIconBtn">
+		<Link onClick={onClick} className="trashIconBtn">
 			<FontAwesomeIcon icon={faTrashCan} />
 		</Link>
 	);
