@@ -91,9 +91,9 @@ export default function SubmitProduct() {
 			formDataPayload.append("era", form.era);
 			formDataPayload.append("category", form.category);
 			formDataPayload.append("location", form.location);
-
+			
 			// Append each shipping option
-			form.shippingOptions.forEach((opt) => {
+			form.shippingOptions.forEach(opt => {
 				formDataPayload.append("shippingOptions", opt);
 			});
 
@@ -106,16 +106,16 @@ export default function SubmitProduct() {
 				method: "POST",
 				headers: {
 					// Present the token to the backend for verification and authentication
-					Authorization: `Bearer ${token}`,
+					"Authorization": `Bearer ${token}`
 				},
 				body: formDataPayload,
 			});
 
 			if (!res.ok) {
 				const errData = await res.json();
-				console.log("Server Response: ", rawText);
 				throw new Error(errData.error || "Submission failed");
 			}
+
 		} catch (err) {
 			setError(err.message);
 		} finally {
@@ -280,18 +280,29 @@ export default function SubmitProduct() {
                                 <label htmlFor="product-location" className="field-label">
                                     <img src={LocationIcon} alt="Location" className="label-inline-icon" /> Location
                                 </label>
-                                <input
-                                    type="text"
+                                
+                                <select
                                     id="product-location"
                                     name="location"
-                                    placeholder="City, Province"
+                                    className="province-dropdown"
                                     value={form.location}
                                     onChange={handleChange}
                                     required
-                                />
+                                >
+                                    <option value="" disabled hidden>Select Province</option>
+                                    <option value="Eastern Cape">Eastern Cape</option>
+                                    <option value="Free State">Free State</option>
+                                    <option value="Gauteng">Gauteng</option>
+                                    <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                                    <option value="Limpopo">Limpopo</option>
+                                    <option value="Mpumalanga">Mpumalanga</option>
+                                    <option value="Northern Cape">Northern Cape</option>
+                                    <option value="North West">North West</option>
+                                    <option value="Western Cape">Western Cape</option>
+                                </select>
                             </div>
 
-                            {/* FIXED TEXTAREA UPGRADE: Allows cleanly readable block paragraphs */}
+
                             <div className="input-group-block">
                                 <label htmlFor="product-description" className="field-label">
                                     <img src={DescriptionIcon} alt="Description" className="label-inline-icon" /> Description
@@ -309,6 +320,9 @@ export default function SubmitProduct() {
                                     TIP: INCLUDE DETAILS ABOUT FUNCTIONALITY, ORIGINAL PACKAGING, AND ANY INCLUDED ACCESSORIES
                                 </p>
                             </div>
+
+
+                            
                         </div>
                     </Container>
 

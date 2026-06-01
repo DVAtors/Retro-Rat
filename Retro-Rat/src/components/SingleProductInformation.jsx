@@ -80,7 +80,10 @@ function SingleProductInformation({ listing }) {
 							{/* <p>{listing.productLocation}</p> */}
 						</div>
 					</div>
-					<FlagButtonComponent listingId={listing._id} />
+					<div className="item-controls-container">
+						<FlagButtonComponent listingId={listing._id} />
+						<CartDeleteProductComponent listingId={listing._id} />
+					</div>
 				</div>
 				<SellerContainerComponent seller={listing.seller} />
 				<div className="divider"></div>
@@ -135,7 +138,7 @@ function SingleProductInformation({ listing }) {
 								/>
 							</svg>
 						</div>
-						<span className="buttonText" onClick={handleAddToCart}>ADD TO CART</span>
+						<span className="buttonText">ADD TO CART</span>
 					</button>
 					<button className="buyNowBtn" onClick={handleBuyNow}>
 						<span className="buttonText">BUY NOW</span>

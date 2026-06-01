@@ -4,6 +4,14 @@ import Filter from '../assets/filter.svg';
 import FilterArrow from '../assets/filterArrow.svg';
 import "./FilterBar.css";
 
+// MOVED OUTSIDE THE COMPONENT!!!!!
+// Now it's a static constant that React doesn't have to rebuild every render cycle >:D
+const waveConfigs = {
+    1: ["ALL", "COMPUTERS", "GAMING", "AUDIO", "MOBILE", "VIDEO", "CAMERAS"],
+    2: ["ALL", "2000S", "1990S", "1980S", "1970S"],
+    3: ["ALL", "EXCELLENT", "GREAT", "MODERATE", "LOW", "POOR"]
+};
+
 // ADDED 'onFilterChange' PROP SO THE PARENT COMPONENT CAN SUCK UP THE FILTER DATA
 export default function FilterBar({ onFilterChange }) {
     // TRACKING THE WAVE. REACT RERENDERS BECAUSE IT LIVES TO SERVE. o7
@@ -11,9 +19,25 @@ export default function FilterBar({ onFilterChange }) {
     
     // UPDATE: NOW IT'S AN ARRAY BECAUSE USERS WANT TO SELECT EVERYTHING AT THE SAME TIME O_o 
     // WELCOME TO ARRAY METHOD HELL, POPULATION: US
-    const [activeFilters, setActiveFilters] = useState([]); 
+    // const [activeFilters, setActiveFilters] = useState([]); 
 
+    // UPDATE: WELCOME TO OBJECT HEAVEN! 
+    // Each wave gets its own private bucket. So no cross-contamination >:D
+    // const [activeFilters, setActiveFilters] = useState({
+    //     1: [],
+    //     2: [],
+    //     3: []
+    // });
+
+    // UPDATE: WELCOME TO OBJECT HELL! 
+    // Now pre-loaded with every single item from the configs so the "ALL" state is active on default(SUPTID USER FRIENDLY DESIGHNING)
+    const [activeFilters, setActiveFilters] = useState({
+        1: [...waveConfigs[1]],
+        2: [...waveConfigs[2]],
+        3: [...waveConfigs[3]]
+    });
     const rotationAngle = (currentWave - 1) * 90; 
+    
 
     // ========================================================================
     // ATTENTION BACKEND TEAM!!! LISTEN UP BOYS!!! o7
@@ -22,7 +46,7 @@ export default function FilterBar({ onFilterChange }) {
     //
     // <FilterBar onFilterChange={(selectedTags) => {
     //     console.log("Look at these juicy tags for the DB query:", selectedTags);
-    //     // Trigger your API fetch or item-filtering logic here!
+    //     // Trigger API fetch or item-filtering logic here!
     // }} />
     //
     // This useEffect fires EVERY TIME a user toggles a tag on or off.
@@ -31,11 +55,18 @@ export default function FilterBar({ onFilterChange }) {
     // DATA SHAPE EXAMPLE:
     // User clicks "GAMING", "1990S", and "GREAT" -> Payload: ['GAMING', '1990S', 'GREAT']
     // If they click nothing or uncheck everything -> Payload: [] (Empty array)
-    // Map these bad boys directly to your database object product tags/categories!
+    // Map these bad boys directly to the database object product tags/categories (i think, this is your job not mine (i think))
     // ========================================================================
     useEffect(() => {
         if (typeof onFilterChange === "function") {
-            onFilterChange(activeFilters);
+            // Smash the 3 arrays together into one flat array
+            const flatPayload = [...activeFilters[1], ...activeFilters[2], ...activeFilters[3]];
+
+            // The all button was still shared accross all the waves: If they selected "ALL" in multiple waves, we'd have duplicate "ALL" strings.
+            // Set() removes duplicates so the backend gets a clean array (you're welcome and i hate you)
+            const uniquePayload = [...new Set(flatPayload)];
+
+            onFilterChange(uniquePayload);
         }
     }, [activeFilters, onFilterChange]);
 
@@ -59,20 +90,105 @@ export default function FilterBar({ onFilterChange }) {
         "MODERATE": "#F4D03F", "LOW": "#C6934B", "POOR": "#C24932"
     };
 
-    const waveConfigs = {
-        1: ["ALL", "COMPUTERS", "GAMING", "AUDIO", "MOBILE", "VIDEO", "CAMERAS"],
-        2: ["ALL", "2000S", "1990S", "1980S", "1970S"],
-        3: ["ALL", "EXCELLENT", "GREAT", "MODERATE", "LOW", "POOR"]
-    };
+
 
     // THE TOGGLE MONSTER: IF THE FILTER IS ALREADY SELECTED, FILTER IT OUT. 
     // IF NOT, SQUISH IT INTO THE ARRAY WITH THE SPREAD OPERATOR. BLISS.
+    
+// THE UPGRADED TOGGLE MONSTER >:D
+    // Now with 100% more wave-isolation and auto-toggling logic for the backend boys! o7
+    // const toggleFilter = (category) => {
+    //     setActiveFilters((prevFilters) => {
+    //         const currentWaveItems = waveConfigs[currentWave];
+            
+    //         // ISOLATE: Separate filters into "this wave" and "other waves" becasue Robert hates me
+    //         // We do not touch the other waves! They are sacred!
+    //         const otherWaveFilters = prevFilters.filter(item => !currentWaveItems.includes(item));
+    //         let currentWaveActive = prevFilters.filter(item => currentWaveItems.includes(item));
+
+    //         // Handle the logic for the current wave
+    //         if (category === "ALL") {
+    //             // If "ALL" is already active, the user wants to clear the wave.
+    //             if (currentWaveActive.includes("ALL")) {
+    //                 currentWaveActive = []; 
+    //             } else {
+    //                 // Otherwise, select EVERYTHING in this specific wave!
+    //                 currentWaveActive = [...currentWaveItems];
+    //             }
+    //         } else {
+    //             // The user clicked a specific category from the waves
+                
+    //             // RULE: If "ALL" was selected, unhighlight everything and JUST select the clicked filter
+    //             if (currentWaveActive.includes("ALL")) {
+    //                 currentWaveActive = [category];
+    //             } else {
+    //                 // toggle: If it's there, remove it. If it's not, add it.
+    //                 if (currentWaveActive.includes(category)) {
+    //                     currentWaveActive = currentWaveActive.filter(item => item !== category);
+    //                 } else {
+    //                     currentWaveActive = [...currentWaveActive, category];
+    //                 }
+                    
+    //                 // UX UPGRADE: If they manually clicked every single item EXCEPT "ALL",
+    //                 // let's just highlight "ALL" for them because we are nice (stupid user friendly desighning)  <3
+    //                 if (currentWaveActive.length === currentWaveItems.length - 1 && !currentWaveActive.includes("ALL")) {
+    //                     currentWaveActive = [...currentWaveItems];
+    //                 }
+    //             }
+    //         }
+
+    //         // MERGE: Combine the untouched other waves with current wave >:D
+    //         return [...otherWaveFilters, ...currentWaveActive];
+    //     });
+    // };
+
+    // ============================
+    // THE ULTIMATE TOGGLE MONSTER
+    // ============================
     const toggleFilter = (category) => {
-        setActiveFilters((prevFilters) =>
-            prevFilters.includes(category)
-                ? prevFilters.filter((item) => item !== category)
-                : [...prevFilters, category]
-        );
+        setActiveFilters((prev) => {
+            const currentWaveItems = waveConfigs[currentWave];
+            
+            // ISOLATE: Separate filters into "this wave" and "other waves" becasue Robert hates me
+            // We do not touch the other waves! They are sacred!
+            // (Instead of array filtering, we just grab this specific wave's private bucket!)
+            let currentWaveActive = prev[currentWave];
+
+            // Handle the logic for the current wave
+            if (category === "ALL") {
+                // If "ALL" is already active, the user wants to clear the wave.
+                if (currentWaveActive.includes("ALL")) {
+                    currentWaveActive = []; 
+                } else {
+                    // Otherwise, select EVERYTHING in this specific wave!
+                    currentWaveActive = [...currentWaveItems];
+                }
+            } else {
+                // The user clicked a specific category from the waves
+                
+                // RULE: If "ALL" was selected, unhighlight everything and JUST select the clicked filter
+                if (currentWaveActive.includes("ALL")) {
+                    currentWaveActive = [category];
+                } else {
+                    // toggle: If it's there, remove it. If it's not, add it.
+                    if (currentWaveActive.includes(category)) {
+                        currentWaveActive = currentWaveActive.filter(item => item !== category);
+                    } else {
+                        currentWaveActive = [...currentWaveActive, category];
+                    }
+                    
+                    // UX UPGRADE: If they manually clicked every single item EXCEPT "ALL",
+                    // let's just highlight "ALL" for them because we are nice (stupid user friendly desighning)  <3
+                    if (currentWaveActive.length === currentWaveItems.length - 1 && !currentWaveActive.includes("ALL")) {
+                        currentWaveActive = [...currentWaveItems];
+                    }
+                }
+            }
+
+            // MERGE: Combine the untouched other waves with current wave >:D
+            // (By returning the existing object and ONLY overwriting the current wave!)
+            return { ...prev, [currentWave]: currentWaveActive };
+        });
     };
 
     // NOT COPY PASTING THIS 3 TIMES, JUST USING MAP TO LOOP THROUGH THE TOTAL WAVES 
@@ -80,7 +196,8 @@ export default function FilterBar({ onFilterChange }) {
     const renderButtons = (waveNum) => {
         return waveConfigs[waveNum].map((category) => {
             // IS THIS SPECIFIC BUTTON IN OUR ARRAY OF CURRENTLY SELECTED NIGHTMARES?
-            const isActive = activeFilters.includes(category);
+            // FIXED: Pointing directly to the specific wave object key so React doesn't scream
+            const isActive = activeFilters[waveNum].includes(category);
 
             return (
                 <div 
