@@ -27,25 +27,35 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 30px;
-    padding: 0 4px;
+    height: 34px;
+    padding: 0 6px 0 0;
     border-bottom: 4px solid #000000;
     
-    background: #001A83;
-    /* pixelated fade  */
+    background-color: #ffffff;
+    
+    /* 8-bit background manipulation >:D - i hope this works out T-T */
     background-image: 
-        repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.5) 2px, rgba(255, 255, 255, 0.5) 4px),
-        linear-gradient(to right, #001A83 30%, #ffffff 100%);
+        /* Layer 1: Injects a 2x2 pixel checkerboard grid pattern */
+        repeating-conic-gradient(#001A83 0% 25%, transparent 0% 50%) 0 0 / 4px 4px,
+        /* Layer 2: Operates as a linear opacity fade to dissolve the checkers from blue to white */
+        linear-gradient(to right, #001A83 25%, #ffffff 95%);
+    
+    image-rendering: pixelated; 
 }
 
 .retro-title-text {
+    display: flex;
+    align-items: center;
     color: #ffffff;
     font-weight: 900;
     font-size: 18px;
     letter-spacing: 1px;
-    background-color: #001A83; /* Solid background behind text so it's readable */
-    padding: 0 8px;
-    border: 2px solid #000000;
+    background-color: #001A83; 
+    padding: 0 12px 0 8px;
+    border: none;
+
+    height: 100%;
+
 }
 
 /* Tiny close button in the corner */
