@@ -1,12 +1,30 @@
+import React, { useState, useEffect } from "react"; 
 import "./SingleProductInformation.css";
 import { useNavigate } from "react-router-dom";
-import { apiPost } from "../client";
+import { apiPost, apiGet } from "../client"; 
 import FlagButtonComponent from "./flagButtonComponent";
 import SellerContainerComponent from "./SellerContainerComponent";
+import CartDeleteProductComponent from "./CartDeleteProductComponent";
 
 function SingleProductInformation({ listing }) {
 	const navigate = useNavigate();
 
+	const [currentUser, setCurrentUser] = useState(null);
+
+	useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            apiGet('/users/me')
+                .then(user => setCurrentUser(user))
+                .catch(err => {
+                    console.log("Viewing as guest.");
+                });
+        }
+    }, []);
+
+	const sellerId = listing.seller?._id || listing.seller; 
+    const isOwner = currentUser && (currentUser._id === sellerId);
+	
 	const handleAddToCart = async () => {
 		try {
 			await apiPost("/cart", { listingId: listing._id });
