@@ -102,7 +102,7 @@ export default function Homepage() {
 						</Row>
 
 						<div className="view-listed-btn">
-							<button>View Listed items!!</button>
+							<button onClick={() => navigate("/browse")}>View Listed items!!</button>
 						</div>
 					</div>
 				</Container>
