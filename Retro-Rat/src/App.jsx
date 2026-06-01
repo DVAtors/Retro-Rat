@@ -29,10 +29,14 @@ import SignUpForm from "./components/SignUpForm";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Footer from "./components/Footer";
 
+// I added this becuase everytime i navigated to a page from home it too my to the bottom of the page for some reason T-T
+import ScrollToTop from "./components/ScrollToTop";
+
 function App() {
 	return (
 		<>
 			<BrowserRouter>
+			<ScrollToTop/>
 				<Navbar></Navbar>
 				<Routes>
 					<Route path="/" element={<Homepage />} />
