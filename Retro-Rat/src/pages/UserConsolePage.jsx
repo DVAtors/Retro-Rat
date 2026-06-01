@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { apiGet } from "../client";
+import { apiGet, apiPost } from "../client";
 import "./UserConsolePage.css";
 import Img1 from "../assets/product-img.png";
 import Img2 from "../assets/Image (Classic Game Console Controller).png";
@@ -61,7 +61,6 @@ const mockListings = [
 	},
 ];
 
-const mockSavedItems = [];
 const mockNotifications = [];
 
 const STATUS_CONFIG = {
@@ -101,6 +100,11 @@ function UserConsolePage({ id }) {
 	const [listingsLoading, setListingsLoading] = useState(true);
 	const [listingsError, setListingsError] = useState(null);
 
+	// saved items state
+	const [savedItems, setSavedItems] = useState([]);
+	const [savedLoading, setSavedLoading] = useState(false);
+	const [savedError, setSavedError] = useState(null);
+
 	const joinDate = user?.createdAt
 		? new Date(user.createdAt).toLocaleString("default", {
 				month: "long",
@@ -130,17 +134,39 @@ function UserConsolePage({ id }) {
 	const [activeTab, setActiveTab] = useState("listings");
 	// const [listings, setListings] = useState(mockListings);
 
-	const handleDelete = async (id) => {
-		// setListings((prev) => prev.filter((l) => l.id !== id));
+	// fetch saved items when the saved tab opens
+	useEffect(() => {
+		if (activeTab !== "saved") return;
 
+		setSavedLoading(true);
+		setSavedError(null);
+		apiGet("/saved")
+			.then((data) => setSavedItems(data))
+			.catch((err) => setSavedError(err.message))
+			.finally(() => setSavedLoading(false));
+	}, [activeTab]);
+
+	const handleDelete = async (id) => {
+		if (!confirm("Delete this listing? This can't be undone.")) return;
 		try {
 			const token = localStorage.getItem("token");
 			const res = await fetch(`http://localhost:5001/api/listings/${id}`, {
 				method: "DELETE",
 				headers: { Authorization: `Bearer ${token}` },
 			});
-		} catch (error) {
-			console.error("Couldn't delete listing:", error);
+			if (!res.ok) throw new Error("Failed to delete listing");
+			setListings((prev) => prev.filter((l) => l._id !== id));
+		} catch (err) {
+			console.error("Couldn't delete listing:", err);
+		}
+	};
+
+	const handleUnsave = async (listingId) => {
+		try {
+			await apiPost(`/saved/toggle/${listingId}`);
+			setSavedItems((prev) => prev.filter((item) => item._id !== listingId));
+		} catch (err) {
+			console.error("Failed to unsave:", err);
 		}
 	};
 
@@ -198,7 +224,7 @@ function UserConsolePage({ id }) {
 											className="uc-btn uc-btn-view"
 											onClick={() => navigate(`/product/${item._id}`)}>
 											<FontAwesomeIcon icon={faEye} />
-											<span>EDIT</span>
+											<span>VIEW</span>
 										</button>
 										{item.status === "approved" && (
 											<button
@@ -210,6 +236,8 @@ function UserConsolePage({ id }) {
 										)}
 										<button
 											className="uc-btn uc-btn-delete"
+											// onClick={() => handleDelete(id)}>
+											// onClick={() => handleDelete(item.id)}>
 											onClick={() => handleDelete(item._id)}>
 											<FontAwesomeIcon icon={faTrashCan} />
 											<span>DELETE</span>
@@ -227,9 +255,43 @@ function UserConsolePage({ id }) {
 	const renderSaved = () => (
 		<div className="uc-panel">
 			<h2 className="uc-panel-title">SAVED ITEMS</h2>
-			{mockSavedItems.length === 0 ? (
+			{savedLoading && <p>Loading...</p>}
+			{savedError && <p style={{ color: "red" }}>{savedError}</p>}
+			{!savedLoading && savedItems.length === 0 && (
 				<p className="uc-empty">No saved items yet.</p>
-			) : null}
+			)}
+			<div className="uc-listing-list">
+				{savedItems.map((item) => (
+					<div className="uc-listing-card" key={item._id}>
+						<img
+							src={item.mainImage}
+							alt={item.productName}
+							className="uc-listing-img"
+						/>
+						<div className="uc-listing-body">
+							<div className="uc-listing-top">
+								<div>
+									<p className="uc-listing-title">{item.productName}</p>
+									<p className="uc-listing-price">
+										R{Number(item.price).toFixed(2)}
+									</p>
+									<p className="uc-listing-meta">
+										<span>by {item.seller?.name || "unknown"}</span>
+									</p>
+								</div>
+							</div>
+							<div className="uc-listing-actions">
+								<button className="uc-btn uc-btn-view">VIEW</button>
+								<button
+									className="uc-btn uc-btn-delete"
+									onClick={() => handleUnsave(item._id)}>
+									🗑 UNSAVE
+								</button>
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
 		</div>
 	);
 

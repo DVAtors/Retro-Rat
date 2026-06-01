@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import ProductCard from "../components/ProductCard";
 import "./Products.css";
 
@@ -9,10 +9,31 @@ import { apiGet } from "../client";
 
 //import Img1 from "../assets/product-img.png"; //NOTE: TEMP, until we get something decided on for images.
 
+/*filter labels -> schema values  category and condition match the schema 
+im not gonna touch the filter bar so ima do this
+*/
+const ERA_MAP = {
+	"2000S": "2000s",
+	"1990S": "90s",
+	"1980S": "80s",
+	"1970S": "70s",
+};
+
+const toTitleCase = (s) =>
+	s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+
+//all filter labels per wave: for "everything in this wave is selected"
+const WAVES = {
+	category: ["ALL", "COMPUTERS", "GAMING", "AUDIO", "MOBILE", "VIDEO", "CAMERAS"],
+	era: ["ALL", "2000S", "1990S", "1980S", "1970S"],
+	condition: ["ALL", "EXCELLENT", "GREAT", "MODERATE", "LOW", "POOR"],
+};
+
 export default function ProductsPage() {
 	const [listings, setListings] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
+	const [selectedTags, setSelectedTags] = useState([]);
 
 	useEffect(() => {
 		apiGet("/listings")
@@ -20,6 +41,35 @@ export default function ProductsPage() {
 			.catch((err) => setError(err.message))
 			.finally(() => setLoading(false));
 	}, []);
+
+	const filteredListings = useMemo(() => {
+		const tagSet = new Set(selectedTags);
+		
+		//for each wave figure out which schema values are selected- if "ALL" is in the wave or nothing is selected, we don't filter on that wave.
+		const waveFilter = (waveName, transform) => {
+			const tags = WAVES[waveName];
+			const selectedInWave = tags.filter((t) => tagSet.has(t));
+
+			if (selectedInWave.length === 0 || selectedInWave.includes("ALL")) {
+				return null;
+			}
+
+			return new Set(
+				selectedInWave.map(transform).filter(Boolean)
+			);
+		};
+
+		const categoryFilter = waveFilter("category", toTitleCase);
+		const eraFilter = waveFilter("era", (t) => ERA_MAP[t]);
+		const conditionFilter = waveFilter("condition", toTitleCase);
+
+		return listings.filter((l) => {
+			if (categoryFilter && !categoryFilter.has(l.category)) return false;
+			if (eraFilter && !eraFilter.has(l.era)) return false;
+			if (conditionFilter && !conditionFilter.has(l.condition)) return false;
+			return true;
+		});
+	}, [listings, selectedTags]);
 
 	return (
 		<>
@@ -33,7 +83,7 @@ export default function ProductsPage() {
 					</div>
 				</Container>
 
-				<FilterBar />
+				<FilterBar onFilterChange={setSelectedTags} />
 
 				<Row className="product-card-container">
 					{
@@ -46,11 +96,15 @@ export default function ProductsPage() {
 							<p className="error-text">Couldn't load listings: {error}</p>
 						) /*again another one wow*/
 					}
-					{!loading && !error && listings.length === 0 && (
-						<p className="error-text">No listings yet. Check back soon.</p>
+					{!loading && !error && filteredListings.length === 0 && (
+						<p className="error-text">
+							{listings.length === 0
+								? "No listings yet. Check back soon."
+								: "No listings match your filters."}
+						</p>
 					)}
 
-					{listings.map((listing) => (
+					{filteredListings.map((listing) => (
 						<ProductCard
 							key={listing._id} //react prop, used to know if something is the same or not when reloading the component.
 							id={listing._id} //the actual id property of the listing
