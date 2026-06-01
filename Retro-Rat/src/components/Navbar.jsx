@@ -43,6 +43,7 @@ export default function Navbar() {
         setSearchQuery(query);
 
         if (query.trim().length > 0) {
+
             const results = allProducts.filter(
                 (listing) =>
                     listing.productName?.toLowerCase().includes(query.toLowerCase()) ||
@@ -97,7 +98,7 @@ export default function Navbar() {
                                                 key={listing._id}
                                                 onClick={() => {
                                                     setSearchQuery(""); // Auto-collapses the dropdown menu on click
-                                                    setIsMenuOpen(false); // Closes mobile drawer too if they're on a phone
+                                                    setIsMenuOpen(false); // Closes mobile  too if they're on a phone
                                                 }}
                                             >
                                                 <div className="search-result-img">
