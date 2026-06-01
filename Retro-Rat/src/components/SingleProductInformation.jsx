@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./SingleProductInformation.css";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { apiGet, apiPost, apiDelete } from "../client";
 import FlagButtonComponent from "./flagButtonComponent";
 import SellerContainerComponent from "./SellerContainerComponent";
@@ -24,8 +23,8 @@ function SingleProductInformation({ listing }) {
 			.catch(() => setMe(null));
 	}, []);
 
-	const isOwner =
-		me && listing.seller && (listing.seller._id || listing.seller) === me._id;
+	// const isOwner =
+	// 	me && listing.seller && (listing.seller._id || listing.seller) === me._id;
 
 	const canManage =
 		me &&
@@ -153,7 +152,16 @@ function SingleProductInformation({ listing }) {
 					</div>
 				</div>
 				<div className="buttonsContainer">
-					{isOwner ? (
+					<button className="addToCartButton" onClick={handleAddToCart}>
+						<div className="cartIconContainer">
+							<FontAwesomeIcon icon={faCartShopping} />
+						</div>
+						<span className="buttonText">ADD TO CART</span>
+					</button>
+					<button className="buyNowBtn" onClick={handleBuyNow}>
+						<span className="buttonText">BUY NOW</span>
+					</button>
+					{/* {isOwner ? (
 						<button
 							className="buyNowBtn"
 							onClick={() => navigate(`/edit/${listing._id}`)}>
@@ -171,7 +179,7 @@ function SingleProductInformation({ listing }) {
 								<span className="buttonText">BUY NOW</span>
 							</button>
 						</>
-					)}
+					)} */}
 				</div>
 				<div className="divider"></div>
 			</div>

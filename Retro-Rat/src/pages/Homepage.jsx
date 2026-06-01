@@ -11,28 +11,28 @@ import RetroToast from "../components/RetroToast";
 
 export default function Homepage() {
 	const [listings, setListings] = useState([]);
-	const [isToastOpen, setIsToastOpen] = useState(false); 
-    const navigate = useNavigate(); 
+	const [isToastOpen, setIsToastOpen] = useState(false);
+	const navigate = useNavigate();
 
 	// AUTH CHECK SYSTEM: Redirecting verified people, flashing an error to freeloaders
 	// I'm not fluent in ruotes but from what i saw this is my roughtest guess @Troy-jsx
-    const handleListingButtonClick = () => {
-        const isLoggedIn = !!localStorage.getItem("token");
-        if (isLoggedIn) {
-            navigate("/listing"); // ??????
-        } else {
-            setIsToastOpen(true); // Summons the 95 system error window
-        }
-    };
+	const handleListingButtonClick = () => {
+		const isLoggedIn = !!localStorage.getItem("token");
+		if (isLoggedIn) {
+			navigate("/account"); // ??????
+		} else {
+			setIsToastOpen(true); // Summons the 95 system error window
+		}
+	};
 
 	const handleStatusButtonClick = () => {
-        const isLoggedIn = !!localStorage.getItem("token");
-        if (isLoggedIn) {
-            navigate("/account/pending"); // Placeholder to take them to view status of posted listings, i know this is the route for admins but i dunno the user route
-        } else {
-            setIsToastOpen(true); // Summons the 95 system error window
-        }
-    };
+		const isLoggedIn = !!localStorage.getItem("token");
+		if (isLoggedIn) {
+			navigate("/account"); // Placeholder to take them to view status of posted listings, i know this is the route for admins but i dunno the user route
+		} else {
+			setIsToastOpen(true); // Summons the 95 system error window
+		}
+	};
 
 	useEffect(() => {
 		apiGet("/listings").then((data) => setListings(data));
@@ -55,7 +55,11 @@ export default function Homepage() {
 									collectors
 								</p>
 							</div>
-							<button className="browse-button" onClick={() => navigate("/browse")}>Browse Now!</button>
+							<button
+								className="browse-button"
+								onClick={() => navigate("/browse")}>
+								Browse Now!
+							</button>
 						</div>
 					</div>
 				</Container>
@@ -102,7 +106,9 @@ export default function Homepage() {
 						</Row>
 
 						<div className="view-listed-btn">
-							<button onClick={() => navigate("/browse")}>View Listed items!!</button>
+							<button onClick={() => navigate("/browse")}>
+								View Listed items!!
+							</button>
 						</div>
 					</div>
 				</Container>
@@ -136,7 +142,9 @@ export default function Homepage() {
 
 							<Col xs={12}>
 								<div className="join-btn-container">
-									<button onClick={() => navigate("/login/signup")}>Sign Up</button> 
+									<button onClick={() => navigate("/login/signup")}>
+										Sign Up
+									</button>
 									<button onClick={() => navigate("/login")}>Log In</button>
 								</div>
 							</Col>
@@ -191,19 +199,23 @@ export default function Homepage() {
 
 							<Col xs={12}>
 								<div className="already-btn-container">
-									<button onClick={handleListingButtonClick}>Add your listing!!</button>
-									<button onClick={handleStatusButtonClick}>View Your Product approval Status!!</button>
+									<button onClick={handleListingButtonClick}>
+										Add your listing!!
+									</button>
+									<button onClick={handleStatusButtonClick}>
+										View Your Product approval Status!!
+									</button>
 								</div>
 							</Col>
 						</Row>
 					</div>
 				</Container>
 			</div>
-			<RetroToast 
-                isOpen={isToastOpen} 
-                onClose={() => setIsToastOpen(false)} 
-                message="Unauthorized Entry! You must authenticate your collector account to access this content."
-            />
+			<RetroToast
+				isOpen={isToastOpen}
+				onClose={() => setIsToastOpen(false)}
+				message="Unauthorized Entry! You must authenticate your collector account to access this content."
+			/>
 		</div>
 	);
 }
