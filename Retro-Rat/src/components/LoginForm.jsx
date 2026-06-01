@@ -29,6 +29,7 @@ export default function LoginForm() {
 			}
 
 			localStorage.setItem("token", data.token);
+			localStorage.setItem("isAdmin", data.isAdmin);
 			alert("Logged in successfully!");
 			// navigate("/console"); // ← uncomment when ready
 			navigate("/browse");

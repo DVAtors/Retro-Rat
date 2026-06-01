@@ -1,118 +1,76 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { apiGet } from "../client";
 
 import LogoutBtnComp from "../components/LogOutBtnComponent";
 
-function ACTopContentComp(onTabChange) {
-	// pull pending listing items fromm api endpoint goes here
+function ACTopContentComp() {
+	const [adminUser, setAdminUser] = useState(null);
+	const [pendingCount, setPendingCount] = useState(0);
+	const navigate = useNavigate();
 
-	// on click swap active button
+	useEffect(() => {
+		apiGet("/users/me")
+			.then((data) => setAdminUser(data))
+			.catch((err) => {
+				console.error("Auth failed:", err);
+				localStorage.removeItem("token");
+				localStorage.removeItem("isAdmin");
+				navigate("/login");
+			});
 
-	// on click swap active display block contents
-	// const [isPendingClicked, setIsPendingClicked] = useState(true);
-	// const [isPastReqClicked, setIsPastReqClicked] = useState(false);
-	// const [isInboxClicked, setIsInboxClicked] = useState(false);
+		apiGet("/listings/pending")
+			.then((data) => {
+				setPendingCount(data.length);
+			})
+			.catch((err) => console.error("Failed to fetch listings", err));
+	}, [navigate]);
 
-	// const handleClick = (e) => {
-	// 	if (e.target.className.includes("ac-pending")) {
-	// 		setIsPendingClicked(true);
-	// 		setIsPastReqClicked(false);
-	// 		setIsInboxClicked(false);
-	// 	} else if (e.target.className.includes("ac-past-req")) {
-	// 		setIsPendingClicked(false);
-	// 		setIsPastReqClicked(true);
-	// 		setIsInboxClicked(false);
-	// 	} else if (e.target.className.includes("ac-inbox")) {
-	// 		setIsPendingClicked(false);
-	// 		setIsPastReqClicked(false);
-	// 		setIsInboxClicked(true);
-	// 	}
-	// };
-
-	// const [activeTab, setActiveTab] = useState("pending");
-
-	// const handleClick = (tab) => {
-	// 	setActiveTab(tab);
-	// 	onTabChange?.(tab); // notify parent if needed
-	// };
+	function handleLogout() {
+		localStorage.removeItem("token");
+		localStorage.removeItem("isAdmin");
+		window.location.href = "/";
+	}
 
 	return (
 		<div className="ac-user-row">
 			<div className="ac-user-card">
-				<container className="ac-user-info">
+				{/* notee: i changed <container> to <div> here, as <container> is not a valid HTML tag... some error hinted it */}
+				<div className="ac-user-info">
 					<div className="ac-user-icon">
-						<span className="ac-ui-text">T</span>
+						<span className="ac-ui-text">
+							{adminUser?.name?.[0]?.toUpperCase() || "?"}
+						</span>
 					</div>
 					<div className="ac-user-information">
-						<span className="ac-user-name">Admin_01</span>
+						<span className="ac-user-name">
+							{adminUser?.name || "Loading..."}
+						</span>
 						<span className="ac-user-account">Administrator</span>
-						<span className="ac-user-pending-list">23 Pending Listings</span>
+						<span className="ac-user-pending-list">
+							{pendingCount} Pending Listings
+						</span>
 					</div>
-				</container>
-				<LogoutBtnComp />
+				</div>
+				<LogoutBtnComp onLogout={handleLogout} />
 			</div>
+
 			<div className="ac-user-actions">
 				<NavLink
-					to="/account/pending"
+					to="/admin/pending"
 					className={({ isActive }) =>
 						isActive ? "ac-pending ac-active" : "ac-pending"
 					}>
 					View Pending Listings
 				</NavLink>
 				<NavLink
-					to="/account/past-requests"
+					to="/admin/past-requests"
 					className={({ isActive }) =>
 						isActive ? "ac-past-req ac-active" : "ac-past-req"
 					}>
 					View Past Requests
 				</NavLink>
-				{/* <NavLink
-					to="/account/inbox"
-					className={({ isActive }) =>
-						isActive ? "ac-inbox ac-active" : "ac-inbox"
-					}>
-					Inbox
-				</NavLink> */}
 			</div>
-			{/* <div className="ac-user-actions">
-				<button className="ac-pending ac-active">
-					<span className="pending-text ac-active-text">
-						View Pending Listings
-					</span>
-				</button>
-				<button className="ac-past-req">
-					<span className="past-req-text">View Past Requests</span>
-				</button>
-				<button className="ac-inbox">
-					<span className="inbox-text">Inbox</span>
-				</button>
-			</div> */}
-			{/* <div className="ac-user-actions">
-				<button
-					className={`ac-pending ${activeTab === "pending" ? "ac-active" : ""}`}
-					onClick={() => handleClick("pending")}>
-					<span
-						className={`pending-text ${activeTab === "pending" ? "ac-active-text" : ""}`}>
-						View Pending Listings
-					</span>
-				</button>
-				<button
-					className={`ac-past-req ${activeTab === "past-req" ? "ac-active" : ""}`}
-					onClick={() => handleClick("past-req")}>
-					<span
-						className={`past-req-text ${activeTab === "past-req" ? "ac-active-text" : ""}`}>
-						View Past Requests
-					</span>
-				</button>
-				<button
-					className={`ac-inbox ${activeTab === "inbox" ? "ac-active" : ""}`}
-					onClick={() => handleClick("inbox")}>
-					<span
-						className={`inbox-text ${activeTab === "inbox" ? "ac-active-text" : ""}`}>
-						Inbox
-					</span>
-				</button>
-			</div> */}
 		</div>
 	);
 }
