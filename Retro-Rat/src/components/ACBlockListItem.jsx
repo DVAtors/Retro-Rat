@@ -1,6 +1,15 @@
 import "./ACBlockListItem.css";
 import { useNavigate } from "react-router-dom";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faPenToSquare,
+	faEye,
+	faTrashCan,
+	faCheckSquare,
+	faXmarkCircle,
+} from "@fortawesome/free-regular-svg-icons";
+
 function ACBlockListItem({ listing, onApprove, onDeny }) {
 	// console.log(listing); // temp check
 
@@ -29,14 +38,17 @@ function ACBlockListItem({ listing, onApprove, onDeny }) {
 						<button
 							className="ac-view-item-btn"
 							onClick={() => navigate(`/product/${_id}`)}>
+							<FontAwesomeIcon icon={faEye} />
 							<span className="ac-view-item">View Item</span>
 						</button>
 						<button
 							className="ac-approve-item-btn"
 							onClick={() => onApprove(_id)}>
+							<FontAwesomeIcon icon={faCheckSquare} />
 							<span className="ac-approve-item">Approve</span>
 						</button>
 						<button className="ac-delete-item-btn" onClick={() => onDeny(_id)}>
+							<FontAwesomeIcon icon={faXmarkCircle} />
 							<span className="ac-delete-item">Deny</span>
 						</button>
 					</div>

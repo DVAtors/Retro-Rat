@@ -12,8 +12,9 @@ import { Link, Route, Routes, NavLink } from "react-router-dom";
 
 import SubmitProduct from "./SubmitProduct";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
-	FontAwesomeIcon,
 	faPenToSquare,
 	faClock,
 	faEye,

@@ -125,15 +125,15 @@
 	background: #fff;
 }
 
-.ac-view-item {
+.ac-view-item-btn {
 	color: #000;
 }
 
-.ac-approve-item {
+.ac-approve-item-btn {
 	color: var(--brandColors-Green, #0b8c34);
 }
 
-.ac-delete-item {
+.ac-delete-item-btn {
 	color: #d9411e;
 }
 
