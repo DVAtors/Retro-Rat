@@ -25,7 +25,7 @@
     content: "";
     position: absolute;
     
-    top: 100vh; 
+    top: 40vh; 
     left: 0; 
     right: 0;
     
@@ -41,7 +41,7 @@
     content: "";
     position: absolute;
     /* Starts exactly where the intro ends */
-    top: calc(100vh + var(--tetris-loop-start)); 
+    top: calc(30vh + var(--tetris-loop-start)); 
     left: 0; 
     right: 0; 
     bottom: 0;
