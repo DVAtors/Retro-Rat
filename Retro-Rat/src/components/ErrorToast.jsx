@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./RetroToast.css";
+import "./ErrorToast.css";
 import ErrorIcon from "../assets/errorIcon.svg";
-export default function RetroToast({ isOpen, onClose, message }) {
+export default function ErrorToast({ isOpen, onClose, message }) {
     const navigate = useNavigate();
 
     // If the toast isn't open, render absolute nothingness
@@ -14,13 +14,13 @@ export default function RetroToast({ isOpen, onClose, message }) {
     };
 
     return (
-        <div className="retro-toast-overlay">
-            <div className="retro-toast-window">
-                
+        <div className="error-toast-overlay">
+            <div className="error-toast-window">
+
                 {/* THE PIXELATED DITHER HEADER */}
-                <div className="retro-title-bar">
-{/* may the css gods forgive me for what i'm about to do */}
-                <svg className="retro-title-dither" viewBox="0 0 60 4" preserveAspectRatio="none" shapeRendering="crispEdges">
+                <div className="error-title-bar">
+                    {/* may the css gods forgive me for what i'm about to do */}
+                    <svg className="error-title-dither" viewBox="0 0 60 4" preserveAspectRatio="none" shapeRendering="crispEdges">
                         {/* Base White Canvas Layer */}
                         <rect width="60" height="4" fill="#ffffff" />
                         {/* Solid Blue Starting Command block */}
@@ -34,29 +34,29 @@ export default function RetroToast({ isOpen, onClose, message }) {
                         " fill="#001A83" />
                     </svg>
 
-                    <div className="retro-title-text">Error &gt;:(</div>
-                    <button className="retro-close-x" onClick={onClose}>
+                    <div className="error-title-text">Error &gt;:(</div>
+                    <button className="error-close-x" onClick={onClose}>
                         {/* Tiny CSS-drawn window close button */}
                         <div className="x-mark">✖</div>
                     </button>
                 </div>
 
                 {/* THE MEAT OF THE TOAST */}
-                <div className="retro-window-body">
-                    <div className="retro-content">
-                        
+                <div className="error-window-body">
+                    <div className="error-content">
+
                         {/* PURE INLINE SVG PIXEL ART. NO IMAGE IMPORTS NEEDED. */}
-                        <div className="retro-icon">
+                        <div className="error-icon">
                             <img src={ErrorIcon} alt="error icon" />
                         </div>
 
-                        <div className="retro-message-text">
+                        <div className="error-message-text">
                             {message || "Critical error message. Please authenticate to continue."}
                         </div>
                     </div>
 
                     {/* THE WIN95 CHUNKY BUTTONS */}
-                    <div className="retro-actions">
+                    <div className="error-actions">
                         <button className="win95-btn" onClick={handleLoginClick}>
                             Login
                         </button>

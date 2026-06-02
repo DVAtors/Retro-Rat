@@ -5,6 +5,14 @@ import "./ProductCard.css";
 // Importing Link form React-Router-Dom for the card to open the single Product View page. ~ Robert
 import { Link } from "react-router-dom";
 
+const conditionColors = {
+    EXCELLENT: "#0B8C8C",
+    GREAT: "#0B8C34",
+    MODERATE: "#FFE500",
+    LOW: "#D99E30",
+    POOR: "#D9411E",
+};
+
 //used custom props instead of children so each thing can be generated dynamically and the text knows where it needs to go
 export default function ProductCard({
 	//props are all the info stuff needed
@@ -87,7 +95,11 @@ lg={4}: 3 cards per row on desktops */}
                     <div className="product-desc">
                         <div className="price-container">
                             <div className="price-text">{price}</div>
-                            <div className="condition-status">{condition}</div>
+                            <div className="condition-status"
+							style={{
+								backgroundColor: condition ? conditionColors[condition.toUpperCase()] : "rgba(0,0,0,0.5)"
+							}}
+							>{condition}</div>
                         </div>
 
                         
