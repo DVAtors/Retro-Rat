@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useState } from "react";
 
 // import RetroToast from "../components/RetroToast";
-// import ErrorToast from "../components/ErrorToast";
+import ErrorToast from "./ErrorToast";
 
 const ToastContext = createContext();
 
@@ -33,7 +33,7 @@ export function ToastProvider({ children }) {
 
             {activeToast && activeToast.type === "error" && (
                 <div className="toast-fixed-wrapper">
-                    {/* <ErrorToast message={activeToast.message} /> */}
+                    <ErrorToast message={activeToast.message} />
                     <div className="mock-error-toast">❌ ERROR: {activeToast.message}</div>
                 </div>
             )}
