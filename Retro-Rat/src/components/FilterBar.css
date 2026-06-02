@@ -69,15 +69,16 @@ box-shadow: 8px 8px 0 0 #000;
 
 .filter-buttons-container{ /*NO TOUCHY TOUCHY*/
     display: flex;
-    width: 55.625vw;
+    flex: 1;
     height: auto;
+    min-width: 0;
     padding: 3px 0 3px 31px;
     justify-content: flex-start;
     align-items: center;
     gap: 26px;
 
     /* Freezes the container width so it doesn't shift when text lengths change */
-    flex: 0 0 auto !important; /*PLEASE FOR THE LOVE OF GAWD LET THIS OWRK T-T*/
+    /* flex: 0 0 auto !important; PLEASE FOR THE LOVE OF GAWD LET THIS OWRK T-T */
 }
 .filter-button{ /*THIS IS THE ARROW WITH THE DOTS UNDERNEATH THINGY*/
     display: flex;
@@ -127,8 +128,11 @@ box-shadow: 8px 8px 0 0 #000;
     align-items: center;
     gap: 16px;
     width: 100%;    
-    overflow-x: visible; /*scrollable on mobile?*/
-    overflow-y: visible;
+    overflow-x: auto; 
+    overflow-y: hidden;
+
+    /* Smooth scrolling on iPhones */
+    -webkit-overflow-scrolling: touch;
 }
 
 .filter-bar .filter-buttons::-webkit-scrollbar {
@@ -161,6 +165,8 @@ box-shadow: 8px 8px 0 0 #000;
     flex-direction: row;
     gap: 16px;
     align-items: center;
+
+    flex-wrap: nowrap;
 }
 
 .filter-buttons .p-2{ /*seems to be ok >:D*/
@@ -175,6 +181,9 @@ box-shadow: 8px 8px 0 0 #000;
     background: #FFF;
     box-shadow: 2px 2px 0 0 #000;
 
+    flex: 0 0 auto;
+    white-space: nowrap;
+
     color: #000;
     text-align: center;
     font-family: 'Inter';
@@ -184,4 +193,19 @@ box-shadow: 8px 8px 0 0 #000;
     letter-spacing: -0.649px;
     text-transform: uppercase;
     transition: background-color 0.15s ease; /* Quick transition makes clicking feel snappy */
+}
+
+@media (max-width: 768px) {
+    .filter-bar {
+        gap: 10px; /* Bring the category icon and arrow closer */
+        padding: 0 10px;
+    }
+    .filter-buttons-container {
+        padding-left: 10px;
+        gap: 15px; /* Bring the arrow and the scrollable buttons closer */
+    }
+    .filter-buttons .p-2 {
+        font-size: 16px; /* Sliiiiiiiiiightly smaller text for mobile */
+        padding: 8px 16px; 
+    }
 }
