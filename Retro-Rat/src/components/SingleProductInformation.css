@@ -145,13 +145,9 @@
 
 .addToCartButton {
 	display: flex;
-
 	flex-direction: row;
-
 	width: auto;
-
-	padding: 1.1875rem 5.14744rem 1.1875rem 5.14744rem;
-
+	padding: 1.1875rem 5.14744rem;
 	justify-content: center;
 	align-items: center;
 	gap: 0.5625rem;
@@ -159,6 +155,31 @@
 	border: 4px solid #000;
 	background: #0b8c8c;
 	box-shadow: 4px 4px 0 0 #000;
+
+	color: #fff;
+	text-align: center;
+	font-family: Inter;
+	font-size: 1.25rem;
+	font-style: normal;
+	font-weight: 700;
+	letter-spacing: -0.04056rem;
+	text-transform: uppercase;
+}
+
+.addToCartButton:hover {
+	border: 4px solid #000;
+	background: #075f5f;
+	box-shadow: 4px 4px 0 0 #000;
+
+	transition: 0.15s;
+}
+
+.addToCartButton:active {
+	border: 4px solid #000;
+	background: #032e2e;
+	box-shadow: none;
+
+	transition: 0.15s;
 }
 
 .cartIconContainer {
@@ -184,18 +205,40 @@
 
 .buyNowBtn {
 	display: flex;
-
 	flex-direction: row;
-
 	width: auto;
-
-	padding: 1.1875rem 2.0635rem 1.1875rem 2.125rem;
+	padding: 1.1875rem 2.0635rem;
 	justify-content: center;
 	align-items: center;
 
 	border: 4px solid #000;
 	background: #d9411e;
 	box-shadow: 4px 4px 0 0 #000;
+
+	color: #fff;
+	text-align: center;
+	font-family: Inter;
+	font-size: 1.25rem;
+	font-style: normal;
+	font-weight: 700;
+	letter-spacing: -0.04056rem;
+	text-transform: uppercase;
+}
+
+.buyNowBtn:hover {
+	border: 4px solid #000;
+	background: #f04721;
+	box-shadow: 4px 4px 0 0 #000;
+
+	transition: 0.15s;
+}
+
+.buyNowBtn:active {
+	border: 4px solid #000;
+	background: #951b00;
+	box-shadow: none;
+
+	transition: 0.15s;
 }
 
 .divider {

@@ -123,6 +123,14 @@
 
 	border: 2px solid #000;
 	background: #fff;
+
+	font-family: Inter;
+	font-size: 1.09375rem;
+	font-style: normal;
+	font-weight: 700;
+
+	letter-spacing: -0.03975rem;
+	text-transform: uppercase;
 }
 
 .ac-view-item-btn:hover {

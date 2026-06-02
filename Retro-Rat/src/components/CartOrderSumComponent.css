@@ -134,8 +134,9 @@
 
 	border: 4px solid #000;
 	background: #032e2e;
-	/* background: #00ffff; */
 	box-shadow: none;
+
+	transition: 0.15s;
 }
 
 .checkout-text {
