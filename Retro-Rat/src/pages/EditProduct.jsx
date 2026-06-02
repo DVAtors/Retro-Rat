@@ -11,13 +11,12 @@ import CalenderIcon from "../assets/calenderIcon.svg";
 import LocationIcon from "../assets/locationIcon.svg";
 import DescriptionIcon from "../assets/descriptionIcon.svg";
 
+import { apiPut } from "../client";
+
 import { uploadImage } from "../cloudinary";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
-
-// TEMP: hardcoded seller until i get around to auth
-const TEMP_SELLER_ID = "6a031ed938a375e22177a08c";
 
 export default function EditProduct() {
 	const navigate = useNavigate();
@@ -90,11 +89,6 @@ export default function EditProduct() {
 		e.preventDefault();
 		setError(null);
 
-		if (!form.authenticityAgreed) {
-			setError("You must agree to the authenticity policy");
-			return;
-		}
-
 		setSubmitting(true);
 		try {
 			let imageUrl = form.mainImage; // keep the existing one by default
@@ -103,30 +97,17 @@ export default function EditProduct() {
 				imageUrl = await uploadImage(imageFile); // only re-upload if user picked a new file
 			}
 
-			const res = await fetch(
-				`${import.meta.env.VITE_API_URL}/listings/${id}`,
-				{
-					method: "PUT",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({
-						seller: TEMP_SELLER_ID,
-						productName: form.productName,
-						description: form.description,
-						price: Number(form.price),
-						condition: form.condition,
-						era: form.era,
-						category: form.category,
-						location: form.location,
-						shippingOptions: form.shippingOptions,
-						mainImage: imageUrl,
-					}),
-				},
-			);
-
-			if (!res.ok) {
-				const errData = await res.json();
-				throw new Error(errData.error || "Submission failed");
-			}
+			await apiPut(`/listings/${id}`, {
+				productName: form.productName,
+				description: form.description,
+				price: Number(form.price),
+				condition: form.condition,
+				era: form.era,
+				category: form.category,
+				location: form.location,
+				shippingOptions: form.shippingOptions,
+				mainImage: imageUrl,
+			});
 
 			navigate(`/product/${id}`);
 		} catch (err) {
@@ -319,29 +300,16 @@ export default function EditProduct() {
 									/>{" "}
 									Location
 								</label>
-
-								<select
+								<input
+									type="text"
 									id="product-location"
 									name="location"
-									className="province-dropdown"
+									placeholder="City, Province"
 									value={form.location}
 									onChange={handleChange}
-									required>
-									<option value="" disabled hidden>
-										Select Province
-									</option>
-									<option value="Eastern Cape">Eastern Cape</option>
-									<option value="Free State">Free State</option>
-									<option value="Gauteng">Gauteng</option>
-									<option value="KwaZulu-Natal">KwaZulu-Natal</option>
-									<option value="Limpopo">Limpopo</option>
-									<option value="Mpumalanga">Mpumalanga</option>
-									<option value="Northern Cape">Northern Cape</option>
-									<option value="North West">North West</option>
-									<option value="Western Cape">Western Cape</option>
-								</select>
+									required
+								/>
 							</div>
-
 							<div className="input-group-block">
 								<label htmlFor="product-description" className="field-label">
 									<img
@@ -427,8 +395,68 @@ export default function EditProduct() {
 						</div>
 					</Container>
 
-					{error && <p className="error-display-msg">{error}</p>}
+					{/* === ITEM INFORMATION SECTION === */}
+					<Container fluid className="form-section-card info-card-bg">
+						<div className="section-inner-padding d-flex flex-column gap-4">
+							<label className="section-main-label m-0">Item Information</label>
+							<div className="input-group-block">
+								<label htmlFor="product-location" className="field-label">
+									<img
+										src={LocationIcon}
+										alt="Location"
+										className="label-inline-icon"
+									/>{" "}
+									Location
+								</label>
 
+								<select
+									id="product-location"
+									name="location"
+									className="province-dropdown"
+									value={form.location}
+									onChange={handleChange}
+									required>
+									<option value="" disabled hidden>
+										Select Province
+									</option>
+									<option value="Eastern Cape">Eastern Cape</option>
+									<option value="Free State">Free State</option>
+									<option value="Gauteng">Gauteng</option>
+									<option value="KwaZulu-Natal">KwaZulu-Natal</option>
+									<option value="Limpopo">Limpopo</option>
+									<option value="Mpumalanga">Mpumalanga</option>
+									<option value="Northern Cape">Northern Cape</option>
+									<option value="North West">North West</option>
+									<option value="Western Cape">Western Cape</option>
+								</select>
+							</div>
+
+							<div className="input-group-block">
+								<label htmlFor="product-description" className="field-label">
+									<img
+										src={DescriptionIcon}
+										alt="Description"
+										className="label-inline-icon"
+									/>{" "}
+									Description
+								</label>
+								<textarea
+									id="product-description"
+									name="description"
+									rows={4}
+									placeholder="Describe your item's history, condition, functionality, and any unique features..."
+									value={form.description}
+									onChange={handleChange}
+									required
+								/>
+								<p className="form-tip-text">
+									TIP: INCLUDE DETAILS ABOUT FUNCTIONALITY, ORIGINAL PACKAGING,
+									AND ANY INCLUDED ACCESSORIES
+								</p>
+							</div>
+						</div>
+					</Container>
+					{error && <p className="error-display-msg">{error}</p>}
 					<div className="submit-action-row">
 						<button
 							type="button"
