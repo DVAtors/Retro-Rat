@@ -14,9 +14,15 @@ export function ToastProvider({ children }) {
         setTimeout(() => setActiveToast(null), 3000); // Auto-hide after 3s
     };
 
-    const showErrorToast = (message) => {
-        setActiveToast({ type: "error", message });
-        setTimeout(() => setActiveToast(null), 4000); // Errors get an extra second to read!
+    const showErrorToast = (message, action = null) => {
+        // Save both the message and the action button info into state
+        setActiveToast({ type: "error", message, action });
+
+        // If there is NO custom button, auto-hide it after 4 seconds.
+        // If there IS a custom button, let it stay on screen until they click it!
+        if (!action) {
+            setTimeout(() => setActiveToast(null), 4000);
+        }
     };
 
     return (
@@ -33,8 +39,12 @@ export function ToastProvider({ children }) {
 
             {activeToast && activeToast.type === "error" && (
                 <div className="toast-fixed-wrapper">
-                    <ErrorToast message={activeToast.message} />
-                    <div className="mock-error-toast">❌ ERROR: {activeToast.message}</div>
+                    <ErrorToast
+                        isOpen={true}
+                        onClose={() => setActiveToast(null)}
+                        message={activeToast.message}
+                        action={activeToast.action} // <-- Pass the action down!
+                    />
                 </div>
             )}
         </ToastContext.Provider>

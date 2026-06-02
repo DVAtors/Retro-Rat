@@ -2,7 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./ErrorToast.css";
 import ErrorIcon from "../assets/errorIcon.svg";
-export default function ErrorToast({ isOpen, onClose, message }) {
+
+export default function ErrorToast({ isOpen, onClose, message, action }) {
     const navigate = useNavigate();
 
     // If the toast isn't open, render absolute nothingness
@@ -10,7 +11,9 @@ export default function ErrorToast({ isOpen, onClose, message }) {
 
     const handleLoginClick = () => {
         onClose(); // Nuke the toast first
-        navigate("/login"); // Beam them to the login screen
+        if (action && action.route) {
+            navigate(action.route); // Beam them to the provided route
+        }
     };
 
     return (
@@ -57,9 +60,14 @@ export default function ErrorToast({ isOpen, onClose, message }) {
 
                     {/* THE WIN95 CHUNKY BUTTONS */}
                     <div className="error-actions">
-                        <button className="win95-btn" onClick={handleLoginClick}>
+                        {/* only render estra button is an 'action' is passed in o7 */}
+                        {action && (
+                            <button className="win95-btn" onClick={handleLoginClick}>
                             Login
                         </button>
+                        )}
+
+                        {/* DEFAULT OK BUTTON IS ALWAYS HERE o7 */}
                         <button className="win95-btn" onClick={onClose}>
                             OK
                         </button>

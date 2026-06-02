@@ -7,13 +7,14 @@ import "./Homepage.css";
 import { apiGet } from "../client";
 import bootRatWhite from "../assets/bootRatWhite.svg";
 import ProductCard from "../components/ProductCard";
-import ErrorToast from "../components/ErrorToast";
+import { useToast } from "../components/ToastContext";
 import TetrisWrapper from "../components/TetrisWrapper";
 
 export default function Homepage() {
 	const [listings, setListings] = useState([]);
-	const [isToastOpen, setIsToastOpen] = useState(false);
+	// const [isToastOpen, setIsToastOpen] = useState(false);
 	const navigate = useNavigate();
+	const { showErrorToast } = useToast();
 
 	// AUTH CHECK SYSTEM: Redirecting verified people, flashing an error to freeloaders
 	// I'm not fluent in ruotes but from what i saw this is my roughtest guess @Troy-jsx
@@ -22,7 +23,11 @@ export default function Homepage() {
 		if (isLoggedIn) {
 			navigate("/account"); // ??????
 		} else {
-			setIsToastOpen(true); // Summons the 95 system error window
+			// 3. Trigger the premium Win95 error popup with a dynamic button!
+            showErrorToast(
+                "Unauthorized Entry! You must be logged in to create a marketplace listing.",
+                { label: "Take me to Login", route: "/login" }
+            );
 		}
 	};
 
@@ -31,7 +36,10 @@ export default function Homepage() {
 		if (isLoggedIn) {
 			navigate("/account"); // Placeholder to take them to view status of posted listings, i know this is the route for admins but i dunno the user route
 		} else {
-			setIsToastOpen(true); // Summons the 95 system error window
+			showErrorToast(
+                "Unauthorized Entry! You must authenticate your collector account to access this content.",
+                { label: "Take me to Login", route: "/login" }
+            );
 		}
 	};
 
@@ -208,8 +216,7 @@ export default function Homepage() {
 											</div>
 											<button
 												className="already-action-btn"
-												onClick={handleStatusButtonClick}
-											>
+												onClick={handleStatusButtonClick}>	
 												View Your Product approval Status!!
 											</button>
 										</Col>
@@ -220,11 +227,9 @@ export default function Homepage() {
 					</Container>
 				</TetrisWrapper>
 			</div>
-			<ErrorToast
-				isOpen={isToastOpen}
-				onClose={() => setIsToastOpen(false)}
-				message="Unauthorized Entry! You must authenticate your collector account to access this content."
-			/>
+
+
+{/* // This stays on screen and shows TWO buttons: "Take me to Login" and "OK". */}
 		</div>
 	);
 }
