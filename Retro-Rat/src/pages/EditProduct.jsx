@@ -13,6 +13,9 @@ import DescriptionIcon from "../assets/descriptionIcon.svg";
 
 import { uploadImage } from "../cloudinary";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
+
 // TEMP: hardcoded seller until i get around to auth
 const TEMP_SELLER_ID = "6a031ed938a375e22177a08c";
 
@@ -136,7 +139,11 @@ export default function EditProduct() {
 	return (
 		<div className="submit-page-wrapper">
 			<div className="admin-verification-banner">
-				<span className="warning-icon">⚠️</span>
+				{/* <span className="warning-icon">⚠️</span> */}
+				<span className="warning-icon">
+					{" "}
+					<FontAwesomeIcon icon={faTriangleExclamation} />
+				</span>
 				<p>
 					<strong>EDITING YOUR LISTING</strong>
 					<br />
@@ -312,16 +319,29 @@ export default function EditProduct() {
 									/>{" "}
 									Location
 								</label>
-								<input
-									type="text"
+
+								<select
 									id="product-location"
 									name="location"
-									placeholder="City, Province"
+									className="province-dropdown"
 									value={form.location}
 									onChange={handleChange}
-									required
-								/>
+									required>
+									<option value="" disabled hidden>
+										Select Province
+									</option>
+									<option value="Eastern Cape">Eastern Cape</option>
+									<option value="Free State">Free State</option>
+									<option value="Gauteng">Gauteng</option>
+									<option value="KwaZulu-Natal">KwaZulu-Natal</option>
+									<option value="Limpopo">Limpopo</option>
+									<option value="Mpumalanga">Mpumalanga</option>
+									<option value="Northern Cape">Northern Cape</option>
+									<option value="North West">North West</option>
+									<option value="Western Cape">Western Cape</option>
+								</select>
 							</div>
+
 							<div className="input-group-block">
 								<label htmlFor="product-description" className="field-label">
 									<img
