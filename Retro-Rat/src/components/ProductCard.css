@@ -41,6 +41,7 @@
     width: 100%; /*take full width of bootsrap col*/
     max-width: 350px;
     height: auto;
+    margin-bottom: 50px;
 
     /* REMOVED PADDING SO IMAGE TOUCHES THE EDGES */
     padding: 0;
