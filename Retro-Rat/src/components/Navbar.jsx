@@ -141,61 +141,67 @@ export default function Navbar() {
 						</div>
 
 						<div className="nav-links">
-							<Link
-								to="/"
-								className={location.pathname === "/" ? "active" : ""}
-								onClick={() => setIsMenuOpen(false)}>
-								Home
-							</Link>
-							<Link
-								to="/browse"
-								className={location.pathname === "/browse" ? "active" : ""}
-								onClick={() => setIsMenuOpen(false)}>
-								Browse
-							</Link>
-							<Link
-								to="/sell"
-								className={location.pathname === "/sell" ? "active" : ""}
-								onClick={() => setIsMenuOpen(false)}>
-								Sell
-							</Link>
-							<Link
-								to="/cart"
-								className={location.pathname === "/cart" ? "active" : ""}
-								onClick={() => setIsMenuOpen(false)}>
-								Cart
-							</Link>
-							{isLoggedIn ? (
-								<>
-									<Link
-										to="/account"
-										className={location.pathname === "/account" ? "active" : ""}
-										onClick={() => setIsMenuOpen(false)}>
-										Account
-									</Link>
+						    <Link
+						        to="/"
+						        className={location.pathname === "/" ? "active" : ""}
+						        onClick={() => setIsMenuOpen(false)}>
+						        Home
+						    </Link>
 
-									{/* ONLY show this link if the bro is an admin */}
-									{isAdmin && (
-										<Link
-											to="/admin"
-											className={
-												location.pathname.startsWith("/admin") ? "active" : ""
-											}
-											onClick={() => setIsMenuOpen(false)}>
-											Admin
-										</Link>
-									)}
-								</>
-							) : (
-								<Link
-									to="/login"
-									className={
-										location.pathname.startsWith("/login") ? "active" : ""
-									}
-									onClick={() => setIsMenuOpen(false)}>
-									Login
-								</Link>
-							)}
+						    <Link
+						        to="/browse"
+						        className={location.pathname === "/browse" ? "active" : ""}
+						        onClick={() => setIsMenuOpen(false)}>
+						        Browse
+						    </Link>
+
+						    {/* SELL: Only visible if logged in AND NOT an admin */}
+						    {isLoggedIn && !isAdmin && (
+						        <Link
+						            to="/sell"
+						            className={location.pathname === "/sell" ? "active" : ""}
+						            onClick={() => setIsMenuOpen(false)}>
+						            Sell
+						        </Link>
+						    )}
+
+						    {/* CART: Visible to everyone so they can view the basket... */}
+						    <Link
+						        to="/cart"
+						        className={location.pathname === "/cart" ? "active" : ""}
+						        onClick={() => setIsMenuOpen(false)}>
+						        Cart
+						    </Link>
+						
+						    {/* ACCOUNT: Only visible to regular logged-in users (NOT big scary admin) */}
+						    {isLoggedIn && !isAdmin && (
+						        <Link
+						            to="/account"
+						            className={location.pathname === "/account" ? "active" : ""}
+						            onClick={() => setIsMenuOpen(false)}>
+						            Account
+						        </Link>
+						    )}
+
+						    {/* ADMIN: Only visible if the user holds the admin badge */}
+						    {isAdmin && (
+						        <Link
+						            to="/admin"
+						            className={location.pathname.startsWith("/admin") ? "active" : ""}
+						            onClick={() => setIsMenuOpen(false)}>
+						            Admin
+						        </Link>
+						    )}
+
+						    {/* LOGIN: Only visible if the user is logged out */}
+						    {!isLoggedIn && (
+						        <Link
+						            to="/login"
+						            className={location.pathname.startsWith("/login") ? "active" : ""}
+						            onClick={() => setIsMenuOpen(false)}>
+						            Login
+						        </Link>
+						    )}
 						</div>
 					</div>
 				</div>
