@@ -20,12 +20,19 @@ const ERA_MAP = {
 	"1970S": "70s",
 };
 
-const toTitleCase = (s) =>
-	s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+const toTitleCase = (s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
 
 //all filter labels per wave: for "everything in this wave is selected"
 const WAVES = {
-	category: ["ALL", "COMPUTERS", "GAMING", "AUDIO", "MOBILE", "VIDEO", "CAMERAS"],
+	category: [
+		"ALL",
+		"COMPUTERS",
+		"GAMING",
+		"AUDIO",
+		"MOBILE",
+		"VIDEO",
+		"CAMERAS",
+	],
 	era: ["ALL", "2000S", "1990S", "1980S", "1970S"],
 	condition: ["ALL", "EXCELLENT", "GREAT", "MODERATE", "LOW", "POOR"],
 };
@@ -83,9 +90,7 @@ export default function ProductsPage() {
 				return null;
 			}
 
-			return new Set(
-				selectedInWave.map(transform).filter(Boolean)
-			);
+			return new Set(selectedInWave.map(transform).filter(Boolean));
 		};
 
 		const categoryFilter = waveFilter("category", toTitleCase);
@@ -101,7 +106,6 @@ export default function ProductsPage() {
 	}, [listings, selectedTags]);
 
 	return (
-		<>
 		<div className="tetris-page-wrapper">
 			<TetrisBackground />
 			<Container fluid className="product-main-content">
@@ -149,7 +153,6 @@ export default function ProductsPage() {
 					))}
 				</Row>
 			</Container>
-			</div>
-		</>
+		</div>
 	);
 }

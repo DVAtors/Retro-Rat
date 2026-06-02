@@ -300,16 +300,29 @@ export default function EditProduct() {
 									/>{" "}
 									Location
 								</label>
-								<input
-									type="text"
+
+								<select
 									id="product-location"
 									name="location"
-									placeholder="City, Province"
+									className="province-dropdown"
 									value={form.location}
 									onChange={handleChange}
-									required
-								/>
+									required>
+									<option value="" disabled hidden>
+										Select Province
+									</option>
+									<option value="Eastern Cape">Eastern Cape</option>
+									<option value="Free State">Free State</option>
+									<option value="Gauteng">Gauteng</option>
+									<option value="KwaZulu-Natal">KwaZulu-Natal</option>
+									<option value="Limpopo">Limpopo</option>
+									<option value="Mpumalanga">Mpumalanga</option>
+									<option value="Northern Cape">Northern Cape</option>
+									<option value="North West">North West</option>
+									<option value="Western Cape">Western Cape</option>
+								</select>
 							</div>
+
 							<div className="input-group-block">
 								<label htmlFor="product-description" className="field-label">
 									<img
@@ -335,6 +348,7 @@ export default function EditProduct() {
 							</div>
 						</div>
 					</Container>
+					{error && <p className="error-display-msg">{error}</p>}
 
 					{/* === SHIPPING OPTIONS SECTION === */}
 					<Container fluid className="form-section-card shipping-card-bg">
@@ -395,68 +409,6 @@ export default function EditProduct() {
 						</div>
 					</Container>
 
-					{/* === ITEM INFORMATION SECTION === */}
-					<Container fluid className="form-section-card info-card-bg">
-						<div className="section-inner-padding d-flex flex-column gap-4">
-							<label className="section-main-label m-0">Item Information</label>
-							<div className="input-group-block">
-								<label htmlFor="product-location" className="field-label">
-									<img
-										src={LocationIcon}
-										alt="Location"
-										className="label-inline-icon"
-									/>{" "}
-									Location
-								</label>
-
-								<select
-									id="product-location"
-									name="location"
-									className="province-dropdown"
-									value={form.location}
-									onChange={handleChange}
-									required>
-									<option value="" disabled hidden>
-										Select Province
-									</option>
-									<option value="Eastern Cape">Eastern Cape</option>
-									<option value="Free State">Free State</option>
-									<option value="Gauteng">Gauteng</option>
-									<option value="KwaZulu-Natal">KwaZulu-Natal</option>
-									<option value="Limpopo">Limpopo</option>
-									<option value="Mpumalanga">Mpumalanga</option>
-									<option value="Northern Cape">Northern Cape</option>
-									<option value="North West">North West</option>
-									<option value="Western Cape">Western Cape</option>
-								</select>
-							</div>
-
-							<div className="input-group-block">
-								<label htmlFor="product-description" className="field-label">
-									<img
-										src={DescriptionIcon}
-										alt="Description"
-										className="label-inline-icon"
-									/>{" "}
-									Description
-								</label>
-								<textarea
-									id="product-description"
-									name="description"
-									rows={4}
-									placeholder="Describe your item's history, condition, functionality, and any unique features..."
-									value={form.description}
-									onChange={handleChange}
-									required
-								/>
-								<p className="form-tip-text">
-									TIP: INCLUDE DETAILS ABOUT FUNCTIONALITY, ORIGINAL PACKAGING,
-									AND ANY INCLUDED ACCESSORIES
-								</p>
-							</div>
-						</div>
-					</Container>
-					{error && <p className="error-display-msg">{error}</p>}
 					<div className="submit-action-row">
 						<button
 							type="button"
