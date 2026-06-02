@@ -39,17 +39,23 @@ function ACBlockListItem({ listing, onApprove, onDeny }) {
 							className="ac-view-item-btn"
 							onClick={() => navigate(`/product/${_id}`)}>
 							<FontAwesomeIcon icon={faEye} />
-							<span className="ac-view-item">View Item</span>
+							{/* <span className="ac-view-item">View Item</span> */}
+							View Item
 						</button>
 						<button
 							className="ac-approve-item-btn"
 							onClick={() => onApprove(_id)}>
+							{/* onClick={() => handleApprove(_id)}> */}
 							<FontAwesomeIcon icon={faCheckSquare} />
-							<span className="ac-approve-item">Approve</span>
+							{/* <span className="ac-approve-item">Approve</span> */}
+							Approve
 						</button>
+						{/* <button className="ac-delete-item-btn" onClick={() => onDeny(_id)}> */}
 						<button className="ac-delete-item-btn" onClick={() => onDeny(_id)}>
+							{/* onClick={() => handleDeny(_id)}> */}
 							<FontAwesomeIcon icon={faXmarkCircle} />
-							<span className="ac-delete-item">Deny</span>
+							{/* <span className="ac-delete-item">Deny</span> */}
+							Deny
 						</button>
 					</div>
 				</div>
