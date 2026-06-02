@@ -43,3 +43,15 @@ textarea,
   cursor: url('../src/assets/retroCursor.svg') 0 0, auto !important;
 }
 
+.toast-fixed-wrapper {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999; 
+  pointer-events: none; 
+}
+
+.toast-fixed-wrapper > * {
+  pointer-events: auto; /* Re-enables clicking/dismissing the toast */
+}
+
