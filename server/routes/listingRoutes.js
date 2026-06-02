@@ -94,7 +94,7 @@ router.put("/:id", protect, async (req, res) => {
     }
 
     // only the seller can update their own listing
-    if (listing.seller.toString() !== req.user.id) {
+    if (listing.seller.toString()  !== req.user.id && req.user.isAdmin !== true) {
       return res
         .status(403)
         .json({ error: "Not authorized to update this listing" });
