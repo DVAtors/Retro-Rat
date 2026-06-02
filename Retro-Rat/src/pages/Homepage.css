@@ -166,6 +166,11 @@
   cursor: pointer;
 }
 
+.browse-button:hover{
+  background-color: #5b2c91;
+  transition: all 0.2s ease-in-out; 
+}
+
 /* === POPULAR SECTION === */
 .popular-section {
   background: rgba(91, 44, 145, 0.9); 
@@ -220,6 +225,7 @@
   font-size: 20px;
   font-weight: 800;
   text-transform: uppercase;
+  transition: all 0.2s ease-in-out; 
 }
 
 .view-listed-btn button:hover{
@@ -312,6 +318,7 @@
   font-size: 20px;
   font-weight: 700;
   text-transform: uppercase;
+  transition: all 0.2s ease-in-out; 
 }
 
 .join-btn-container button:hover{
@@ -321,7 +328,7 @@
 
 /* === ALREADY A MEMBER SECTION === */
 .already-a-member-section {
-  background: #0b8c8c; /* Dynamic teal container background */
+  background: #0b8c8c; 
   padding: 48px 20px !important;
   width: 100vw;
 }
@@ -388,26 +395,22 @@
   text-transform: uppercase;
 }
 
-.already-btn-container {
-  display: flex;
-  gap: 40px;
-  width: 100%;
-}
 
-.already-btn-container button {
-  flex: 1;
+.already-action-btn {
+  width: 100%; 
   height: 54px;
   border: 2px solid #000;
   background: #FFF;
   box-shadow: 8px 8px 0 0 #000;
   color: #000;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 20px;
   font-weight: 700;
   text-transform: uppercase;
+  transition: all 0.2s ease-in-out; 
 }
 
-.already-btn-container button:hover{
+.already-action-btn:hover{
   background-color: #d9411e;
   color: #FFF;
 }

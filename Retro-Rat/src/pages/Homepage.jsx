@@ -157,62 +157,68 @@ export default function Homepage() {
 				{/* === ALREADY A MEMBER SECTION === */}
 				<TetrisWrapper bgColor="#0B8C8C">
 				<Container fluid className="already-a-member-section">
-					<div className="section-inner-wrapper">
-						<Row className="flex-column gap-4">
-							<Col xs={12}>
-								<div className="already-banner">
-									<div className="already-text">
-										<h2>Already A Member??</h2>
-										<p>
-											Add your items to sell and View Your Listings for pending
-											approval!
-										</p>
-									</div>
-								</div>
-							</Col>
+    <div className="section-inner-wrapper">
+        <Row className="flex-column gap-4">
+            
+            <Col xs={12}>
+                <div className="already-banner">
+                    <div className="already-text">
+                        <h2>Already A Member??</h2>
+                        <p>
+                            Add your items to sell and View Your Listings for pending
+                            approval!
+                        </p>
+                    </div>
+                </div>
+            </Col>
 
-							<Col xs={12}>
-								<Row className="g-4">
-									<Col md={6} className="d-flex flex-column">
-										<div className="already-col add-your-listing">
-											<div className="text-container">
-												<div className="title-text">
-													<h2>Add and Sell your items!!</h2>
-													<p>Upload your items and get selling!</p>
-												</div>
-											</div>
-										</div>
-									</Col>
+            
+            <Col xs={12}>
+                <Row className="g-4">
+                    
+                    <Col md={6} className="d-flex flex-column gap-4">
+                        <div className="already-col add-your-listing">
+                            <div className="text-container">
+                                <div className="title-text">
+                                    <h2>Add and Sell your items!!</h2>
+                                    <p>Upload your items and get selling!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button 
+                            className="already-action-btn" 
+                            onClick={handleListingButtonClick}
+                        >
+                            Add your listing!!
+                        </button>
+                    </Col>
 
-									<Col md={6} className="d-flex flex-column">
-										<div className="already-col view-product-approval-status">
-											<div className="text-container">
-												<div className="title-text">
-													<h2>Unsure if people are buying your items yet?</h2>
-													<p>
-														View your listings approval status and check if your
-														items are selling yet!!
-													</p>
-												</div>
-											</div>
-										</div>
-									</Col>
-								</Row>
-							</Col>
-
-							<Col xs={12}>
-								<div className="already-btn-container">
-									<button onClick={handleListingButtonClick}>
-										Add your listing!!
-									</button>
-									<button onClick={handleStatusButtonClick}>
-										View Your Product approval Status!!
-									</button>
-								</div>
-							</Col>
-						</Row>
-					</div>
-				</Container></TetrisWrapper>
+                    
+                    <Col md={6} className="d-flex flex-column gap-4">
+                        <div className="already-col view-product-approval-status">
+                            <div className="text-container">
+                                <div className="title-text">
+                                    <h2>Unsure if people are buying your items yet?</h2>
+                                    <p>
+                                        View your listings approval status and check if your
+                                        items are selling yet!!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <button 
+                            className="already-action-btn" 
+                            onClick={handleStatusButtonClick}
+                        >
+                            View Your Product approval Status!!
+                        </button>
+                    </Col>
+                </Row>
+            </Col>
+        </Row>
+    </div>
+</Container>
+				</TetrisWrapper>
 			</div>
 			<RetroToast
 				isOpen={isToastOpen}
