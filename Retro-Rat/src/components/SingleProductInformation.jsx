@@ -71,7 +71,8 @@ function SingleProductInformation({ listing }) {
 		if (!confirm("Delete this listing? This can't be undone.")) return;
 		try {
 			await apiDelete(`/listings/${listing._id}`);
-			navigate("/console");
+			// navigate("/console");
+			navigate("/account");
 		} catch (err) {
 			console.error("Couldn't delete listing:", err);
 		}
@@ -131,8 +132,8 @@ function SingleProductInformation({ listing }) {
 					</div>
 				</div>
 				<SellerContainerComponent seller={listing.seller} />
-				<div className="divider"></div>
 				<div className="item-information">
+					<div className="divider"></div>
 					<div className="priceContainer">
 						<h2 className="price">R{listing.price.toFixed(2)}</h2>
 					</div>
@@ -143,6 +144,7 @@ function SingleProductInformation({ listing }) {
 			</div>
 
 			<div className="condition-and-buttons">
+				<div className="divider"></div>
 				<div className="conditionContainer">
 					<h3 className="">CONDITION</h3>
 					<div className="conditionTag">
@@ -181,7 +183,6 @@ function SingleProductInformation({ listing }) {
 						</>
 					)} */}
 				</div>
-				<div className="divider"></div>
 			</div>
 		</div>
 	);
