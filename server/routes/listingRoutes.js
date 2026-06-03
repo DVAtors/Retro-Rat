@@ -113,8 +113,7 @@ router.put("/:id", protect, async (req, res) => {
 	}
 });
 
-// DELETE /api/listings/:id — delete a listing (owner only)
-// DELETE /api/listings/:id — delete a listing (owner or admin)
+// DELETE /api/listings/:id delete a listing (owner or admin)
 router.delete("/:id", protect, async (req, res) => {
 	try {
 		const listing = await Listing.findById(req.params.id);
@@ -142,21 +141,6 @@ router.delete("/:id", protect, async (req, res) => {
 		);
 
 		res.json({ message: "Listing deleted", id: req.params.id });
-	} catch (err) {
-		res.status(500).json({ error: err.message });
-	}
-});
-
-// DELETE /api/listings/:id — delete a listing entirely
-router.delete("/:id", protect, async (req, res) => {
-	try {
-		const deletedListing = await Listing.findByIdAndDelete(req.params.id);
-
-		if (!deletedListing) {
-			return res.status(404).json({ error: "Listing not found" });
-		}
-
-		res.json({ message: "Listing deleted successfully" });
 	} catch (err) {
 		res.status(500).json({ error: err.message });
 	}
