@@ -18,7 +18,7 @@
     background-color: #ffffff;
     border: 4px solid #000000;
     box-shadow: 8px 8px 0px rgba(0, 0, 0, 1);
-    font-family: "Courier New", Courier, monospace; /* Swap with a pixel font like 'VT323' if you have one! */
+    font-family: "Courier New", Courier, monospace; 
 }
 
 /* THE HEADER 
@@ -65,7 +65,7 @@
     font-weight: 900;
     font-size: 18px;
     letter-spacing: 1px;
-    background-color: #001A83; 
+    /* background-color: #001A83;  */
     /* background: transparent; */
     padding-left: 6px;
     user-select: none;
@@ -140,7 +140,7 @@
 
 /* THE LEGENDARY 3D BUTTON (shoutpout to the singlure semester in 3D animation)
 */
-.win95-btn {
+.error-actions .win95-btn {
     flex-grow: 1;
     padding: 8px 16px;
     font-family: inherit;
@@ -161,7 +161,7 @@
 }
 
 
-.win95-btn:active {
+.error-actions .win95-btn:active {
     box-shadow: 
         inset 2px 2px 0px #808080, 
         inset -2px -2px 0px #ffffff;

@@ -51,13 +51,14 @@ export default function SignUpForm() {
 			}
 			const successMsg = "Account created! Please log in."
 			
-			alert(successMsg);
+			// alert(successMsg);
 			console.log("Account Created Successfully");
 			
 			showRetroToast(successMsg);
 			navigate("/login"); // ← redirect to login after signup
 		} catch (error) {
 			setErrorMessage("Failed to connect to the server.");
+			showErrorToast("Failed to connect to the server.")
 			console.log(errorMessage);
 		}
 	};
@@ -67,9 +68,9 @@ export default function SignUpForm() {
 			<Row className="account-details-signup-container">
 				<Col className="account-details">
 					<h1>Account Details</h1>
-					{errorMessage && (
+					{/* {errorMessage && (
 						<p style={{ color: "red", fontWeight: "bold" }}>{errorMessage}</p>
-					)}
+					)} */}
 
 					<form id="auth-form" onSubmit={handleSubmit}>
 						<div className="input-container">
@@ -133,9 +134,9 @@ export default function SignUpForm() {
 			<Row className="password-details-container">
 				<Col className="account-details">
 					<h1>Password</h1>
-					{errorMessage && (
+					{/* {errorMessage && (
 						<p style={{ color: "red", fontWeight: "bold" }}>{errorMessage}</p>
-					)}
+					)} */}
 					<TunePassword onPasswordChange={(pw) => setTunePassword(pw)} />
 				</Col>
 			</Row>

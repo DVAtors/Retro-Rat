@@ -44,7 +44,7 @@ export default function LoginForm() {
 			navigate("/browse");
 		} catch (error) {
 			const connError = "Failed to connect to the server.";
-            setErrorMessage(connError);
+            // setErrorMessage(connError); the red text
 
 			//custom toast
             showErrorToast(connError);
@@ -56,9 +56,9 @@ export default function LoginForm() {
 			<Row className="account-details-container">
 				<Col className="account-details">
 					<h1>Account Details</h1>
-					{errorMessage && (
+					{/* {errorMessage && (
 						<p style={{ color: "red", fontWeight: "bold" }}>{errorMessage}</p>
-					)}
+					)} */}
 
 					<form id="auth-form" onSubmit={handleSubmit}>
 						<div className="input-container">
