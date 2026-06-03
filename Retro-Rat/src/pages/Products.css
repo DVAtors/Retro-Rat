@@ -64,6 +64,24 @@
 	/* min-height: 100vh; */
 }
 
+.product-card-masonry { /*USED THIS TO ACCOMMODATE FOR THE EXTRA HEIGHT ON SOME CARDS*/
+    column-count: 3; 
+    column-gap: 24px; 
+    width: 100%;
+}
+
+/* Make it responsive so columns drop on smaller screens */
+@media (max-width: 992px) {
+    .product-card-masonry {
+        column-count: 2;
+    }
+}
+@media (max-width: 576px) {
+    .product-card-masonry {
+        column-count: 1;
+    }
+}
+
 .product-header {
 	/* for the shiny effect */
 	position: relative;
@@ -71,8 +89,8 @@
 
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	padding: 44px 252px 4px 44px;
+	align-items: flex-start;
+	padding: 44px 64px; /*I'm never using the duck-ass figma dev thing for flex again*/
 
 	border: 4px solid #000;
 	background-color: #5b2c91;
@@ -121,6 +139,7 @@
 	/* animation: banner-shine 0.8s ease-out forwards; */
 	animation: banner-shine-hover 1.2s ease-out forwards; /*DO THE SINY THING ON FIRST PAGE LOAD*/
 }
+
 
 /* THE KEYFRAMES FOR THE SHINEY BANNER THING */
 

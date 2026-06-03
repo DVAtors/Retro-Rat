@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import TunePassword from "../components/TunePassword";
 
 import LocationIcon from "../assets/LocationIcon.svg";
-
+import { useToast } from "./ToastContext";
 import "../pages/LoginPage.css";
 
 export default function SignUpForm() {
@@ -13,6 +13,8 @@ export default function SignUpForm() {
 	const [tunePassword, setTunePassword] = useState("--------");
 	const [errorMessage, setErrorMessage] = useState("");
 	const navigate = useNavigate();
+
+	const { showRetroToast, showErrorToast } = useToast();
 
 	const [form, setForm] = useState({
 		location: "",
@@ -41,12 +43,18 @@ export default function SignUpForm() {
 
 			const data = await response.json();
 			if (!response.ok) {
-				setErrorMessage(data.error || "Something went wrong");
-				return;
+				const failureMsg = data.error || "Something went wrong";
+                setErrorMessage(failureMsg);
+                
+                
+                showErrorToast(failureMsg);
 			}
-
-			alert("Account created! Please log in.");
+			const successMsg = "Account created! Please log in."
+			
+			alert(successMsg);
 			console.log("Account Created Successfully");
+			
+			showRetroToast(successMsg);
 			navigate("/login"); // ← redirect to login after signup
 		} catch (error) {
 			setErrorMessage("Failed to connect to the server.");

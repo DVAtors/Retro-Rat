@@ -121,6 +121,7 @@ export default function ProductsPage() {
 				<FilterBar onFilterChange={setSelectedTags} />
 
 				<Row className="product-card-container">
+				
 					{
 						loading && (
 							<p className="error-text">Loading listings...</p>
@@ -138,7 +139,7 @@ export default function ProductsPage() {
 								: "No listings match your filters."}
 						</p>
 					)}
-
+<div className="product-card-masonry">
 					{filteredListings.map((listing) => (
 						<ProductCard
 							key={listing._id} //react prop, used to know if something is the same or not when reloading the component.
@@ -151,6 +152,7 @@ export default function ProductsPage() {
 							imgSrc={listing.mainImage} //we gonna get back to this (listing.mainImage is the actual thing to go here)
 						/>
 					))}
+					</div>
 				</Row>
 			</Container>
 		</div>

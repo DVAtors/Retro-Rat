@@ -7,13 +7,14 @@ import "./Homepage.css";
 import { apiGet } from "../client";
 import bootRatWhite from "../assets/bootRatWhite.svg";
 import ProductCard from "../components/ProductCard";
-import RetroToast from "../components/RetroToast";
+import { useToast } from "../components/ToastContext";
 import TetrisWrapper from "../components/TetrisWrapper";
 
 export default function Homepage() {
 	const [listings, setListings] = useState([]);
-	const [isToastOpen, setIsToastOpen] = useState(false);
+	// const [isToastOpen, setIsToastOpen] = useState(false);
 	const navigate = useNavigate();
+	const { showErrorToast } = useToast();
 
 	// AUTH CHECK SYSTEM: Redirecting verified people, flashing an error to freeloaders
 	// I'm not fluent in ruotes but from what i saw this is my roughtest guess @Troy-jsx
@@ -22,7 +23,11 @@ export default function Homepage() {
 		if (isLoggedIn) {
 			navigate("/account"); // ??????
 		} else {
-			setIsToastOpen(true); // Summons the 95 system error window
+			// 3. Trigger the premium Win95 error popup with a dynamic button!
+            showErrorToast(
+                "Unauthorized Entry! You must be logged in to create a marketplace listing.",
+                { label: "Take me to Login", route: "/login" }
+            );
 		}
 	};
 
@@ -31,7 +36,10 @@ export default function Homepage() {
 		if (isLoggedIn) {
 			navigate("/account"); // Placeholder to take them to view status of posted listings, i know this is the route for admins but i dunno the user route
 		} else {
-			setIsToastOpen(true); // Summons the 95 system error window
+			showErrorToast(
+                "Unauthorized Entry! You must authenticate your collector account to access this content.",
+                { label: "Take me to Login", route: "/login" }
+            );
 		}
 	};
 
@@ -67,53 +75,53 @@ export default function Homepage() {
 
 				{/* === POPULAR SECTION === */}
 				<TetrisWrapper bgColor="#5b2c91">
-				<Container fluid className="popular-section">
-					<div className="section-inner-wrapper">
-						<div className="popular-banner">
-							<div className="popular-text">
-								<h2>popular tech on the marketplace</h2>
-								<p>These are some popular items from fellow Vendors!!</p>
+					<Container fluid className="popular-section">
+						<div className="section-inner-wrapper">
+							<div className="popular-banner">
+								<div className="popular-text">
+									<h2>popular tech on the marketplace</h2>
+									<p>These are some popular items from fellow Vendors!!</p>
+								</div>
+							</div>
+
+							{/*maps mapping across columns natively so cards sit side-by-side */}
+							<Row className="popular-items justify-content-center">
+								{listings.slice(0, 3).map((listing) => (
+									<Col
+										md={4}
+										key={listing._id}
+										className="d-flex justify-content-center mb-4">
+										<ProductCard
+											id={listing._id}
+											title={listing.productName}
+											year={listing.era}
+											username={listing.seller?.name || "unknown"}
+											price={`R${listing.price.toFixed(2)}`}
+											condition={listing.condition}
+											imgSrc={listing.mainImage}
+										/>
+									</Col>
+								))}
+								{/* Fallbacks if  database has less than 3 thingys */}
+								{listings.length < 2 && (
+									<Col md={4} className="d-flex justify-content-center mb-4">
+										Insert Card
+									</Col>
+								)}
+								{listings.length < 3 && (
+									<Col md={4} className="d-flex justify-content-center mb-4">
+										Insert Card
+									</Col>
+								)}
+							</Row>
+
+							<div className="view-listed-btn">
+								<button onClick={() => navigate("/browse")}>
+									View Listed items!!
+								</button>
 							</div>
 						</div>
-
-						{/*maps mapping across columns natively so cards sit side-by-side */}
-						<Row className="popular-items justify-content-center">
-							{listings.slice(0, 3).map((listing) => (
-								<Col
-									md={4}
-									key={listing._id}
-									className="d-flex justify-content-center mb-4">
-									<ProductCard
-										id={listing._id}
-										title={listing.productName}
-										year={listing.era}
-										username={listing.seller?.name || "unknown"}
-										price={`R${listing.price.toFixed(2)}`}
-										condition={listing.condition}
-										imgSrc={listing.mainImage}
-									/>
-								</Col>
-							))}
-							{/* Fallbacks if  database has less than 3 thingys */}
-							{listings.length < 2 && (
-								<Col md={4} className="d-flex justify-content-center mb-4">
-									Insert Card
-								</Col>
-							)}
-							{listings.length < 3 && (
-								<Col md={4} className="d-flex justify-content-center mb-4">
-									Insert Card
-								</Col>
-							)}
-						</Row>
-
-						<div className="view-listed-btn">
-							<button onClick={() => navigate("/browse")}>
-								View Listed items!!
-							</button>
-						</div>
-					</div>
-				</Container></TetrisWrapper>
+					</Container></TetrisWrapper>
 
 				{/* === JOIN SECTION === */}
 				<Container fluid className="join-section">
@@ -156,75 +164,72 @@ export default function Homepage() {
 
 				{/* === ALREADY A MEMBER SECTION === */}
 				<TetrisWrapper bgColor="#0B8C8C">
-				<Container fluid className="already-a-member-section">
-    <div className="section-inner-wrapper">
-        <Row className="flex-column gap-4">
-            
-            <Col xs={12}>
-                <div className="already-banner">
-                    <div className="already-text">
-                        <h2>Already A Member??</h2>
-                        <p>
-                            Add your items to sell and View Your Listings for pending
-                            approval!
-                        </p>
-                    </div>
-                </div>
-            </Col>
+					<Container fluid className="already-a-member-section">
+						<div className="section-inner-wrapper">
+							<Row className="flex-column gap-4">
 
-            
-            <Col xs={12}>
-                <Row className="g-4">
-                    
-                    <Col md={6} className="d-flex flex-column gap-4">
-                        <div className="already-col add-your-listing">
-                            <div className="text-container">
-                                <div className="title-text">
-                                    <h2>Add and Sell your items!!</h2>
-                                    <p>Upload your items and get selling!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button 
-                            className="already-action-btn" 
-                            onClick={handleListingButtonClick}
-                        >
-                            Add your listing!!
-                        </button>
-                    </Col>
+								<Col xs={12}>
+									<div className="already-banner">
+										<div className="already-text">
+											<h2>Already A Member??</h2>
+											<p>
+												Add your items to sell and View Your Listings for pending
+												approval!
+											</p>
+										</div>
+									</div>
+								</Col>
 
-                    
-                    <Col md={6} className="d-flex flex-column gap-4">
-                        <div className="already-col view-product-approval-status">
-                            <div className="text-container">
-                                <div className="title-text">
-                                    <h2>Unsure if people are buying your items yet?</h2>
-                                    <p>
-                                        View your listings approval status and check if your
-                                        items are selling yet!!
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <button 
-                            className="already-action-btn" 
-                            onClick={handleStatusButtonClick}
-                        >
-                            View Your Product approval Status!!
-                        </button>
-                    </Col>
-                </Row>
-            </Col>
-        </Row>
-    </div>
-</Container>
+
+								<Col xs={12}>
+									<Row className="g-4">
+
+										<Col md={6} className="d-flex flex-column gap-4">
+											<div className="already-col add-your-listing">
+												<div className="text-container">
+													<div className="title-text">
+														<h2>Add and Sell your items!!</h2>
+														<p>Upload your items and get selling!</p>
+													</div>
+												</div>
+											</div>
+											<button
+												className="already-action-btn"
+												onClick={handleListingButtonClick}
+											>
+												Add your listing!!
+											</button>
+										</Col>
+
+
+										<Col md={6} className="d-flex flex-column gap-4">
+											<div className="already-col view-product-approval-status">
+												<div className="text-container">
+													<div className="title-text">
+														<h2>Unsure if people are buying your items yet?</h2>
+														<p>
+															View your listings approval status and check if your
+															items are selling yet!!
+														</p>
+													</div>
+												</div>
+											</div>
+											<button
+												className="already-action-btn"
+												onClick={handleStatusButtonClick}>	
+												View Your Product approval Status!!
+											</button>
+										</Col>
+									</Row>
+								</Col>
+							</Row>
+						</div>
+					</Container>
 				</TetrisWrapper>
 			</div>
-			<RetroToast
-				isOpen={isToastOpen}
-				onClose={() => setIsToastOpen(false)}
-				message="Unauthorized Entry! You must authenticate your collector account to access this content."
-			/>
+
+
+{/* // This stays on screen and shows TWO buttons: "Take me to Login" and "OK". */}
 		</div>
 	);
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import TunePassword from "../components/TunePassword";
+import { useToast } from "./ToastContext";
 
 import "../pages/LoginPage.css";
 
@@ -10,6 +11,8 @@ export default function LoginForm() {
 	const [tunePassword, setTunePassword] = useState("--------");
 	const [errorMessage, setErrorMessage] = useState("");
 	const navigate = useNavigate();
+
+	const { showRetroToast, showErrorToast } = useToast();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -24,17 +27,27 @@ export default function LoginForm() {
 
 			const data = await response.json();
 			if (!response.ok) {
-				setErrorMessage(data.error || "Something went wrong");
-				return;
+				const failureMessage = data.error || "Something went wrong";
+                setErrorMessage(failureMessage);
+                
+                // Trigger Error Toast!
+                showErrorToast(failureMessage); 
+                return;
 			}
 
 			localStorage.setItem("token", data.token);
 			localStorage.setItem("isAdmin", data.isAdmin);
-			alert("Logged in successfully!");
+			// alert("Logged in successfully!"); UGLY LOCAL HOST TOAST
+			showRetroToast("Logged in Successfully!")
+
 			// navigate("/console"); // ← uncomment when ready
 			navigate("/browse");
 		} catch (error) {
-			setErrorMessage("Failed to connect to the server.");
+			const connError = "Failed to connect to the server.";
+            setErrorMessage(connError);
+
+			//custom toast
+            showErrorToast(connError);
 		}
 	};
 

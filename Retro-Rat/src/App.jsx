@@ -31,11 +31,13 @@ import Footer from "./components/Footer";
 
 // I added this becuase everytime i navigated to a page from home it too my to the bottom of the page for some reason T-T
 import ScrollToTop from "./components/ScrollToTop";
+import { ToastProvider } from "./components/ToastContext";
 
 function App() {
 	return (
 		<>
 			<BrowserRouter>
+			<ToastProvider>
 			<ScrollToTop/>
 				<Navbar></Navbar>
 				<Routes>
@@ -60,6 +62,7 @@ function App() {
 					</Route>
 				</Routes>
 				<Footer></Footer>
+				</ToastProvider>
 			</BrowserRouter>
 		</>
 	);
