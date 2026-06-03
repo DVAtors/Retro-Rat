@@ -37,26 +37,26 @@ const WAVES = {
 	condition: ["ALL", "EXCELLENT", "GREAT", "MODERATE", "LOW", "POOR"],
 };
 // BUUUUUUUNCHA DUMMY TEXT
-const DUMMY_LISTINGS = [
-	{ _id: "1", productName: "Nintendo 64 Console", category: "Gaming", era: "90s", condition: "Excellent", price: 1500.00, seller: { name: "RetroGamer99" }, mainImage: "https://placehold.co/400x300/5E35B1/FFF?text=N64" },
-	{ _id: "2", productName: "Sony Walkman TPS-L2", category: "Audio", era: "80s", condition: "Great", price: 2450.00, seller: { name: "AudioVintage" }, mainImage: "https://placehold.co/400x300/111111/FFF?text=Walkman" },
-	{ _id: "3", productName: "Commodore 64", category: "Computers", era: "80s", condition: "Moderate", price: 1800.50, seller: { name: "TechCollector" }, mainImage: "https://placehold.co/400x300/E83B3B/FFF?text=Commodore+64" },
-	{ _id: "4", productName: "Motorola Razr V3 (Pink)", category: "Mobile", era: "2000s", condition: "Excellent", price: 850.00, seller: { name: "Y2K_Vault" }, mainImage: "https://placehold.co/400x300/FF9D00/FFF?text=Razr+V3" },
-	{ _id: "5", productName: "Polaroid Sun 600", category: "Cameras", era: "80s", condition: "Great", price: 650.00, seller: { name: "ShutterBug" }, mainImage: "https://placehold.co/400x300/38C938/FFF?text=Polaroid" },
-	{ _id: "6", productName: "Atari 2600", category: "Gaming", era: "70s", condition: "Low", price: 1100.00, seller: { name: "ArcadeKing" }, mainImage: "https://placehold.co/400x300/00B7EB/FFF?text=Atari+2600" },
-	{ _id: "7", productName: "Sony Discman D-50", category: "Audio", era: "90s", condition: "Poor", price: 250.00, seller: { name: "AudioVintage" }, mainImage: "https://placehold.co/400x300/2B5DF2/FFF?text=Discman" },
-	{ _id: "8", productName: "Game Boy Color (Atomic Purple)", category: "Gaming", era: "90s", condition: "Excellent", price: 1850.00, seller: { name: "HandheldHero" }, mainImage: "https://placehold.co/400x300/9B2BF2/FFF?text=GBC+Purple" },
-	{ _id: "9", productName: "IBM ThinkPad 701C", category: "Computers", era: "90s", condition: "Great", price: 3200.00, seller: { name: "TechCollector" }, mainImage: "https://placehold.co/400x300/5E35B1/FFF?text=ThinkPad" },
-	{ _id: "10", productName: "Nokia 3310", category: "Mobile", era: "2000s", condition: "Excellent", price: 400.00, seller: { name: "BrickPhones" }, mainImage: "https://placehold.co/400x300/111111/FFF?text=Nokia+3310" },
-	{ _id: "11", productName: "JVC VHS Camcorder", category: "Video", era: "90s", condition: "Moderate", price: 550.00, seller: { name: "TapeHead" }, mainImage: "https://placehold.co/400x300/E83B3B/FFF?text=Camcorder" },
-	{ _id: "12", productName: "Apple Macintosh Classic", category: "Computers", era: "90s", condition: "Great", price: 4500.00, seller: { name: "MacFanatic" }, mainImage: "https://placehold.co/400x300/FF9D00/FFF?text=Mac+Classic" },
-	{ _id: "13", productName: "Sega Genesis", category: "Gaming", era: "90s", condition: "Moderate", price: 900.00, seller: { name: "RetroGamer99" }, mainImage: "https://placehold.co/400x300/FFD500/FFF?text=Sega+Genesis" },
-	{ _id: "14", productName: "Pioneer Boombox", category: "Audio", era: "80s", condition: "Low", price: 1200.00, seller: { name: "StreetBeats" }, mainImage: "https://placehold.co/400x300/38C938/FFF?text=Boombox" },
-	{ _id: "15", productName: "Canon AE-1 Program", category: "Cameras", era: "80s", condition: "Excellent", price: 2100.00, seller: { name: "ShutterBug" }, mainImage: "https://placehold.co/400x300/00B7EB/FFF?text=Canon+AE-1" },
-	{ _id: "16", productName: "Sony Trinitron CRT TV", category: "Video", era: "80s", condition: "Great", price: 1800.00, seller: { name: "TubeTech" }, mainImage: "https://placehold.co/400x300/2B5DF2/FFF?text=Trinitron" },
-	{ _id: "17", productName: "BlackBerry Curve", category: "Mobile", era: "2000s", condition: "Moderate", price: 350.00, seller: { name: "Y2K_Vault" }, mainImage: "https://placehold.co/400x300/9B2BF2/FFF?text=BlackBerry" },
-	{ _id: "18", productName: "Nintendo Entertainment System", category: "Gaming", era: "80s", condition: "Excellent", price: 2500.00, seller: { name: "ArcadeKing" }, mainImage: "https://placehold.co/400x300/5E35B1/FFF?text=NES" }
-];
+// const DUMMY_LISTINGS = [
+// 	{ _id: "1", productName: "Nintendo 64 Console", category: "Gaming", era: "90s", condition: "Excellent", price: 1500.00, seller: { name: "RetroGamer99" }, mainImage: "https://placehold.co/400x300/5E35B1/FFF?text=N64" },
+// 	{ _id: "2", productName: "Sony Walkman TPS-L2", category: "Audio", era: "80s", condition: "Great", price: 2450.00, seller: { name: "AudioVintage" }, mainImage: "https://placehold.co/400x300/111111/FFF?text=Walkman" },
+// 	{ _id: "3", productName: "Commodore 64", category: "Computers", era: "80s", condition: "Moderate", price: 1800.50, seller: { name: "TechCollector" }, mainImage: "https://placehold.co/400x300/E83B3B/FFF?text=Commodore+64" },
+// 	{ _id: "4", productName: "Motorola Razr V3 (Pink)", category: "Mobile", era: "2000s", condition: "Excellent", price: 850.00, seller: { name: "Y2K_Vault" }, mainImage: "https://placehold.co/400x300/FF9D00/FFF?text=Razr+V3" },
+// 	{ _id: "5", productName: "Polaroid Sun 600", category: "Cameras", era: "80s", condition: "Great", price: 650.00, seller: { name: "ShutterBug" }, mainImage: "https://placehold.co/400x300/38C938/FFF?text=Polaroid" },
+// 	{ _id: "6", productName: "Atari 2600", category: "Gaming", era: "70s", condition: "Low", price: 1100.00, seller: { name: "ArcadeKing" }, mainImage: "https://placehold.co/400x300/00B7EB/FFF?text=Atari+2600" },
+// 	{ _id: "7", productName: "Sony Discman D-50", category: "Audio", era: "90s", condition: "Poor", price: 250.00, seller: { name: "AudioVintage" }, mainImage: "https://placehold.co/400x300/2B5DF2/FFF?text=Discman" },
+// 	{ _id: "8", productName: "Game Boy Color (Atomic Purple)", category: "Gaming", era: "90s", condition: "Excellent", price: 1850.00, seller: { name: "HandheldHero" }, mainImage: "https://placehold.co/400x300/9B2BF2/FFF?text=GBC+Purple" },
+// 	{ _id: "9", productName: "IBM ThinkPad 701C", category: "Computers", era: "90s", condition: "Great", price: 3200.00, seller: { name: "TechCollector" }, mainImage: "https://placehold.co/400x300/5E35B1/FFF?text=ThinkPad" },
+// 	{ _id: "10", productName: "Nokia 3310", category: "Mobile", era: "2000s", condition: "Excellent", price: 400.00, seller: { name: "BrickPhones" }, mainImage: "https://placehold.co/400x300/111111/FFF?text=Nokia+3310" },
+// 	{ _id: "11", productName: "JVC VHS Camcorder", category: "Video", era: "90s", condition: "Moderate", price: 550.00, seller: { name: "TapeHead" }, mainImage: "https://placehold.co/400x300/E83B3B/FFF?text=Camcorder" },
+// 	{ _id: "12", productName: "Apple Macintosh Classic", category: "Computers", era: "90s", condition: "Great", price: 4500.00, seller: { name: "MacFanatic" }, mainImage: "https://placehold.co/400x300/FF9D00/FFF?text=Mac+Classic" },
+// 	{ _id: "13", productName: "Sega Genesis", category: "Gaming", era: "90s", condition: "Moderate", price: 900.00, seller: { name: "RetroGamer99" }, mainImage: "https://placehold.co/400x300/FFD500/FFF?text=Sega+Genesis" },
+// 	{ _id: "14", productName: "Pioneer Boombox", category: "Audio", era: "80s", condition: "Low", price: 1200.00, seller: { name: "StreetBeats" }, mainImage: "https://placehold.co/400x300/38C938/FFF?text=Boombox" },
+// 	{ _id: "15", productName: "Canon AE-1 Program", category: "Cameras", era: "80s", condition: "Excellent", price: 2100.00, seller: { name: "ShutterBug" }, mainImage: "https://placehold.co/400x300/00B7EB/FFF?text=Canon+AE-1" },
+// 	{ _id: "16", productName: "Sony Trinitron CRT TV", category: "Video", era: "80s", condition: "Great", price: 1800.00, seller: { name: "TubeTech" }, mainImage: "https://placehold.co/400x300/2B5DF2/FFF?text=Trinitron" },
+// 	{ _id: "17", productName: "BlackBerry Curve", category: "Mobile", era: "2000s", condition: "Moderate", price: 350.00, seller: { name: "Y2K_Vault" }, mainImage: "https://placehold.co/400x300/9B2BF2/FFF?text=BlackBerry" },
+// 	{ _id: "18", productName: "Nintendo Entertainment System", category: "Gaming", era: "80s", condition: "Excellent", price: 2500.00, seller: { name: "ArcadeKing" }, mainImage: "https://placehold.co/400x300/5E35B1/FFF?text=NES" }
+// ];
 
 export default function ProductsPage() {
 	const [listings, setListings] = useState([]);
@@ -66,16 +66,16 @@ export default function ProductsPage() {
 
 	useEffect(() => {
 		// --- TEMPORARY DUMMY DATA LOADER FOR BACKGROUND TESTING ---
-		setLoading(true);
-		setTimeout(() => {
-			setListings(DUMMY_LISTINGS);
-			setLoading(false);
-		}, 800); // Fakes an 800ms API loading time
+		// setLoading(true);
+		// setTimeout(() => {
+		// 	setListings(DUMMY_LISTINGS);
+		// 	setLoading(false);
+		// }, 800); // Fakes an 800ms API loading time
 
-		// apiGet("/listings")
-		// 	.then((data) => setListings(data))
-		// 	.catch((err) => setError(err.message))
-		// 	.finally(() => setLoading(false));
+		apiGet("/listings")
+			.then((data) => setListings(data))
+			.catch((err) => setError(err.message))
+			.finally(() => setLoading(false));
 	}, []);
 
 	const filteredListings = useMemo(() => {
