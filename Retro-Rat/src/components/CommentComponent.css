@@ -105,7 +105,7 @@
 .commentText {
 	/* width: 72.60131rem; */
 	width: 100%;
-	min-width: 68.375rem;
+	/* min-width: 68.375rem; */
 	flex-shrink: 0;
 
 	color: #000;
