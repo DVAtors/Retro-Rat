@@ -1,5 +1,5 @@
 
-.error-toast-overlay {
+.retro-toast-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,18 +12,83 @@
     z-index: 9999; /* God tier z-index */
 }
 
+
+/* i give up on animations honestly, i wanted it to like cascade out  */
+@keyframes pixel-drop {
+    30% {
+        opacity: 1;
+        transform: translateX(-4px);
+    }
+    40%, 100% {
+        opacity: 1;
+        transform: translateX(0);  
+    }
+}
+
+.cascade-pixel {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pixel-drop infinite 2s ease-in;
+}
+
+/* 
+@keyframes pixel-rainbow-wave {
+    
+    0%   { fill: #ff0000; } 
+    16%  { fill: #ffa500; } 
+    33%  { fill: #ffff00; } 
+    50%  { fill: #008000; } 
+    66%  { fill: #0000ff; }
+    83%  { fill: #4b0082; } 
+    100% { fill: #ee82ee; } 
+  }
+  
+  
+  /* background color seizure cycle */
+  /* @keyframes bg-rainbow-flash {
+    0%   { 
+        background-color: #ff0000; 
+    } 
+    16%  { 
+        background-color: #ffa500; 
+    } 
+    33%  { 
+        background-color: #ffff00; 
+    } 
+    50%  { 
+        background-color: #008000; 
+    } 
+    66%  { 
+        background-color: #0000ff; 
+    } 
+    83%  { 
+        background-color: #4b0082; 
+    }
+    100%{
+        background-color: #ee82ee; 
+    } 
+  } */
+  
+  /* .animated-rainbow-pixel {
+    animation: pixel-rainbow-wave 2s linear infinite reverse;
+
+}  */
+
 /* THE MAIN WINDOW */
-.error-toast-window {
+.retro-toast-window {
     width: 400px;
     background-color: #ffffff;
     border: 4px solid #000000;
     box-shadow: 8px 8px 0px rgba(0, 0, 0, 1);
-    font-family: "Courier New", Courier, monospace; /* Swap with a pixel font like 'VT323' if you have one! */
+    /* font-family: 'Bitcount Prop Double', monospace;
+    font-weight: 400;
+    max-width: 300px; */
+    font-family: "Courier New", Courier, monospace; 
 }
 
 /* THE HEADER 
 */
-.error-title-bar {
+.retro-title-bar {
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -33,6 +98,7 @@
     border-bottom: 4px solid #000000;
     overflow: hidden;
     background-color: #ffffff;
+    /* animation: pixel-rainbow-wave 2s linear infinite; */
     
     /* CSS FAILED ME */
 
@@ -47,7 +113,7 @@
 }
 
 /*  INLINE SVG BACKGROUND */
-.error-title-dither {
+.retro-title-dither {
     position: absolute;
     top: 0;
     left: 0;
@@ -56,7 +122,7 @@
     z-index: 0; /* Sits below the text layers */
 }
 
-.error-title-text {
+.retro-title-text {
     display: flex;
     position: relative;
     z-index: 1;
@@ -65,8 +131,7 @@
     font-weight: 900;
     font-size: 18px;
     letter-spacing: 1px;
-    background-color: #001A83; 
-    /* background: transparent; */
+    background: transparent;
     padding-left: 6px;
     user-select: none;
     -webkit-user-select: none; /*no one's opening this shit in safari but just in case*/
@@ -75,7 +140,7 @@
 }
 
 /* Tiny close button in the corner */
-.error-close-x {
+.retro-close-x {
     width: 22px;
     height: 22px;
     background-color: #B30000;
@@ -92,18 +157,20 @@
 }
 
 
-.error-close-x:active {
+.retro-close-x:active {
     background-color: #000000;
     color: #ffffff;
 }
 
 /* BODY SECTION */
-.error-window-body {
+.retro-window-body {
     padding: 20px;
-    background-color: #dfdfdf; /* Classic Windows grey */
+    background-color: #dfdfdf; /*Classic Windows grey*/
+    /*flash aggressively */
+    /* animation: bg-rainbow-flash 0.3s infinite step-end;  */
 }
 
-.error-content {
+.retro-content {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -112,19 +179,33 @@
 
 
 /* Icon container */
-.error-icon {
+.retro-icon {
     width: 70px;    
     height: 70px;    
     flex-shrink: 0; 
 }
 
-.error-icon img {
+.retro-icon img {
     width: 100%;
     height: 100%;
     object-fit: contain; 
 }
 
-.error-message-text {
+@keyframes rat-pixel-flash {
+    0%   { fill: #ff0000; } 
+    16%  { fill: #ffa500; } 
+    33%  { fill: #ffff00; } 
+    50%  { fill: #008000; } 
+    66%  { fill: #0000ff; } 
+    83%  { fill: #4b0082; } 
+    100% { fill: #ee82ee; } 
+}
+
+.flashing-rat-pixels rect {
+    animation: rat-pixel-flash 1s infinite step-end;
+}
+
+.retro-message-text {
     font-size: 16px;
     font-weight: 600;
     color: #000000;
@@ -132,7 +213,7 @@
 }
 
 /* BUTTON CONTAINER */
-.error-actions {
+.retro-actions {
     display: flex;
     justify-content: space-around;
     gap: 20px;
@@ -140,7 +221,7 @@
 
 /* THE LEGENDARY 3D BUTTON (shoutpout to the singlure semester in 3D animation)
 */
-.win95-btn {
+.retro-actions .win95-btn {
     flex-grow: 1;
     padding: 8px 16px;
     font-family: inherit;
@@ -161,7 +242,7 @@
 }
 
 
-.win95-btn:active {
+.retro-actions .win95-btn:active {
     box-shadow: 
         inset 2px 2px 0px #808080, 
         inset -2px -2px 0px #ffffff;
