@@ -31,12 +31,24 @@ export default function Navbar() {
 
 	// DATA HOARDING SYSTEM: Silently downloading the whole marketplace layout on mount
 	// so we can filter locally on the frontend because server queries are scary.
-	useEffect(() => {
+	// useEffect(() => {
+	// 	apiGet("/listings")
+	// 		.then((data) => setAllProducts(data))
+	// 		.catch((err) =>
+	// 			console.error("Search system broke, blame the server:", err),
+	// 		);
+	// }, []);
+
+	const fetchLatestListings = () => {
 		apiGet("/listings")
 			.then((data) => setAllProducts(data))
 			.catch((err) =>
 				console.error("Search system broke, blame the server:", err),
 			);
+	};
+
+	useEffect(() => {
+		fetchLatestListings();
 	}, []);
 
 	// THE MATCHMAKER: Checking if whatever garbage the user typed matches titles or sellers.
@@ -86,6 +98,7 @@ export default function Navbar() {
 									aria-label="Search"
 									value={searchQuery}
 									onChange={handleSearch}
+									onFocus={fetchLatestListings}
 								/>
 							</Form>
 
