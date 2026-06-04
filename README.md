@@ -1,6 +1,7 @@
 # DVAtors
 
 # 💾 RetroRat: The Ultimate Vintage Tech Time Machine
+##Old Tech, New Hands 
 
 > **"Welcome to the grid."** > 
 > Did you spend your childhood blowing into cartridges? Do you miss the warm, analog hiss of a cassette tape? **RetroRat Market** isn't just an e-commerce platform; it's a comeback. We are building the ultimate digital flea market for vintage tech, retro games, and analog media, all wrapped up in a glorious, pixel-perfect 90s desktop aesthetic.
@@ -108,4 +109,4 @@ npm run dev
 
 [Frank] - Backend & Database Engineer | GitHub Profile
 
-[ SYSTEM MESSAGE: It is now safe to turn off your computer. (or whatever tagline i guess) ]
+[ SYSTEM MESSAGE: It is now safe to turn off your computer. ]
