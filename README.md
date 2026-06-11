@@ -131,20 +131,20 @@ npm run dev
 
 [Troy] - Backend Developer A - API & Database Architect
 
-[Frank] - Backend Developer B & Authorisation & Business Logic
+[Tshedza] - Backend Developer B & Authorisation & Business Logic
 
 ### Where to Find Us:
 
 [Rem] - GitHub Profile - remilkies  
 [![Rem's Profile](https://github.com/remilkies.png?size=100)](https://github.com/remilkies)
 
-[Robert] - GitHub Profile  
+[Robert] - GitHub Profile - RobertvanEijk-OW-251185  
 [![Robert's Profile](https://github.com/RobertvanEijk-OW-251185.png?size=100)](https://github.com/RobertvanEijk-OW-251185)
 
-[Troy] - GitHub Profile  
+[Troy] - GitHub Profile - Troy-jsx  
 [![Troy's Profile](https://github.com/Troy-jsx.png?size=100)](https://github.com/Troy-jsx)
 
-[Frank] - GitHub Profile  
+[Tshedza] - GitHub Profile - BVLTRA  
 [![Frank's Profile](https://github.com/BVLTRA.png?size=100)](https://github.com/BVLTRA)
 
 ---
