@@ -3,14 +3,18 @@
 # 💾 RetroRat: The Ultimate Vintage Tech Time Machine
 ## Old Tech, New Hands 
 
+![BannerImage](Retro-Rat/src/assets/ReadMeImages/BannerImage.png)
+
 > **"Welcome to the grid."** > 
-> Did you spend your childhood blowing into cartridges? Do you miss the warm, analog hiss of a cassette tape? **RetroRat Market** isn't just an e-commerce platform; it's a comeback. We are building the ultimate digital flea market for vintage tech, retro games, and analog media, all wrapped up in a glorious, pixel-perfect 90s desktop aesthetic.
+> Did you spend your childhood blowing into cartridges? Do you miss the warm, analogue hiss of a cassette tape? **RetroRat Market** isn't just an e-commerce platform; it's a comeback. We are building the ultimate digital flea market for vintage tech, retro games, and analogue media, all wrapped up in a glorious, pixel-perfect 90s desktop aesthetic.
 
 ---
 
-## 🕹️ The Vision: Dialing Up the Past
+## 🕹️ The Vision: Dialling Up the Past
 
 We aren't just selling nostalgia; we're wrapping you in it. RetroOS Market is a full-stack e-commerce web application designed for collectors, tinkerers, and retro-tech enthusiasts. 
+
+![Image1](Retro-Rat/src/assets/ReadMeImages/HomePage.png)
 
 ---
 
@@ -23,6 +27,12 @@ Users exploring RetroRat will have full access to:
 * **⭐ Save to Floppy (Wishlist):** See a Sega Genesis you want but need to wait till payday? Save it directly to your personal wishlist.
 * **🖨️ The Message Boards (Comments):** Jump into the comment section on any item. Ask the seller about the specs, negotiate, or just geek out over shared nostalgia with the community.
 * **🗑️ Drag to Trash:** Changed your mind about selling that old Macintosh? Easily delete and manage your live postings.
+
+![Image1](Retro-Rat/src/assets/ReadMeImages/Home2.png)
+![Image1](Retro-Rat/src/assets/ReadMeImages/SignUp.png)
+![Image1](Retro-Rat/src/assets/ReadMeImages/SignIn.png)
+![Image1](Retro-Rat/src/assets/ReadMeImages/InvalidToast.png)
+![Image1](Retro-Rat/src/assets/ReadMeImages/SuccessToast.png)
 
 ---
 
@@ -101,12 +111,44 @@ Bash
 npm run dev 
 ```
 
-👾 The Developers (SysAdmins)
+## Mockups
 
-[Troy and robert] - Frontend & UI/UX Designer | GitHub Profile
+![Desktop1](Retro-Rat/src/assets/ReadMeImages/Mockups/Desktop1.png)
+![Desktop2](Retro-Rat/src/assets/ReadMeImages/Mockups/Desktop2.png)
+![Laptop1](Retro-Rat/src/assets/ReadMeImages/Mockups/Laptop1.png)
 
-[Rem] - Frontend Developer | GitHub Profile - remilkies 
+---
 
-[Frank] - Backend & Database Engineer | GitHub Profile
+## 👾 The Developers (SysAdmins)
+
+### Our Team:
+
+[Troy and Robert] - UI/UX Designers
+
+[Rem] - Frontend Developer A - UI/UX Developer & Core Pages
+
+[Robert] - Frontend Developer B - User Interaction & State
+
+[Troy] - Backend Developer A - API & Database Architect
+
+[Frank] - Backend Developer B & Authorisation & Business Logic
+
+### Where to Find Us:
+
+[Rem] - GitHub Profile - remilkies  
+[![Rem's Profile](https://github.com/remilkies.png?size=100)](https://github.com/remilkies)
+
+[Robert] - GitHub Profile  
+[![Robert's Profile](https://github.com/RobertvanEijk-OW-251185.png?size=100)](https://github.com/RobertvanEijk-OW-251185)
+
+[Troy] - GitHub Profile  
+[![Troy's Profile](https://github.com/Troy-jsx.png?size=100)](https://github.com/Troy-jsx)
+
+[Frank] - GitHub Profile  
+[![Frank's Profile](https://github.com/BVLTRA.png?size=100)](https://github.com/BVLTRA)
+
+---
 
 [ SYSTEM MESSAGE: It is now safe to turn off your computer. ]
+
+---
